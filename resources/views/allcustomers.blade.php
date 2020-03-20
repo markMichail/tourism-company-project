@@ -182,7 +182,9 @@ window.onload = function () {
   $(document).ready(function () {
     $('#dtBasicExample').DataTable(
       {
-        "columnDefs": [ { "orderable": false, "targets": 6 } ]
+        "columnDefs": [
+          { "orderable": false, "targets":5 },
+        ]
       }
     );
     $('.dataTables_length').addClass('bs-select');
