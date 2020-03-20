@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="{{ asset('mdb/css/mdb.min.css')}} ">
   <!-- Your custom styles (optional) -->
   <link rel="stylesheet" href="{{ asset('mdb/css/style.css') }}">
+  <!--Jquery -->
+
 </head>
 <body>
   <!-- jQuery -->
@@ -30,6 +32,11 @@
   <script type="text/javascript" src="{{ asset('mdb/js/mdb.min.js') }}"></script>
   <!-- Your custom scripts (optional) -->
   <script type="text/javascript"></script>
+
+  <!-- Plugin file -->
+<link rel="stylesheet" href="{{ asset('mdb/css/addons/datatables.min.css') }}">
+<!-- Plugin file -->
+<script src="{{asset('mdb/js/addons/datatables.min.js')}}"></script>
 
   <!-- Start your project here-->
   @include('layouts.navbar')

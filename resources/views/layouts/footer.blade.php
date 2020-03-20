@@ -8,3 +8,8 @@
 </footer> -->
 
 <!-- Footer -->
+
+   <!-- Plugin file -->
+   <link rel="stylesheet" href="{{ asset('mdb/css/addons/datatables.min.css') }}">
+   <!-- Plugin file -->
+   <script src="{{asset('mdb/js/addons/datatables.min.js')}}"></script>
