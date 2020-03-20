@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/allcustomers', function () {
     return view('allcustomers');
 });

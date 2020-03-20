@@ -3,7 +3,7 @@
 
 <!-- Editable table -->
 <div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable table</h3>
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">All Customers table</h3>
   <div class="card-body">
     <div id="table" class="table-editable">
       <span class="table-add float-right mb-3 mr-2">
@@ -15,158 +15,132 @@
         <thead>
           <tr>
             <th class="text-center">Person Name</th>
-            <th class="text-center">Age</th>
-            <th class="text-center">Company Name</th>
-            <th class="text-center">Country</th>
-            <th class="text-center">City</th>
+            <th class="text-center">Credit</th>
+            <th class="text-center">View</th>
             <th class="text-center">Remove</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="pt-3-half" contenteditable="true">Aurelia Vega</td>
-            <td class="pt-3-half" contenteditable="true">30</td>
-            <td class="pt-3-half" contenteditable="true">Deepends</td>
-            <td class="pt-3-half" contenteditable="true">Spain</td>
-            <td class="pt-3-half" contenteditable="true">Madrid</td>
-            <td>
-              <span class="table-remove">
-                <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-              </span>
+            <td class="pt-3-half" contenteditable="true">500 LE</td>
+            <td class="table-view">
+              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+            </td>
+            <td class="table-remove">
+              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
             </td>
           </tr>
           <tr>
             <td class="pt-3-half" contenteditable="true">Aurelia Vega</td>
-            <td class="pt-3-half" contenteditable="true">30</td>
-            <td class="pt-3-half" contenteditable="true">Deepends</td>
-            <td class="pt-3-half" contenteditable="true">Spain</td>
-            <td class="pt-3-half" contenteditable="true">Madrid</td>
-            <td>
-              <span class="table-remove">
-                <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-              </span>
+            <td class="pt-3-half" contenteditable="true">1500 LE</td>
+            <td class="table-view">
+              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+            </td>
+            <td class="table-remove">
+              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
             </td>
           </tr>
           <tr>
             <td class="pt-3-half" contenteditable="true">Aurelia Vega</td>
-            <td class="pt-3-half" contenteditable="true">30</td>
-            <td class="pt-3-half" contenteditable="true">Deepends</td>
-            <td class="pt-3-half" contenteditable="true">Spain</td>
-            <td class="pt-3-half" contenteditable="true">Madrid</td>
-            <td>
-              <span class="table-remove">
-                <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-              </span>
+            <td class="pt-3-half" contenteditable="true">-2500 LE</td>
+            <td class="table-view">
+              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+            </td>
+            <td class="table-remove">
+              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
             </td>
           </tr>
           <tr>
             <td class="pt-3-half" contenteditable="true">Aurelia Vega</td>
-            <td class="pt-3-half" contenteditable="true">30</td>
-            <td class="pt-3-half" contenteditable="true">Deepends</td>
-            <td class="pt-3-half" contenteditable="true">Spain</td>
-            <td class="pt-3-half" contenteditable="true">Madrid</td>
-            <td>
-              <span class="table-remove">
-                <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-              </span>
+            <td class="pt-3-half" contenteditable="true">0 LE</td>
+            <td class="table-view">
+              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+            </td>
+            <td class="table-remove">
+              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
             </td>
           </tr>
           <tr>
             <td class="pt-3-half" contenteditable="true">Aurelia Vega</td>
-            <td class="pt-3-half" contenteditable="true">30</td>
-            <td class="pt-3-half" contenteditable="true">Deepends</td>
-            <td class="pt-3-half" contenteditable="true">Spain</td>
-            <td class="pt-3-half" contenteditable="true">Madrid</td>
-            <td>
-              <span class="table-remove">
-                <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-              </span>
+            <td class="pt-3-half" contenteditable="true">320 LE</td>
+            <td class="table-view">
+              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+            </td>
+            <td class="table-remove">
+              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
             </td>
           </tr>
           <tr>
             <td class="pt-3-half" contenteditable="true">Aurelia Vega</td>
-            <td class="pt-3-half" contenteditable="true">30</td>
-            <td class="pt-3-half" contenteditable="true">Deepends</td>
-            <td class="pt-3-half" contenteditable="true">Spain</td>
-            <td class="pt-3-half" contenteditable="true">Madrid</td>
-            <td>
-              <span class="table-remove">
-                <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-              </span>
+            <td class="pt-3-half" contenteditable="true">2000 LE</td>
+            <td class="table-view">
+              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+            </td>
+            <td class="table-remove">
+              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
             </td>
           </tr>
           <tr>
             <td class="pt-3-half" contenteditable="true">Aurelia Vega</td>
-            <td class="pt-3-half" contenteditable="true">30</td>
-            <td class="pt-3-half" contenteditable="true">Deepends</td>
-            <td class="pt-3-half" contenteditable="true">Spain</td>
-            <td class="pt-3-half" contenteditable="true">Madrid</td>
-            <td>
-              <span class="table-remove">
-                <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-              </span>
+            <td class="pt-3-half" contenteditable="true">-10000 LE</td>
+            <td class="table-view">
+              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+            </td>
+            <td class="table-remove">
+              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
             </td>
           </tr>
           <tr>
             <td class="pt-3-half" contenteditable="true">Aurelia Vega</td>
-            <td class="pt-3-half" contenteditable="true">30</td>
-            <td class="pt-3-half" contenteditable="true">Deepends</td>
-            <td class="pt-3-half" contenteditable="true">Spain</td>
-            <td class="pt-3-half" contenteditable="true">Madrid</td>
-            <td>
-              <span class="table-remove">
-                <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-              </span>
+            <td class="pt-3-half" contenteditable="true">300 LE</td>
+            <td class="table-view">
+              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+            </td>
+            <td class="table-remove">
+              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
             </td>
           </tr>
           <tr>
             <td class="pt-3-half" contenteditable="true">Aurelia Vega</td>
-            <td class="pt-3-half" contenteditable="true">30</td>
-            <td class="pt-3-half" contenteditable="true">Deepends</td>
-            <td class="pt-3-half" contenteditable="true">Spain</td>
-            <td class="pt-3-half" contenteditable="true">Madrid</td>
-            <td>
-              <span class="table-remove">
-                <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-              </span>
+            <td class="pt-3-half" contenteditable="true">3000 LE</td>
+            <td class="table-view">
+              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+            </td>
+            <td class="table-remove">
+              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
             </td>
           </tr>
           <tr>
             <td class="pt-3-half" contenteditable="true">Guerra Cortez</td>
-            <td class="pt-3-half" contenteditable="true">45</td>
-            <td class="pt-3-half" contenteditable="true">Insectus</td>
-            <td class="pt-3-half" contenteditable="true">USA</td>
-            <td class="pt-3-half" contenteditable="true">San Francisco</td>
-            <td>
-              <span class="table-remove"><button type="button"
-                class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-              </span>
+            <td class="pt-3-half" contenteditable="true">20 LE</td>
+            <td class="table-view">
+              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+            </td>
+            <td class="table-remove">
+              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
             </td>
           </tr>
           <tr>
             <td class="pt-3-half" contenteditable="true">Guadalupe House</td>
-            <td class="pt-3-half" contenteditable="true">26</td>
-            <td class="pt-3-half" contenteditable="true">Isotronic</td>
-            <td class="pt-3-half" contenteditable="true">Germany</td>
-            <td class="pt-3-half" contenteditable="true">Frankfurt am Main</td>
-            <td>
-              <span class="table-remove">
-                <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-              </span>
+            <td class="pt-3-half" contenteditable="true">700 LE</td>
+            <td class="table-view">
+              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+            </td>
+            <td class="table-remove">
+              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
             </td>
           </tr>
 
           <!-- This is our clonable table line -->
           <tr class="hide">
-            <td class="pt-3-half" contenteditable="true">Markkkkk Gallagher</td>
-            <td class="pt-3-half" contenteditable="true">31</td>
-            <td class="pt-3-half" contenteditable="true">Portica</td>
-            <td class="pt-3-half" contenteditable="true">United Kingdom</td>
-            <td class="pt-3-half" contenteditable="true">London</td>
-            <td>
-              <span class="table-remove"><button type="button"
-                class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-              </span>
+            <td class="pt-3-half" contenteditable="true">Mark Gallagher</td>
+            <td class="pt-3-half" contenteditable="true">600 LE</td>
+            <td class="table-view">
+              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+            </td>
+            <td class="table-remove">
+              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
             </td>
           </tr>
         </tbody>
@@ -183,8 +157,9 @@ window.onload = function () {
     $('#dtBasicExample').DataTable(
       {
         "columnDefs": [
-          { "orderable": false, "targets":5 },
-        ]
+          { "orderable": false, "targets":2 },
+          { "orderable": false, "targets":3 },
+        ],
       }
     );
     $('.dataTables_length').addClass('bs-select');
@@ -196,25 +171,8 @@ window.onload = function () {
   <tr class="hide">
   <td class="pt-3-half" contenteditable="true">Example</td>
   <td class="pt-3-half" contenteditable="true">Example</td>
-  <td class="pt-3-half" contenteditable="true">Example</td>
-  <td class="pt-3-half" contenteditable="true">Example</td>
-  <td class="pt-3-half" contenteditable="true">Example</td>
-  // <td class="pt-3-half">
-  // <span class="table-up">
-  // <a href="#!" class="indigo-text">
-  // <i class="fas fa-long-arrow-alt-up" aria-hidden="true"></i>
-  // </a>
-  // </span>
-  // <span class="table-down">
-  // <a href="#!" class="indigo-text">
-  // <i class="fas fa-long-arrow-alt-down" aria-hidden="true"></i>
-  // </a>
-  // </span>
-  // </td>
-  // <td>
-  <span class="table-remove">
+  <td class="table-remove">
   <button type="button" class="btn btn-danger btn-rounded btn-sm my-0 waves-effect waves-light">Remove</button>
-  </span>
   </td>
   </tr>`;
 
@@ -230,17 +188,9 @@ window.onload = function () {
     $(this).parents('tr').detach();
   });
 
-  $tableID.on('click', '.table-up', function () {
-    const $row = $(this).parents('tr');
-    if ($row.index() === 1) {
-      return;
-    }
-    $row.prev().before($row.get(0));
-  });
-
-  $tableID.on('click', '.table-down', function () {
-    const $row = $(this).parents('tr');
-    $row.next().after($row.get(0));
+  $tableID.on('click', '.table-view', function () {
+    alert("view page ISA");
+    // $(this).parents('tr').detach();
   });
 
 }
