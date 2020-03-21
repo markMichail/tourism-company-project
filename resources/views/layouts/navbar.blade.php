@@ -27,6 +27,9 @@
       <li class="nav-item">
         <a class="nav-link" href="/safe">Treasury</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/reports">Reports</a>
+      </li>
     </ul>
     <!-- <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item avatar">

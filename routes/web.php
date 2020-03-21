@@ -42,3 +42,7 @@ Route::get('/alltickets', function () {
 Route::get('/viewreceiptdetails', function () {
     return view('viewreceiptdetails');
 })->name('viewreceiptdetails');
+
+Route::get('/reports', function () {
+    return view('reports');
+});
