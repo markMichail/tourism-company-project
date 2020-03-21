@@ -29,7 +29,7 @@ Route::get('/safe', function () {
 
 Route::get('/tickets', function () {
     return view('tickets');
-});
+})->name('tickets');
 
 Route::get('/allreceipts', function () {
     return view('allreceipts');
@@ -46,3 +46,7 @@ Route::get('/viewreceiptdetails', function () {
 Route::get('/reports', function () {
     return view('reports');
 });
+
+Route::get('/createticket', function () {
+    return view('createticket');
+})->name('createticket');

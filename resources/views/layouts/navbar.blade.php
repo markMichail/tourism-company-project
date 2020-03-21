@@ -13,7 +13,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Add Ticket</a>
+        <a class="nav-link" href="/createticket">Create Receipt</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/allcustomers">All Customers</a>

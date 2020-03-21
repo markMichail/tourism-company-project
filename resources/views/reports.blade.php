@@ -14,7 +14,7 @@
         <a class="dropdown-item" href="#">1/1 - 15/1</a>
         <a class="dropdown-item" href="#">15/1 - 31/1</a>
         <a class="dropdown-item" href="#">1/2 - 15/2</a>
-      </div>info
+      </div>
       <button type="button" class="btn btn-info btn-rounded btn-md float-right">Export to excel</button>
       <button type="button" class="btn btn-warning btn-rounded btn-md float-right">Print</button>
       <!-- Basic dropdown -->
