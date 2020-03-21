@@ -26,3 +26,7 @@ Route::get('/customerprofile', function () {
 Route::get('/safe', function () {
     return view('safe');
 });
+
+Route::get('/tickets', function () {
+    return view('tickets');
+});
