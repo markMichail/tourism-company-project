@@ -11,7 +11,7 @@
           <i class="fas fa-plus fa-2x" aria-hidden="true"></i>
         </a>
       </span> -->
-      <table id="dtBasicExample" class="table table-bordered table-responsive-md table-striped text-center">
+      <table id="dtBasicExample" style="max-width: auto;" class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
             <th class="text-center">#</th>
@@ -164,11 +164,12 @@ window.onload = function () {
   $(document).ready(function () {
     $('#dtBasicExample').DataTable(
       {
+        
         "columnDefs": [
           { "orderable": false, "targets":0 },
           { "orderable": true, "targets":1 },
 
-        ],
+        ],"scrollX": true
       }
     );
     $('.dataTables_length').addClass('bs-select');
@@ -192,6 +193,8 @@ window.onload = function () {
   //   }
   //   $tableID.find('table').append($clone);
   // });
+
+
 
   $tableID.on('click', '.table-remove', function () {
     $(this).parents('tr').detach();
