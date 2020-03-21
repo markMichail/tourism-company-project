@@ -19,10 +19,10 @@
         <a class="nav-link" href="/allcustomers">All Customers</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">All Recipts</a>
+        <a class="nav-link" href="/allreceipts">All Receipts</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">All Tickets</a>
+        <a class="nav-link" href="/alltickets">All Tickets</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/safe">Treasury</a>

@@ -30,3 +30,15 @@ Route::get('/safe', function () {
 Route::get('/tickets', function () {
     return view('tickets');
 });
+
+Route::get('/allreceipts', function () {
+    return view('allreceipts');
+});
+
+Route::get('/alltickets', function () {
+    return view('alltickets');
+});
+
+Route::get('/viewreceiptdetails', function () {
+    return view('viewreceiptdetails');
+})->name('viewreceiptdetails');
