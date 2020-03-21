@@ -25,7 +25,7 @@
         <a class="nav-link" href="#">All Tickets</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Treasury</a>
+        <a class="nav-link" href="/safe">Treasury</a>
       </li>
     </ul>
     <!-- <ul class="navbar-nav ml-auto nav-flex-icons">

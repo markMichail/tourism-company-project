@@ -13,8 +13,16 @@
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/allcustomers', function () {
     return view('allcustomers');
+});
+
+Route::get('/customerprofile', function () {
+    return view('customerprofile');
+})->name('customerprofile');
+
+Route::get('/safe', function () {
+    return view('safe');
 });
