@@ -15,8 +15,9 @@
         <a class="dropdown-item" href="#">15/1 - 31/1</a>
         <a class="dropdown-item" href="#">1/2 - 15/2</a>
       </div>
-      <button type="button" class="btn btn-info btn-rounded btn-md float-right">Export to excel</button>
+      <button type="button" class="btn btn-success btn-rounded btn-md float-right">Export to excel</button>
       <button type="button" class="btn btn-warning btn-rounded btn-md float-right">Print</button>
+      <button type="button" class="btn btn-info btn-rounded btn-md float-right">Filter</button>
       <!-- Basic dropdown -->
       <table id="dtBasicExample" style="max-width: auto;" class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
@@ -177,6 +178,19 @@ window.onload = function () {
   <button type="button" class="btn btn-danger btn-rounded btn-sm my-0 waves-effect waves-light">Remove</button>
   </td>
   </tr>`;
+
+
+
+  $(document).ready(function () {
+    $('#dtBasicExample').DataTable(
+      {
+        
+        "scrollX": true
+      }
+    );
+    $('.dataTables_length').addClass('bs-select');
+  });
+
 
   // $('.table-add').on('click', 'i', () => {
   //   const $clone = $tableID.find('tbody tr').last().clone(true).removeClass('hide table-line');

@@ -1,11 +1,13 @@
 @extends('layouts.app')
 @section('content')
-<div class="container" style="margin-top:30px">
+
+
+<div  style=" width:95%; margin:auto">
   <h3 class="text-center">Safe</h3>
   <hr>
   <br>
   <div class="row text-center">
-    <div class="col-sm-6">
+    <div  class="col-lg-6">
       <table id="tablePreview" class="table table-bordered">
         <thead>
           <tr class="white-text" style="background-color:#378B92;">
@@ -31,14 +33,14 @@
         <tfoot>
           <tr>
             <td colspan="5" class="col-12">
-              <input type="button" name="" value="Add new">
+              <input type="button" name="" class="btn btn-primary" value="Add new">
             </td>
           </tr>
         </tfoot>
       </table>
     </div>
-    <div class="col-sm-6">
-      <table id="tablePreview" class="table table-bordered">
+    <div class="col-lg-6">
+      <table  id="tablePreview" class="table table-bordered">
         <thead>
           <tr class="white-text" style="background-color:#378B92;">
             <th colspan="5" class="col-12">Revenue</th>
@@ -63,7 +65,7 @@
         <tfoot>
           <tr>
             <td colspan="5" class="col-12">
-              <input type="button" name="" value="Add new">
+              <input type="button" class="btn btn-primary" name="" value="Add new">
             </td>
           </tr>
         </tfoot>
