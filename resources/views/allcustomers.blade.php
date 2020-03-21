@@ -149,7 +149,7 @@
   </div>
 </div>
 <!-- Editable table -->
-@endsection
+
 
 <script>
 window.onload = function () {
@@ -189,9 +189,13 @@ window.onload = function () {
   });
 
   $tableID.on('click', '.table-view', function () {
-    alert("view page ISA");
-    // $(this).parents('tr').detach();
+    window.location.href = "{{ route('customerprofile') }}";
   });
+
+  // $tableID.on('click', '.table-view', function () {
+  //   alert("view page ISA");
+  //   // $(this).parents('tr').detach();
+  // });
 
 }
 
@@ -199,3 +203,4 @@ window.onload = function () {
 
 
 </script>
+@endsection
