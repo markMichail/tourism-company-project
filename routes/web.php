@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -50,3 +52,8 @@ Route::get('/reports', function () {
 Route::get('/createticket', function () {
     return view('createticket');
 })->name('createticket');
+
+Auth::routes();
+
+
+Route::get('/home', 'HomeController@index')->name('home');
