@@ -31,10 +31,10 @@ class CreateTicketsTable extends Migration
             $table->integer('profit');
             $table->integer('safy');
             $table->string('paymentType');
-            $table->integer('orderId');
+            $table->bigInteger('orderId')->unsigned()->nullable();
             $table->timestamps();
 
-            // $table->foreign('orderId')->references('id')->on('order');
+            $table->foreign('orderId')->references('id')->on('orders');
         });
     }
 
