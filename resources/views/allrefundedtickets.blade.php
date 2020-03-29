@@ -9,9 +9,9 @@
       <table id="dtBasicExample" style="max-width: auto;" class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
-            <th class="text-center">#</th>
-            <th class="text-center">ticket Number	</th>
-            <th class="text-center">refund date</th>
+            <th class="text-center" width="20%">#</th>
+            <th class="text-center" width="20%">ticket Number	</th>
+            <th class="text-center" width="30%">refund date</th>
           </tr>
         </thead>
 
