@@ -45,7 +45,7 @@
       <a class="nav-link" href="/allcustomers">All Customers</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/allreceipts">All Receipts</a>
+      <a class="nav-link" href="/allorders">All Orders</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/alltickets">All Tickets</a>
@@ -75,9 +75,9 @@
               </form>
           </div>
       </li>
-     
+
   @endguest
-       
+
     </ul>
 </div>
 

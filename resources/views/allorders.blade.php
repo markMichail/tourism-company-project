@@ -3,7 +3,7 @@
 
 <!-- Editable table -->
 <div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">All Receipts table</h3>
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">All Orders table</h3>
   <div class="card-body">
     <div id="table" class="table-editable">
       <span class="table-add float-right mb-3 mr-2">
@@ -15,15 +15,18 @@
         <thead>
           <tr>
             <th class="text-center">#</th>
-            <th class="text-center">Price</th>
+            <th class="text-center">Total</th>
+            <th class="text-center">Date</th>
             <th class="text-center">View</th>
             <th class="text-center">Remove</th>
           </tr>
         </thead>
         <tbody>
+          @foreach($orders as $order)
           <tr>
-            <td class="pt-3-half">50000004</td>
-            <td class="pt-3-half">500 LE</td>
+            <td class="pt-3-half">{{ $order->id }}</td>
+            <td class="pt-3-half">{{ $order->total }}</td>
+            <td class="pt-3-half">{{ $order->date }}</td>
             <td class="table-view">
               <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
             </td>
@@ -31,7 +34,8 @@
               <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
             </td>
           </tr>
-          <tr>
+          @endforeach
+          <!-- <tr>
             <td class="pt-3-half">50000005</td>
             <td class="pt-3-half">1500 LE</td>
             <td class="table-view">
@@ -130,19 +134,20 @@
             <td class="table-remove">
               <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
             </td>
-          </tr>
+          </tr> -->
 
           <!-- This is our clonable table line -->
-          <tr class="hide">
+          <!-- <tr class="hide">
             <td class="pt-3-half">50000014</td>
             <td class="pt-3-half">600 LE</td>
+            <td class="pt-3-half">29-10-2019</td>
             <td class="table-view">
               <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
             </td>
             <td class="table-remove">
               <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
