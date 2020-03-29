@@ -11,7 +11,7 @@
           <i class="fas fa-plus fa-2x" aria-hidden="true"></i>
         </a>
       </span>
-      <table id="dtBasicExample" class="table table-bordered table-responsive-md table-striped text-center">
+      <table id="DBTable" class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
             <th class="text-center">#</th>
@@ -36,120 +36,137 @@
           </tr>
           @endforeach
           <!-- <tr>
-            <td class="pt-3-half">50000005</td>
-            <td class="pt-3-half">1500 LE</td>
-            <td class="table-view">
-              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-            </td>
-            <td class="table-remove">
-              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="pt-3-half">50000009</td>
-            <td class="pt-3-half">2500 LE</td>
-            <td class="table-view">
-              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-            </td>
-            <td class="table-remove">
-              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="pt-3-half">50000000</td>
-            <td class="pt-3-half">0 LE</td>
-            <td class="table-view">
-              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-            </td>
-            <td class="table-remove">
-              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="pt-3-half">50000008</td>
-            <td class="pt-3-half">320 LE</td>
-            <td class="table-view">
-              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-            </td>
-            <td class="table-remove">
-              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="pt-3-half">50000008</td>
-            <td class="pt-3-half">2000 LE</td>
-            <td class="table-view">
-              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-            </td>
-            <td class="table-remove">
-              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="pt-3-half">50000008</td>
-            <td class="pt-3-half">10000 LE</td>
-            <td class="table-view">
-              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-            </td>
-            <td class="table-remove">
-              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="pt-3-half">50000006</td>
-            <td class="pt-3-half">300 LE</td>
-            <td class="table-view">
-              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-            </td>
-            <td class="table-remove">
-              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="pt-3-half">50000008</td>
-            <td class="pt-3-half">3000 LE</td>
-            <td class="table-view">
-              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-            </td>
-            <td class="table-remove">
-              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="pt-3-half">50000007</td>
-            <td class="pt-3-half">20 LE</td>
-            <td class="table-view">
-              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-            </td>
-            <td class="table-remove">
-              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="pt-3-half">50000009</td>
-            <td class="pt-3-half">700 LE</td>
-            <td class="table-view">
-              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-            </td>
-            <td class="table-remove">
-              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-            </td>
-          </tr> -->
+          <td class="pt-3-half">50000005</td>
+          <td class="pt-3-half">1500 LE</td>
+          <td class="table-view">
+          <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+        </td>
+        <td class="table-remove">
+        <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
+      </td>
+    </tr>
+    <tr>
+    <td class="pt-3-half">50000009</td>
+    <td class="pt-3-half">2500 LE</td>
+    <td class="table-view">
+    <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+  </td>
+  <td class="table-remove">
+  <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
+</td>
+</tr>
+<tr>
+<td class="pt-3-half">50000000</td>
+<td class="pt-3-half">0 LE</td>
+<td class="table-view">
+<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+</td>
+<td class="table-remove">
+<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
+</td>
+</tr>
+<tr>
+<td class="pt-3-half">50000008</td>
+<td class="pt-3-half">320 LE</td>
+<td class="table-view">
+<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+</td>
+<td class="table-remove">
+<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
+</td>
+</tr>
+<tr>
+<td class="pt-3-half">50000008</td>
+<td class="pt-3-half">2000 LE</td>
+<td class="table-view">
+<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+</td>
+<td class="table-remove">
+<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
+</td>
+</tr>
+<tr>
+<td class="pt-3-half">50000008</td>
+<td class="pt-3-half">10000 LE</td>
+<td class="table-view">
+<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+</td>
+<td class="table-remove">
+<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
+</td>
+</tr>
+<tr>
+<td class="pt-3-half">50000006</td>
+<td class="pt-3-half">300 LE</td>
+<td class="table-view">
+<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+</td>
+<td class="table-remove">
+<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
+</td>
+</tr>
+<tr>
+<td class="pt-3-half">50000008</td>
+<td class="pt-3-half">3000 LE</td>
+<td class="table-view">
+<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+</td>
+<td class="table-remove">
+<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
+</td>
+</tr>
+<tr>
+<td class="pt-3-half">50000007</td>
+<td class="pt-3-half">20 LE</td>
+<td class="table-view">
+<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+</td>
+<td class="table-remove">
+<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
+</td>
+</tr>
+<tr>
+<td class="pt-3-half">50000009</td>
+<td class="pt-3-half">700 LE</td>
+<td class="table-view">
+<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+</td>
+<td class="table-remove">
+<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
+</td>
+</tr> -->
 
-          <!-- This is our clonable table line -->
-          <!-- <tr class="hide">
-            <td class="pt-3-half">50000014</td>
-            <td class="pt-3-half">600 LE</td>
-            <td class="pt-3-half">29-10-2019</td>
-            <td class="table-view">
-              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-            </td>
-            <td class="table-remove">
-              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-            </td>
-          </tr> -->
-        </tbody>
-      </table>
+<!-- This is our clonable table line -->
+<!-- <tr class="hide">
+<td class="pt-3-half">50000014</td>
+<td class="pt-3-half">600 LE</td>
+<td class="pt-3-half">29-10-2019</td>
+<td class="table-view">
+<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+</td>
+<td class="table-remove">
+<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
+</td>
+</tr> -->
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="confirmModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Confirmation</h2>
+      </div>
+      <div class="modal-body">
+        <h4 align="center" style="margin:0;">Are you sure you want to remove this data?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" name="ok_button" id="ok_button" class="btn btn-danger">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
     </div>
   </div>
 </div>
@@ -159,7 +176,7 @@
 <script>
 window.onload = function () {
   $(document).ready(function () {
-    $('#dtBasicExample').DataTable(
+    $('#DBTable').DataTable(
       {
         "columnDefs": [
           { "orderable": false, "targets":2 },
@@ -189,12 +206,28 @@ window.onload = function () {
     $tableID.find('table').append($clone);
   });
 
-  $tableID.on('click', '.table-remove', function () {
-    $(this).parents('tr').detach();
+  $tableID.on('click', '.table-remove', function(){
+    user_id = $(this).parents("tr").children("td:first").text();
+    row = $(this).parents('tr');
+    $('#confirmModal').modal('show');
+  });
+
+  $('#ok_button').click(function(){
+    $.ajax({
+      url:"order/delete/"+user_id,
+      beforeSend:function(){
+        $('#ok_button').text('Deleting...');
+      },
+      success:function(data)
+      {
+        $('#confirmModal').modal('hide');
+        row.detach();
+      }
+    })
   });
 
   $tableID.on('click', '.table-view', function () {
-    window.location.href = "{{ route('viewreceiptdetails') }}";
+    window.location.href = "{{ route('vieworderdetails') }}";
   });
 
   // $tableID.on('click', '.table-view', function () {
@@ -203,9 +236,6 @@ window.onload = function () {
   // });
 
 }
-
-
-
 
 </script>
 @endsection
