@@ -39,10 +39,13 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/createticket">Create Receipt</a>
+      <a class="nav-link" href="/createticket">Create Ticket</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/allcustomers">All Customers</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/addcustomer">Add Customer</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/allorders">All Orders</a>

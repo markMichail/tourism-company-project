@@ -44,6 +44,9 @@ Route::get('/vieworderdetails', function () {
 Route::get('/reports', function () {
     return view('reports');
 });
+Route::get('/addcustomer', function () {
+    return view('addcustomer');
+});
 
 Route::get('/createticket', function () {
     return view('createticket');
