@@ -37,6 +37,7 @@ Route::get('/alltickets', function () {
     return view('alltickets');
 });
 
+
 Route::get('/viewreceiptdetails', function () {
     return view('viewreceiptdetails');
 })->name('viewreceiptdetails');
@@ -54,6 +55,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/allorders', 'OrderController@index')->name('allorders');
+Route::get('/allrefundedtickets', 'refundedticketController@index')->name('allrefundedtickets');
 
 
 // Route::get('/allorders', function () {
