@@ -15,7 +15,7 @@ class CustomerController extends Controller
     public function index()
     {
       $customer = Customer::find(id);
-return view('customerprofile', compact('customer));
+return view('customerprofile', compact('customer'));
     }
 
     /**
