@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\refundedticket;
+use App\RefundedTicket;
 use Illuminate\Http\Request;
 
 class RefundedTicketController extends Controller

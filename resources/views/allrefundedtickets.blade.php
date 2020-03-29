@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">All Tickets</h3>
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">All Refunded Tickets</h3>
   <div class="card-body">
     <div id="table" class="table-editable">
 
