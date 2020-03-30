@@ -17,7 +17,6 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->integer('customerId');
             $table->date('date');
-            $table->integer('total');
             $table->integer('employeeId');
             $table->timestamps();
         });
