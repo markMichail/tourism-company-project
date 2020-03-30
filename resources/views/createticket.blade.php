@@ -56,7 +56,7 @@
 
 
 <!-- To change the direction of the modal animation change .right class -->
-<div class="modal fade left" id="sideModalTR" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade left" id="sideModalTR" {{--data-backdrop="false"--}} tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
 
   <!-- Add class .modal-side and then add class .modal-top-right (or other classes from list above) to set a position to the modal -->
