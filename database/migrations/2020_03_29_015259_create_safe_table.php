@@ -16,8 +16,9 @@ class CreateSafeTable extends Migration
         Schema::create('safe', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('safeid');
-            $table->integer('receiptno');
             $table->integer('total');
+            $table->boolean('status');
+            $table->dateTime('date');
             $table->timestamps();
         });
     }
