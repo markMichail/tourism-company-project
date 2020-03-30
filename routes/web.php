@@ -25,9 +25,9 @@ Route::get('/customerprofile', function () {
     return view('customerprofile');
 })->name('customerprofile');
 
-Route::get('/safe', function () {
-    return view('safe');
-});
+//Route::get('/safe', function () {
+//    return view('safe');
+//});
 
 Route::get('/tickets', function () {
     return view('tickets');
@@ -59,3 +59,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/allorders', 'OrderController@index')->name('allorders');
 Route::get('order/delete/{id}', 'OrderController@destroy');
 Route::get('/allrefundedtickets', 'RefundedTicketController@index')->name('allrefundedtickets');
+Route::get('/safe', 'SafeController@index')->name('allsafereciepts');
