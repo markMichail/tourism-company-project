@@ -54,7 +54,7 @@
       <a class="nav-link" href="/alltickets">All Tickets</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/safe">Treasury</a>
+      <a class="nav-link" href="/safe">Safe</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/reports">Reports</a>
