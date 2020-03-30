@@ -6,6 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Safe extends Model
 {
-    //
-    protected $table = "safes";
+    protected $table = "safe";
 }
