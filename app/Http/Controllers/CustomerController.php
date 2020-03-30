@@ -14,8 +14,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-      $customer = Customer::find(id);
-return view('customerprofile', compact('customer'));
+        //index for showing all customers show() for specifed customer.
     }
 
     /**
@@ -45,9 +44,10 @@ return view('customerprofile', compact('customer'));
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show($id)
     {
-        //
+        $customer = Customer::find($id);
+        return view('customerprofile', compact('customer'));
     }
 
     /**
