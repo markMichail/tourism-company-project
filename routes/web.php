@@ -37,12 +37,15 @@ Route::get('/alltickets', function () {
     return view('alltickets');
 });
 
-Route::get('/viewreceiptdetails', function () {
-    return view('viewreceiptdetails');
-})->name('viewreceiptdetails');
+Route::get('/vieworderdetails', function () {
+    return view('vieworderdetails');
+})->name('vieworderdetails');
 
 Route::get('/reports', function () {
     return view('reports');
+});
+Route::get('/addcustomer', function () {
+    return view('addcustomer');
 });
 
 Route::get('/createticket', function () {
@@ -54,8 +57,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/allorders', 'OrderController@index')->name('allorders');
-
-
-// Route::get('/allorders', function () {
-//     return view('allorders');
-// });
+Route::get('order/delete/{id}', 'OrderController@destroy');
+Route::get('/allrefundedtickets', 'RefundedTicketController@index')->name('allrefundedtickets');
