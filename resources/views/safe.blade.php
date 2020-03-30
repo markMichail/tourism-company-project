@@ -3,38 +3,44 @@
 
 
 <div  style=" width:95%; margin:auto">
-  <h3 class="text-center">Safe</h3>
-  <hr>
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Safe</h3>
+  <br>
   <div class="row text-center">
     <div  class="col-lg-6">
       <table id="tablePreview" class="table table-bordered">
         <thead>
           <tr class="white-text" style="background-color:#378B92;">
-            <th colspan="5" class="col-12">Expenses</th>
+            <th colspan="7" class="col-12">Expenses</th>
           </tr>
           <tr class="black white-text">
             <th class="w-10">#</th>
-            <th class="w-15">Rakm ezn al sarf</th>
+            <th class="w-15">Order for Payment ID</th>
+            <th class="w-40">Employee ID</th>
             <th class="w-20">Price</th>
-            <th class="w-40">Decription</th>
+            <th class="w-40">Description</th>
             <th class="w-15">Destination</th>
+            <th class="w-40">Date</th>
           </tr>
         </thead>
         <tbody>
-          @foreach($safes as $safe)
+          @foreach($receipts as $receipt)
+          @if($receipt->type == 'Expense')
           <tr>
-            <th scope="row">{{ $safe->id }}</th>
-            <td>{{ $safe->safeid }}</td>
-            <td>{{ $safe->receiptno }}</td>
-            <td>{{ $safe->total }}</td>
-            <td>{{ $safe->total }}</td>
+            <th scope="row">{{ $receipt->id }}</th>
+            <td> nothing </td>
+            <td>{{ $receipt->employee_id }}</td>
+            <td>{{ $receipt->total_amount }}</td>
+            <td>{{ $receipt->description }}</td>
+            <td>{{ $receipt->destination }}</td>
+            <td>{{ $receipt->receipt_date }}</td>
           </tr>
+          @endif
           @endforeach
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="5" class="col-12">
-              <input type="button" name="" class="btn btn-primary" value="Add new">
+            <td colspan="7" class="col-12">
+              <input type="button" class="btn btn-primary" name="" value="Add new expense" data-toggle="modal" data-target="#modaladdnewexpense">
             </td>
           </tr>
         </tfoot>
@@ -44,35 +50,125 @@
       <table  id="tablePreview" class="table table-bordered">
         <thead>
           <tr class="white-text" style="background-color:#378B92;">
-            <th colspan="5" class="col-12">Revenue</th>
+            <th colspan="7" class="col-12">Revenue</th>
           </tr>
           <tr class="black white-text">
             <th class="w-10">#</th>
-            <th class="w-15">Rakm ezn al sarf</th>
+            <th class="w-15">Order for Payment ID</th>
+            <th class="w-40">Employee ID</th>
             <th class="w-20">Price</th>
-            <th class="w-40">Decription</th>
+            <th class="w-40">Description</th>
             <th class="w-15">Destination</th>
+            <th class="w-40">Date</th>
           </tr>
         </thead>
         <tbody>
-          @foreach($safes as $safe)
+          @foreach($receipts as $receipt)
+          @if($receipt->type == 'Revenue')
           <tr>
-            <th scope="row">{{ $safe->id }}</th>
-            <td>{{ $safe->safeid }}</td>
-            <td>{{ $safe->receiptno }}</td>
-            <td>{{ $safe->total }}</td>
-            <td>{{ $safe->total }}</td>
+            <th scope="row">{{ $receipt->id }}</th>
+            <td> nothing </td>
+            <td>{{ $receipt->employee_id }}</td>
+            <td>{{ $receipt->total_amount }}</td>
+            <td>{{ $receipt->description }}</td>
+            <td>{{ $receipt->destination }}</td>
+            <td>{{ $receipt->receipt_date }}</td>
           </tr>
+          @endif
           @endforeach
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="5" class="col-12">
-              <input type="button" class="btn btn-primary" name="" value="Add new">
+            <td colspan="7" class="col-12">
+              <input type="button" class="btn btn-primary" name="" value="Add new revenue" data-toggle="modal" data-target="#modaladdnewrevenue">
             </td>
           </tr>
         </tfoot>
       </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modaladdnewexpense" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add Expense</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <form action="{{ route('saferecieptsstore') }}" method="POST" class="border border-light p-5">
+          {{ csrf_field() }}
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Destination Name</label>
+            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Destination Name" name="destinationname">
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Price</label>
+            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Price" name="price">
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Description</label>
+            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Description" name="description">
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Date</label>
+            <input type="date" class="form-control" id="formGroupExampleInput2" placeholder="Date" name="date">
+          </div>
+          <div class="form-group d-none">
+            <label for="formGroupExampleInput2">Type</label>
+            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Type" name="type" value="Expense">
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-info btn-block my-4" type="submit">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modaladdnewrevenue" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add Revenue</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <form action="{{ route('saferecieptsstore') }}" method="POST" class="border border-light p-5">
+          {{ csrf_field() }}
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Destination Name</label>
+            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Destination Name" name="destinationname">
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Price</label>
+            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Price" name="price">
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Description</label>
+            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Description" name="description">
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Date</label>
+            <input type="date" class="form-control" id="formGroupExampleInput2" placeholder="Date" name="date">
+          </div>
+          <div class="form-group d-none">
+            <label for="formGroupExampleInput2">Type</label>
+            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Type" name="type" value="Revenue">
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-info btn-block my-4" type="submit">Add</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>

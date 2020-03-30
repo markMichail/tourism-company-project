@@ -60,3 +60,4 @@ Route::get('/allorders', 'OrderController@index')->name('allorders');
 Route::get('order/delete/{id}', 'OrderController@destroy');
 Route::get('/allrefundedtickets', 'RefundedTicketController@index')->name('allrefundedtickets');
 Route::get('/safe', 'SafeController@index')->name('allsafereciepts');
+Route::post('/safe', 'SafeController@store')->name('saferecieptsstore');

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Safe;
+use App\Receipt;
 
 class SafeController extends Controller
 {
@@ -14,8 +16,8 @@ class SafeController extends Controller
      */
     public function index()
     {
-        $safes = Safe::all();
-        return view("safe", compact('safes'));
+        $receipts = Receipt::all();
+        return view("safe", compact('receipts'));
     }
 
     /**
@@ -34,9 +36,24 @@ class SafeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        $this->validate($request, [
+            'destinationname' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'date' => 'required',
+            'type' => 'required'
+        ]);
+        $userid = Auth::id();
+        $receipt = new Receipt;
+        $receipt->employee_id = $userid;
+        $receipt->destination = $request->destinationname;
+        $receipt->total_amount = $request->price;
+        $receipt->description = $request->description;
+        $receipt->receipt_date = $request->date;
+        $receipt->type = $request->type;
+        $receipt->save();
+        return redirect(route('allsafereciepts'));
     }
 
     /**

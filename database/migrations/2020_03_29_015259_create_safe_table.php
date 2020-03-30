@@ -18,7 +18,7 @@ class CreateSafeTable extends Migration
             $table->integer('safeid');
             $table->integer('total');
             $table->boolean('status');
-            $table->dateTime('date');
+            $table->date('date');
             $table->timestamps();
         });
     }
