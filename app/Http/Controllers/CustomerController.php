@@ -15,6 +15,8 @@ class CustomerController extends Controller
     public function index()
     {
         //index for showing all customers show() for specifed customer.
+        $customers=Customer::all();
+        return view('allcustomers',compact('customers'));
     }
 
     /**
@@ -35,7 +37,19 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required | min:3',
+            'phone' => 'required | numeric',
+            'email' => 'email',
+            ]);
+
+        $customer=new Customer;
+        $customer->name=$request->name;
+        $customer->phone=$request->phone;
+        $customer->email=$request->email;
+        $customer->totalcredit=0;
+        $customer->save();
+        return redirect()->back();
     }
 
     /**

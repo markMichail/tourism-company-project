@@ -193,8 +193,6 @@
 <script>
   function modal(button){
     document.getElementById("type").value=button;
-    
-    
     }
     @if (count($errors) > 0)
     $('#modaladdnewexpense').modal('show');

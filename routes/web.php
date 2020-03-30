@@ -17,9 +17,6 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/allcustomers', function () {
-    return view('allcustomers');
-});
 
 Route::get('/customerprofile', function () {
     return view('customerprofile');
@@ -44,9 +41,10 @@ Route::get('/vieworderdetails', function () {
 Route::get('/reports', function () {
     return view('reports');
 });
-Route::get('/addcustomer', function () {
-    return view('addcustomer');
-});
+
+Route::get('/allcustomers',"CustomerController@index");
+
+Route::get('/addcustomer', "CustomerController@store");
 
 Route::get('/createticket', function () {
     return view('createticket');
