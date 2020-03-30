@@ -10,11 +10,10 @@
       <table id="tablePreview" class="table table-bordered">
         <thead>
           <tr class="white-text" style="background-color:#378B92;">
-            <th colspan="6" class="col-12">Expenses</th>
+            <th colspan="5" class="col-12">Expenses</th>
           </tr>
           <tr class="black white-text">
             <th class="w-10">#</th>
-            <th class="w-20">Type</th>
             <th class="w-15">Rakm ezn al sarf</th>
             <th class="w-20">Price</th>
             <th class="w-40">Decription</th>
@@ -25,7 +24,6 @@
           @foreach($safes as $safe)
           <tr>
             <th scope="row">{{ $safe->id }}</th>
-            <td>{{ $safe->type }}</td>
             <td>{{ $safe->safeid }}</td>
             <td>{{ $safe->receiptno }}</td>
             <td>{{ $safe->total }}</td>
@@ -35,7 +33,7 @@
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="6" class="col-12">
+            <td colspan="5" class="col-12">
               <input type="button" name="" class="btn btn-primary" value="Add new">
             </td>
           </tr>
@@ -46,11 +44,10 @@
       <table  id="tablePreview" class="table table-bordered">
         <thead>
           <tr class="white-text" style="background-color:#378B92;">
-            <th colspan="6" class="col-12">Revenue</th>
+            <th colspan="5" class="col-12">Revenue</th>
           </tr>
           <tr class="black white-text">
             <th class="w-10">#</th>
-            <th class="w-20">Type</th>
             <th class="w-15">Rakm ezn al sarf</th>
             <th class="w-20">Price</th>
             <th class="w-40">Decription</th>
@@ -61,7 +58,6 @@
           @foreach($safes as $safe)
           <tr>
             <th scope="row">{{ $safe->id }}</th>
-            <td>{{ $safe->type }}</td>
             <td>{{ $safe->safeid }}</td>
             <td>{{ $safe->receiptno }}</td>
             <td>{{ $safe->total }}</td>
@@ -71,7 +67,7 @@
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="6" class="col-12">
+            <td colspan="5" class="col-12">
               <input type="button" class="btn btn-primary" name="" value="Add new">
             </td>
           </tr>
