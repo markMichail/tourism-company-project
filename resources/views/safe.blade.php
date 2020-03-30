@@ -14,7 +14,7 @@
           </tr>
           <tr class="black white-text">
             <th class="w-10">#</th>
-            <th class="w-15">Order for Payment ID</th>
+            <th class="w-15">Recipt ID</th>
             <th class="w-40">Employee ID</th>
             <th class="w-20">Price</th>
             <th class="w-40">Description</th>
@@ -23,11 +23,13 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($receipts as $receipt)
+          <?php $i=1; ?>
+          @foreach($receipts as $index => $receipt)
+         
           @if($receipt->type == 'Expense')
           <tr>
-            <th scope="row">{{ $receipt->id }}</th>
-            <td> nothing </td>
+            <th scope="row">{{ $i++ }}</th>
+            <td> {{$receipt->id}} </td>
             <td>{{ $receipt->employee_id }}</td>
             <td>{{ $receipt->total_amount }}</td>
             <td>{{ $receipt->description }}</td>
@@ -54,7 +56,7 @@
           </tr>
           <tr class="black white-text">
             <th class="w-10">#</th>
-            <th class="w-15">Order for Payment ID</th>
+            <th class="w-15">Recipt ID</th>
             <th class="w-40">Employee ID</th>
             <th class="w-20">Price</th>
             <th class="w-40">Description</th>
@@ -63,11 +65,12 @@
           </tr>
         </thead>
         <tbody>
+          <?php $i=1; ?>
           @foreach($receipts as $receipt)
           @if($receipt->type == 'Revenue')
           <tr>
-            <th scope="row">{{ $receipt->id }}</th>
-            <td> nothing </td>
+            <th scope="row">{{ $i++ }}</th>
+            <td> {{$receipt->id}} </td>
             <td>{{ $receipt->employee_id }}</td>
             <td>{{ $receipt->total_amount }}</td>
             <td>{{ $receipt->description }}</td>
