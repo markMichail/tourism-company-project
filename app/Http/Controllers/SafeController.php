@@ -44,7 +44,7 @@ class SafeController extends Controller
     public function store(Request $request){
         $this->validate($request, [
             'destinationname' => 'required',
-            'price' => 'required',
+            'price' => 'required|numeric|min:1',
             'description' => 'required',
             'date' => 'required',
             'type' => 'required'
