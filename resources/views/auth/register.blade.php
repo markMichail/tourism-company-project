@@ -68,7 +68,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="privilege" class="col-md-4 col-form-label text-md-right">{{ __('privilege') }}</label>
+                            <label for="privilege" class="col-md-4 col-form-label text-md-right">{{ __('Privilege') }}</label>
 
                             <div class="col-md-6">
                                 <input id="privilege" type="text" class="form-control @error('privilege') is-invalid @enderror" name="privilege" value="{{ old('privilege') }}" required autocomplete="privilege">
