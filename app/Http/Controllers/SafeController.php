@@ -51,6 +51,7 @@ class SafeController extends Controller
         ]);
         $userid = Auth::id();
         $receipt = new Receipt;
+        $receipt->safe_id = 0;
         $receipt->employee_id = $userid;
         $receipt->destination = $request->destinationname;
         $receipt->total_amount = $request->price;
