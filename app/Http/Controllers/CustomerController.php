@@ -22,7 +22,8 @@ class CustomerController extends Controller
     {
         //index for showing all customers show() for specifed customer.
         $customers=Customer::all();
-        return view('allcustomers',compact('customers'));
+        $count=Customer::count();
+        return view('allcustomers',compact('customers','count'));
     }
 
     /**
@@ -46,7 +47,7 @@ class CustomerController extends Controller
         $this->validate($request, [
             'name' => 'required | min:3',
             'phone' => 'required | numeric',
-            'email' => 'email',
+            'email' => 'email  | unique:customers',
             ]);
 
         $customer=new Customer;

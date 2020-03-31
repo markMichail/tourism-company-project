@@ -6,13 +6,13 @@
 <!-- Editable table -->
 <div style="overflow: hidden;">
 
-  <div class="treeview-animated border mx-4 my-4" style="padding:0%; float:left;">
+  <div class="treeview-animated border mx-4 my-4" style="padding:0%; float:left; width:15% ">
     <h6 class="pt-3 pl-3">Customers</h6>
     <hr>
     <ul class="treeview-animated-list mb-3">
      
       <li>
-        <div class="treeview-animated-element opened"> <i class="fas fa-user ic-w mr-1"></i>All customers <span class="badge badge-primary badge-pill">14</span
+        <div class="treeview-animated-element opened"> <i class="fas fa-user ic-w mr-1"></i>All customers <span class="badge badge-primary badge-pill">{{$count}}</span
       </li>
       <li>
         <div  class="treeview-animated-element"><i class="fas fa-money-check-alt"></i> Ongoing payments. <span class="badge badge-primary badge-pill">4</span
@@ -26,7 +26,7 @@
     </ul>
   </div>
   
-<div class="card"  style="float:left; width:82%;">
+<div class="card"  style="float:left; width:80%;">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">All Customers table</h3>
   <div class="card-body">
     <div id="table" class="table-editable">
