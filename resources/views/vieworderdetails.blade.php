@@ -153,6 +153,7 @@
         </tbody>
       </table>
       <button type="button" class="btn btn-warning btn-rounded btn-md float-right">Refund</button>
+      <button type="button" class="btn btn-success btn-rounded btn-md float-right">Pay</button>
     </div>
   </div>
 </div>
