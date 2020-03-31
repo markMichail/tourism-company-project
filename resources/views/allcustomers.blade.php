@@ -6,9 +6,7 @@
 <!-- Editable table -->
 <div style="overflow: hidden;">
 
-<div class="" style="padding:0%; float:left; width:20%;">
-
-  <div class="treeview-animated border mx-4 my-4" style=" " >
+  <div class="treeview-animated border mx-4 my-4" style="padding:0%; float:left;">
     <h6 class="pt-3 pl-3">Customers</h6>
     <hr>
     <ul class="treeview-animated-list mb-3">
@@ -27,19 +25,19 @@
       </li>
     </ul>
   </div>
-  </div>
-<div class="card"  style="float:left; width:80%;">
+  
+<div class="card"  style="float:left; width:82%;">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">All Customers table</h3>
   <div class="card-body">
     <div id="table" class="table-editable">
      
-      <table id="dtBasicExample" class="table table-bordered table-responsive-md table-striped text-center">
+      <table id="dtBasicExample" class="table table-bordered table-responsive-lg table-striped text-center">
         <thead>
           <tr>
             <th class="text-center">Person Name</th>
             <th class="text-center">Credit</th>
-            <th style="width:10%" class="text-center">View</th>
-            <th style="width:10%" class="text-center">Remove</th>
+            <th style="" class="text-center">View</th>
+            <th style="" class="text-center">Remove</th>
           </tr>
         </thead>
         <tbody>
@@ -84,14 +82,14 @@
 
   <div class="form-group">
       <label for="formGroupExampleInput">Customer Name</label>
-      <input type="text" name="name" class="form-control @error('email') is-invalid @enderror" id="formGroupExampleInput" placeholder="customer's name">
+      <input type="text" name="name" class="form-control @error('email') is-invalid @enderror" id="formGroupExampleInput" value="{{old('name')}}" placeholder="customer's name">
     </div>
     @error('name')
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
     <div class="form-group">
       <label for="formGroupExampleInput2">Phone Number</label>
-      <input type="text" name="phone" class="form-control @error('email') is-invalid @enderror" id="formGroupExampleInput2"
+      <input type="text" name="phone" class="form-control @error('email') is-invalid @enderror" value="{{old('phone')}}" id="formGroupExampleInput2"
       placeholder="Phone number">
     </div>
     @error('phone')
@@ -99,7 +97,7 @@
     @enderror
     <div class="form-group">
       <label for="formGroupExampleInput2">Email</label>
-      <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="formGroupExampleInput2"
+      <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}" id="formGroupExampleInput2"
       placeholder="customer's email">
     </div>
     @error('email')
@@ -119,6 +117,11 @@
     </div>
   </div>
 </div>
+
+
+
+
+
 
 
 <script>
