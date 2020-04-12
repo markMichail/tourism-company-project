@@ -17,8 +17,8 @@
             <th class="text-center">#</th>
             <th class="text-center">Total</th>
             <th class="text-center">Date</th>
-            <th class="text-center">View</th>
-            <th class="text-center">Remove</th>
+            <th style="width:10%" class="text-center">View</th>
+            <th style="width:10%" class="text-center">Remove</th>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
               <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
             </td>
             <td class="table-remove">
-              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
+              <button type="button" class="btn btn-danger px-3"><i class="fas fa-trash" aria-hidden="true"></i></button>
             </td>
           </tr>
           @endforeach
@@ -136,8 +136,8 @@
 </td>
 </tr> -->
 
-<!-- This is our clonable table line -->
-<!-- <tr class="hide">
+          <!-- This is our clonable table line -->
+          <!-- <tr class="hide">
 <td class="pt-3-half">50000014</td>
 <td class="pt-3-half">600 LE</td>
 <td class="pt-3-half">29-10-2019</td>
@@ -148,10 +148,10 @@
 <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
 </td>
 </tr> -->
-</tbody>
-</table>
-</div>
-</div>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 <div id="confirmModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -174,7 +174,7 @@
 
 
 <script>
-window.onload = function () {
+  window.onload = function () {
   $(document).ready(function () {
     $('#DBTable').DataTable(
       {

@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use App\Receipt;
 
 
 Route::get('/', function () {
@@ -49,6 +49,22 @@ Route::get('/addcustomer', "CustomerController@store");
 Route::get('/createticket', function () {
     return view('createticket');
 })->name('createticket');
+
+//test route for many to many relationships.
+
+Route::get('/test', function () {
+        $r = Receipt::findorfail(1); 
+        
+        echo $r->tickets;
+        echo '<br>';
+        echo '<br>';
+        echo $r->tickets[0]->pivot;
+        echo '<br>';
+        echo '<br>';
+        echo $r->tickets[0]->pivot->amount;
+    
+});
+
 
 Auth::routes();
 

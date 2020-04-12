@@ -21,10 +21,6 @@
   <!-- Your custom styles (optional) -->
   <link rel="stylesheet" href="{{ asset('mdb/css/style.css') }}">
   <!--Jquery -->
-
-</head>
-<body>
-  <!-- jQuery -->
   <script type="text/javascript" src="{{ asset('mdb/js/jquery.min.js') }}"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="{{ asset('mdb/js/popper.min.js') }}"></script>
@@ -34,6 +30,11 @@
   <script type="text/javascript" src="{{ asset('mdb/js/mdb.min.js') }}"></script>
   <!-- Plugin file -->
   <script src="{{asset('mdb/js/addons/datatables.min.js')}}"></script>
+
+</head>
+<body>
+  <!-- jQuery -->
+
   <!-- Your custom scripts (optional) -->
   <script type="text/javascript"></script>
 

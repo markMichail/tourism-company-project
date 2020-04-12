@@ -13,15 +13,15 @@ class CreateTicketReceiptTable extends Migration
      */
     public function up()
     {
-        Schema::create('ticket_receipt', function (Blueprint $table) {
+        Schema::create('receipt_ticket', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('ticketId')->unsigned()->nullable();
-            $table->bigInteger('receiptId')->unsigned()->nullable();
+            $table->bigInteger('ticket_id')->unsigned()->nullable();
+            $table->bigInteger('receipt_id')->unsigned()->nullable();
             $table->float('amount');
             $table->timestamps();
 
-            $table->foreign('ticketId')->references('id')->on('tickets');
-            $table->foreign('receiptId')->references('id')->on('receipts');
+            $table->foreign('ticket_id')->references('id')->on('tickets');
+            $table->foreign('receipt_id')->references('id')->on('receipts');
         });
     }
 

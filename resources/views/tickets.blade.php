@@ -3,7 +3,7 @@
 
 <!-- Editable table -->
 <div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Tickets of recipt 50000004</h3>
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Tickets of order 50000004</h3>
   <div class="card-body">
     <div id="table" class="table-editable">
       <span class="table-add float-right mb-3 mr-2">
