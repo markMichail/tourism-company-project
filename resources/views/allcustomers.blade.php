@@ -10,7 +10,7 @@
     <h6 class="pt-3 pl-3">Customers</h6>
     <hr>
     <ul class="treeview-animated-list mb-3">
-     
+
       <li>
         <div class="treeview-animated-element opened"> <i class="fas fa-user ic-w mr-1"></i>All customers <span class="badge badge-primary badge-pill">{{$count}}</span
       </li>
@@ -25,12 +25,12 @@
       </li>
     </ul>
   </div>
-  
+
 <div class="card"  style="float:left; width:80%;">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">All Customers table</h3>
   <div class="card-body">
     <div id="table" class="table-editable">
-     
+
       <table id="dtBasicExample" class="table table-bordered table-responsive-lg table-striped text-center">
         <thead>
           <tr>
@@ -46,8 +46,8 @@
             <td class="pt-3-half" contenteditable="true">{{$customer->name}}</td>
             <td class="pt-3-half" contenteditable="true">{{$customer->totalcredit}}</td>
             <td class="table-view">
-              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-            </td>
+            <a href="customers/{{ $customer->id}}"   <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+            </a></td>
             <td class="table-remove">
               <button type="button" class="btn btn-danger px-3"><i class="fas fa-trash" aria-hidden="true"></i></button>
             </td>
@@ -75,8 +75,8 @@
         </button>
       </div>
       <div class="modal-body mx-3">
-        
-  
+
+
 <form action="/addcustomer" class="border border-light p-5">
 
 
@@ -111,9 +111,9 @@
 
 </form>
       </div>
-      
-      
-      
+
+
+
     </div>
   </div>
 </div>
@@ -140,7 +140,7 @@ window.onload = function () {
 
   const $tableID = $('#table');
 
- 
+
 
   $tableID.on('click', '.table-remove', function () {
     $(this).parents('tr').detach();

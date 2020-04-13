@@ -53,8 +53,8 @@ Route::get('/createticket', function () {
 //test route for many to many relationships.
 
 Route::get('/test', function () {
-        $r = Receipt::findorfail(1); 
-        
+        $r = Receipt::findorfail(1);
+
         echo $r->tickets;
         echo '<br>';
         echo '<br>';
@@ -62,7 +62,7 @@ Route::get('/test', function () {
         echo '<br>';
         echo '<br>';
         echo $r->tickets[0]->pivot->amount;
-    
+
 });
 
 
@@ -75,3 +75,4 @@ Route::get('order/delete/{id}', 'OrderController@destroy');
 Route::get('/allrefundedtickets', 'RefundedTicketController@index')->name('allrefundedtickets');
 Route::get('/safe', 'SafeController@index')->name('allsafereciepts');
 Route::post('/safe', 'SafeController@store')->name('saferecieptsstore');
+Route::get('/customers/{id}', 'CustomerController@show');

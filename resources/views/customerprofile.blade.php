@@ -1,16 +1,16 @@
 @extends('layouts.app')
 @section('content')
 <div class="container" style="margin-top:30px">
-  <h3 class="text-center">Aurelia Vega</h3>
+  <h3 class="text-center">{{$customer->name}}</h3>
   <hr>
   <div class="row">
     <div class="col-sm-4">
       <h2>Info</h2>
       <br>
-      <div><i class="fas fa-phone-alt"></i> 01278249244</div>
-      <div><i class="fas fa-envelope"></i> Aurelia.Vega@gmail.com</div>
+      <div><i class="fas fa-phone-alt"></i> {{$customer->phone}}</div>
+      <div><i class="fas fa-envelope"></i> {{$customer->email}}</div>
       <hr>
-      <h3>Total <span style="color:red; font-size:1.6em;">-12000</span></h3>
+      <h3>Total <span style="color:red; font-size:1.6em;">{{$customer->totalcredit}}</span></h3>
     </div>
     <div class="col-sm-8">
       <h2>Notes</h2>
