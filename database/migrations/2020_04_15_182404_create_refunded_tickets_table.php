@@ -15,9 +15,11 @@ class CreateRefundedTicketsTable extends Migration
     {
         Schema::create('refunded_tickets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('ticket_id');
+            $table->bigInteger('ticket_id')->unsigned();
             $table->date('refund_date');
             $table->timestamps();
+            $table->foreign('ticket_id')->references('id')->on('tickets');
+           
         });
     }
 

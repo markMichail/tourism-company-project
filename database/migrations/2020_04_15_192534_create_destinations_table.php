@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSafeTable extends Migration
+class CreateDestinationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateSafeTable extends Migration
      */
     public function up()
     {
-        Schema::create('safe', function (Blueprint $table) {
+        Schema::create('destinations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('safeid');
-            $table->integer('total');
-            $table->boolean('status');
-            $table->date('date');
+            $table->string('name');
+            $table->string('phone');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateSafeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('safe');
+        Schema::dropIfExists('destinations');
     }
 }

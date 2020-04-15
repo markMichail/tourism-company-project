@@ -11,7 +11,9 @@
 |
 */
 use App\Receipt;
-
+use App\Safe;
+use App\Customer;
+use App\Destination;
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,15 +55,33 @@ Route::get('/createticket', function () {
 //test route for many to many relationships.
 
 Route::get('/test', function () {
-        $r = Receipt::findorfail(1);
-
-        echo $r->tickets;
+        $c = Customer::findorfail(4);
+        echo $c->receipts;
         echo '<br>';
         echo '<br>';
-        echo $r->tickets[0]->pivot;
+        $d=Destination::findorfail(1);
+        echo $d->receipts;
         echo '<br>';
         echo '<br>';
-        echo $r->tickets[0]->pivot->amount;
+        echo '<br>';
+        echo '<br>';
+        $safe=Safe::where('safe_id',0)->first();
+        echo $safe->receipts;
+        echo '<br>';
+        echo '<br>';
+        echo '<br>';
+        $receipt=Receipt::findorfail(1);
+        echo '<br>';
+        echo '<br>';
+      
+        echo $receipt->safe;
+        // echo $r->tickets;
+        // echo '<br>';
+        // echo '<br>';
+        // echo $r->tickets[0]->pivot;
+        // echo '<br>';
+        // echo '<br>';
+        // echo $r->tickets[0]->pivot->amount;
 
 });
 

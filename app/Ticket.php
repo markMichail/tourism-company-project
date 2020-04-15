@@ -12,4 +12,8 @@ class Ticket extends Model
     public function receipts(){
         return $this->BelongsToMany('App\Receipt')->withPivot('amount');;
     }
+
+    public function order(){
+        return $this->belongsTo('App\Order');
+    }
 }
