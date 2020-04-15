@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 
 Route::get('/customerprofile', function () {
-    return view('customerprofile');
+    return view('customers.customerprofile');
 })->name('customerprofile');
 
 //Route::get('/safe', function () {
@@ -27,11 +27,11 @@ Route::get('/customerprofile', function () {
 //});
 
 Route::get('/tickets', function () {
-    return view('tickets');
+    return view('tickets.tickets');
 })->name('tickets');
 
 Route::get('/alltickets', function () {
-    return view('alltickets');
+    return view('tickets.alltickets');
 });
 
 Route::get('/vieworderdetails', function () {
@@ -47,7 +47,7 @@ Route::get('/allcustomers',"CustomerController@index");
 Route::get('/addcustomer', "CustomerController@store");
 
 Route::get('/createticket', function () {
-    return view('createticket');
+    return view('tickets.createticket');
 })->name('createticket');
 
 //test route for many to many relationships.

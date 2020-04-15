@@ -23,7 +23,7 @@ class CustomerController extends Controller
         //index for showing all customers show() for specifed customer.
         $customers=Customer::all();
         $count=Customer::count();
-        return view('allcustomers',compact('customers','count'));
+        return view('customers.allcustomers',compact('customers','count'));
     }
 
     /**
@@ -68,7 +68,7 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customer = Customer::find($id);
-        return view('customerprofile', compact('customer'));
+        return view('customers.customerprofile', compact('customer'));
     }
 
     /**

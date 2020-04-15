@@ -20,7 +20,7 @@ class RefundedTicketController extends Controller
     public function index()
     {
       $refunded_tickets = RefundedTicket::all();
-      return view("allrefundedtickets", compact('refunded_tickets'));
+      return view("tickets.allrefundedtickets", compact('refunded_tickets'));
     }
 
     /**
