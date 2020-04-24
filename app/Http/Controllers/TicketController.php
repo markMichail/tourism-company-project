@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTicket;
 use App\Order;
 use App\Ticket;
 use Illuminate\Http\Request;
@@ -28,21 +29,29 @@ class TicketController extends Controller
         return view('tickets.createticket');
     }
 
+    public function orderticket(Order $order,$status){
+
+        return view('tickets.createticket',compact('order','status'));
+        
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    { 
+    public function store(StoreTicket $request)
+    {   
         Ticket::create($request->except(['again']));
-        $order=Order::findorfail($request->order_id);
         $status=1;
-        if($request->again==1)
-        return view('tickets.createticket',compact('order','status'));
-        else 
-        return view('orders.show',compact("order"));
+        if($request->again==1){
+        $order=Order::findorfail($request->order_id);
+        return redirect()->route('orderticketcreate',[$order,$status]);
+        }else {
+         $order=Order::where('id',"$request->order_id")->with('tickets')->first();
+         return redirect()->route('orderconfirm',$order);
+        }
     }
 
     /**
@@ -62,9 +71,9 @@ class TicketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Ticket $ticket)
     {
-        //
+       return view('tickets.edit',compact('ticket'));
     }
 
     /**
@@ -74,9 +83,11 @@ class TicketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(StoreTicket $request, Ticket $ticket)
+    {  
+        $ticket->update($request->all());
+        $order=$ticket->order;
+        return redirect()->route('orderconfirm',$order)->with('status','ticket updated successfully');
     }
 
     /**
@@ -85,8 +96,10 @@ class TicketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Ticket $ticket)
     {
-        //
+       $ticket->delete();
+       $order=Order::findorfail($ticket->order_id);
+       return redirect()->route('orderconfirm',$order)->with('status','ticket deleted successfully');
     }
 }

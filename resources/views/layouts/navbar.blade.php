@@ -48,7 +48,7 @@
       <a class="nav-link" href="/addcustomer">Add Customer</a>
     </li> --}}
     <li class="nav-item">
-      <a class="nav-link" href="/allorders">All Orders</a>
+    <a class="nav-link" href="{{route('order.index')}}">All Orders</a>
     </li>
     <li class="nav-item">
     <a class="nav-link" href="{{route('tickets.index')}}">All Tickets</a>

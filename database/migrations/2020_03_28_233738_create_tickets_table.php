@@ -16,7 +16,7 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('ticketNumber');
-            $table->integer('type');
+            $table->string('type');
             $table->string('passengerName');
             $table->string('destination');
             $table->string('transportationCompany');
@@ -34,7 +34,7 @@ class CreateTicketsTable extends Migration
             $table->bigInteger('order_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
     }
 

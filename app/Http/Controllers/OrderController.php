@@ -25,7 +25,7 @@ class OrderController extends Controller
   public function index()
   {
     $orders = Order::all();
-    return view("allorders", compact('orders'));
+    return view("orders.allorders", compact('orders'));
   }
 
   /**
@@ -56,7 +56,7 @@ class OrderController extends Controller
         $request->customerId='0';
       }
      $order= Order::create($request->all());
-      return view('tickets.createticket',compact('order'));
+     return redirect()->route('orderticketcreate',[$order,$status=1]);
   }
 
   /**
@@ -67,7 +67,13 @@ class OrderController extends Controller
   */
   public function show(Order $order)
   {
-    
+    return view('orders.show',compact('order'));
+  }
+  
+
+  public function confirmview(Order $order)
+  {
+    return view('orders.confirm',compact('order'));
   }
 
   /**
@@ -102,6 +108,6 @@ class OrderController extends Controller
   public function destroy($id)
   {
     Order::find($id)->delete();
-    return response()->json(['success'=>'Product deleted successfully.']);
+    return redirect()->route('order.index')->with('status','order deleted successfully');
   }
 }

@@ -10,58 +10,89 @@
 
       <!-- Name -->
 
-      <input type="text" id="passenger_name" name="passengerName" class="@error('passenger_name') is-invalid @enderror form-control mb-4"
+      <input type="text" id="passenger_name" value="{{old('passengerName')}}" name="passengerName" class="@error('passenger_name') is-invalid @enderror form-control mb-4"
           placeholder="passenger_name">
       @error('passenger_name')
       <div class="alert alert-danger">{{ $message }}</div>
       @enderror
-      <input type="text" id="ticket Number" name="ticketNumber" class="@error('ticket Number') is-invalid @enderror form-control mb-4"
+      <input type="text" id="ticket Number" value="{{old('ticketNumber')}}" name="ticketNumber" class="@error('ticket Number') is-invalid @enderror form-control mb-4"
           placeholder="ticket Number">
       @error('ticket Number')
       <div class="alert alert-danger">{{ $message }}</div>
       @enderror
-      <input type="text" id="destination" name="destination" class="@error('destination') is-invalid @enderror form-control mb-4"
+      <input type="text" id="destination" value="{{old('destination')}}" name="destination" class="@error('destination') is-invalid @enderror form-control mb-4"
           placeholder="destination">
       @error('destination')
       <div class="alert alert-danger">{{ $message }}</div>
       @enderror
-      <input type="text" id="transportation company" name="transportationCompany"
-          class="@error('transportation company') is-invalid @enderror form-control mb-4"
+      <input type="text" id="transportation company" value="{{old('transportationCompany')}}"  name="transportationCompany"
+          class="@error('transportationCompany') is-invalid @enderror form-control mb-4"
           placeholder="transportation company">
-      @error('transportation company')
+      @error('transportationCompany')
       <div class="alert alert-danger">{{ $message }}</div>
       @enderror
       <label class="form-contrl" for="type">Type</label>
       <select name="type" id="type" class="@error('type') is-invalid @enderror form-control mb-4" id="type">
-          <option value="1">Void</option>
-          <option value="2">Credit</option>
-          <option value="3">Ticket</option>
+          <option value="void">Void</option>
+          <option value="credit">Credit</option>
+          <option value="ticket">Ticket</option>
       </select>
       @error('type')
       <div class="alert alert-danger">{{ $message }}</div>
       @enderror
-      <input type="number" name="rsoom" onchange="checktotal()" id="rsoom"
+      <input type="number" value="{{old('rsoom')}}"  name="rsoom" onchange="checktotal()" id="rsoom"
           class="@error('rsoom') is-invalid @enderror form-control mb-4" placeholder="rsoom">
       @error('rsoom')
       <div class="alert alert-danger">{{ $message }}</div>
       @enderror
-      <input type="number" name="asasy" onchange="checktotal()" id="asasy"
+      <input type="number" value="{{old('asasy')}}"  name="asasy" onchange="checktotal()" id="asasy"
           class="@error('asasy') is-invalid @enderror form-control mb-4" placeholder="asasy">
       @error('asasy')
       <div class="alert alert-danger">{{ $message }}</div>
       @enderror
-      <input type="number" id="percentageAsasy" name="percentageAsasy"
+      <input type="number" id="percentageAsasy" value="{{old('percentageAsasy')}}" name="percentageAsasy"
           class="@error('percentageAsasy') is-invalid @enderror form-control mb-4" placeholder="%asasy">
       @error('percentageAsasy')
       <div class="alert alert-danger">{{ $message }}</div>
       @enderror
-      <input type="number" name="total" id="total"  class="form-control mb-4" value="0" placeholder="total">
-      <input type="number" id="commision" class="form-control mb-4" name="comission" placeholder="comission">
-      <input type="number" id="defaultContactFormName" name="comissionTax" class="form-control mb-4" placeholder="comissioTax">
-      <input type="number" id="defaultContactFormName" name="bsp" class="form-control mb-4" placeholder="BSP">
-      <input type="number" id="sellprice" onchange="checkprofit()" name="sellprice"  class="form-control mb-4" placeholder="sellprice">
-      <input type="text" id="profit" value="0"  class="form-control mb-4" name="profit" placeholder="profit">
-      <input type="text" id="defaultContactFormName" class="form-control mb-4" name="safy" placeholder="safy">
+      <input type="number" name="total" value="" id="total" readonly="readonly"  class="@error('total') is-invalid @enderror form-control mb-4" value="0" placeholder="total">
+      @error('total')
+      <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+
+      
+      <input type="number" id="comission" value="{{old('comission')}}" class=" @error('comission') is-invalid @enderror form-control mb-4" name="comission" placeholder="comission">
+      @error('comission')
+      <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+      
+      <input type="number" id="comissionTax" value="{{old('comissionTax')}}" name="comissionTax" class="  @error('comissionTax') is-invalid @enderror form-control mb-4" placeholder="comissioTax">
+      @error('comissionTax')
+      <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+      <input type="number" id="bsp" value="{{old('bsp')}}" name="bsp" class="@error('bsp') is-invalid @enderror form-control mb-4" placeholder="BSP">
+      @error('bsp')
+      <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+      
+      <input type="number" id="sellprice" onchange="checkprofit()" value="{{old('sellprice')}}" name="sellprice"  class="@error('sellprice') is-invalid @enderror form-control mb-4" placeholder="sellprice">
+      @error('sellprice')
+      <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+     
+      <input type="text" id="profit" value="0" readonly="readonly"  class="@error('profit') is-invalid @enderror form-control mb-4" value="{{old("profit")}}" name="profit" placeholder="profit">
+
+      @error('profit')
+      <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+      <input type="text" id="safy" class="@error('safy') is-invalid @enderror  form-control mb-4" value="{{old("safy")}}" name="safy" placeholder="safy">
+      @error('safy')
+      <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+      
+      
+      
+      
       <select class="form-control" name="paymentType" id="">
       <option value="visa">visa</option>  
       <option value="cash">cash</option>  

@@ -5,6 +5,11 @@
 <div class="card">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">All Orders table</h3>
   <div class="card-body">
+    @if (session('status'))
+    <div class="alert alert-success">
+      {{ session('status') }}
+    </div>
+    @endif
     <div id="table" class="table-editable">
       <span class="table-add float-right mb-3 mr-2">
         <a href="#!" class="text-success">
@@ -30,9 +35,12 @@
             <td class="table-view">
               <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
             </td>
-            <td class="table-remove">
-              <button type="button" class="btn btn-danger px-3"><i class="fas fa-trash" aria-hidden="true"></i></button>
-            </td>
+            <form onsubmit='return confirm("Do you want to delete this ticket?");' method="POST"
+              action="{{route('order.destroy',$order)}}">
+              @csrf
+              @method('delete')
+              <td class="remove-table"><button type="submit" class="btn btn-danger btn-sm">delete</button></td>
+            </form>
           </tr>
           @endforeach
           <!-- <tr>

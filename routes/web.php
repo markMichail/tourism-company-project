@@ -83,7 +83,8 @@ Route::get('/customers/{id}', 'CustomerController@show');
 
 Route::resource('order', 'OrderController');
 Route::resource('tickets', 'TicketController');
-
+Route::get('/tickets/{order}/{status}', 'TicketController@orderticket')->name('orderticketcreate');
+Route::get('/order/confirm/{order}', 'OrderController@confirmview')->name('orderconfirm');
 
 Route::get('/download', function () {
     $pdf = PDF::loadView('test');
