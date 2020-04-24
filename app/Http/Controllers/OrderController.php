@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\Order;
 use Illuminate\Http\Request;
 
@@ -34,7 +35,8 @@ class OrderController extends Controller
   */
   public function create()
   {
-    //
+    $customers=Customer::all();
+    return view('orders.create',compact('customers'));
   }
 
   /**
@@ -45,7 +47,16 @@ class OrderController extends Controller
   */
   public function store(Request $request)
   {
-    //
+    $request->validate([
+      'date' => 'required | date',
+      'payment' => 'in:cash,agl',
+
+    ]);
+      if($request->payment=='cash'){
+        $request->customerId='0';
+      }
+     $order= Order::create($request->all());
+      return view('tickets.createticket',compact('order'));
   }
 
   /**
@@ -56,7 +67,7 @@ class OrderController extends Controller
   */
   public function show(Order $order)
   {
-    //
+    
   }
 
   /**

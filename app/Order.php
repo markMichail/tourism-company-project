@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
   
+    protected $fillable=['customerId','employeeId','date'];
     public function tickets(){
       return $this->hasMany('App\Ticket');
   }

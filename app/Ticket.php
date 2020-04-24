@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Ticket extends Model
 {
-
+    protected $guarded=['id'];
 
     public function receipts(){
         return $this->BelongsToMany('App\Receipt')->withPivot('amount');;

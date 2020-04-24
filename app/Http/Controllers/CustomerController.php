@@ -19,8 +19,7 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //index for showing all customers show() for specifed customer.
+    {    //index for showing all customers show() for specifed customer.
         $customers=Customer::all();
         $count=Customer::count();
         return view('customers.allcustomers',compact('customers','count'));

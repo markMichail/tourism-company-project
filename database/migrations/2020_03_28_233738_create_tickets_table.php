@@ -25,16 +25,16 @@ class CreateTicketsTable extends Migration
             $table->integer('asasy');
             $table->integer('total');
             $table->integer('comission');
-            $table->integer('comissioTax');
+            $table->integer('comissionTax');
             $table->integer('bsp');
             $table->integer('sellprice');
             $table->integer('profit');
             $table->integer('safy');
             $table->string('paymentType');
-            $table->bigInteger('orderId')->unsigned();
+            $table->bigInteger('order_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('orderId')->references('id')->on('orders');
+            $table->foreign('order_id')->references('id')->on('orders');
         });
     }
 

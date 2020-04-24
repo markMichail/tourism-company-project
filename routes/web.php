@@ -24,17 +24,6 @@ Route::get('/customerprofile', function () {
     return view('customers.customerprofile');
 })->name('customerprofile');
 
-//Route::get('/safe', function () {
-//    return view('safe');
-//});
-
-Route::get('/tickets', function () {
-    return view('tickets.tickets');
-})->name('tickets');
-
-Route::get('/alltickets', function () {
-    return view('tickets.alltickets');
-});
 
 Route::get('/vieworderdetails', function () {
     return view('vieworderdetails');
@@ -48,9 +37,6 @@ Route::get('/allcustomers',"CustomerController@index");
 
 Route::get('/addcustomer', "CustomerController@store");
 
-Route::get('/createticket', function () {
-    return view('tickets.createticket');
-})->name('createticket');
 
 //test route for many to many relationships.
 
@@ -90,9 +76,16 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/allorders', 'OrderController@index')->name('allorders');
-Route::get('order/delete/{id}', 'OrderController@destroy');
 Route::get('/allrefundedtickets', 'RefundedTicketController@index')->name('allrefundedtickets');
 Route::get('/safe', 'SafeController@index')->name('allsafereciepts');
 Route::post('/safe', 'SafeController@store')->name('saferecieptsstore');
 Route::get('/customers/{id}', 'CustomerController@show');
+
+Route::resource('order', 'OrderController');
+Route::resource('tickets', 'TicketController');
+
+
+Route::get('/download', function () {
+    $pdf = PDF::loadView('test');
+    return $pdf->download('invoice.pdf');
+});

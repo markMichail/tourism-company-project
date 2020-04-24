@@ -39,7 +39,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/createticket">Create Ticket</a>
+      <a class="nav-link" href="{{route('order.create')}}">New Order</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/allcustomers">All Customers</a>
@@ -51,7 +51,7 @@
       <a class="nav-link" href="/allorders">All Orders</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/alltickets">All Tickets</a>
+    <a class="nav-link" href="{{route('tickets.index')}}">All Tickets</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/safe">Safe</a>
