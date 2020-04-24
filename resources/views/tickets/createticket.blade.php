@@ -95,7 +95,7 @@
                       Add another Ticket ?
                   </div>
                   <div class="modal-footer">
-                      <input type="submit" class="btn btn-success" value="yes" >
+                      <input type="submit" onclick="return check()" class="btn btn-success" value="yes" >
                       <input type="submit" onclick="return uncheck()" value="no" class="btn btn-primary"> 
                   </div>
               </div>
