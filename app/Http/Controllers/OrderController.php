@@ -24,7 +24,7 @@ class OrderController extends Controller
 
   public function index()
   {
-    $orders = Order::all();
+    $orders = Order::OrderBy('id','desc')->with('customer')->get();
     return view("orders.allorders", compact('orders'));
   }
 
@@ -53,7 +53,7 @@ class OrderController extends Controller
 
     ]);
       if($request->payment=='cash'){
-        $request->customerId='0';
+        $request->customer_id='0';
       }
      $order= Order::create($request->all());
      return redirect()->route('orderticketcreate',[$order,$status=1]);
@@ -67,7 +67,10 @@ class OrderController extends Controller
   */
   public function show(Order $order)
   {
-    return view('orders.show',compact('order'));
+
+     $data=$order->ticketsAmount()[0];
+     $total=$order->ticketsAmount()[1];
+    return view('orders.show',compact('data','order','total'));
   }
   
 

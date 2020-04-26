@@ -25,10 +25,6 @@ Route::get('/customerprofile', function () {
 })->name('customerprofile');
 
 
-Route::get('/vieworderdetails', function () {
-    return view('vieworderdetails');
-})->name('vieworderdetails');
-
 Route::get('/reports', function () {
     return view('reports');
 });

@@ -5,70 +5,41 @@
 
 <!-- Editable table -->
 
-  <div class="card">
-    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">All Customers table</h3>
-    <div class="card-body">
-      <div id="table" class="table-editable">
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">order no. {{$order->id}} of customer
+    {{$order->customer->name}} </h3>
 
-        <table id="dtBasicExample" class="table table-bordered table-responsive-lg table-striped text-center">
+  <h3 class="text-center font-weight-bold py-4">Order Total: {{$total}}</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
 
-          <thead>
-            <tr>
-              <th class="text-center">#</th>
-              <th class="text-center">ticketNumber</th>
-              <th class="text-center">type</th>
-              <th class="text-center">passenger_name</th>
-              <th class="text-center">destination</th>
-              <th class="text-center">tran_company</th>
-              <th class="text-center">rsoom</th>
-              <th class="text-center">asasy</th>
-              <th class="text-center">total</th>
-              <th class="text-center">comission</th>
-              <th class="text-center">comissionTax</th>
-              <th class="text-center">BSP</th>
-              <th class="text-center">sellprice</th>
-              <th class="text-center">profit</th>
-              <th class="text-center">safy</th>
-              <th class="text-center">paymentType</th>
-              <th class="text-center">receipt no</th>
-            </tr>
-          </thead>
+      <table id="dtBasicExample" class="table table-bordered table-responsive-lg table-striped text-center">
 
+        <thead>
+          <tr>
+            <th class="text-center">ticketNumber</th>
+            <th class="text-center">passenger_name</th>
+            <th class="text-center">sellprice</th>
+            <th class="text-center">Payed</th>
+          </tr>
+        </thead>
 
-
-
-          <tbody>
-            @foreach ($order->tickets as $ticket)
-            <tr>
-              <td class="pt-3-half">{{$ticket->passenger_name}}</td>
-              <td class="pt-3-half">{{$ticket->destination}}</td>
-              <td class="pt-3-half">{{$ticket->sellprice}}</td>
-              <td class="pt-3-half">{{$ticket->type}}</td>
-
-              <td class="pt-3-half">{{$ticket->passenger_name}}</td>
-              <td class="pt-3-half">{{$ticket->destination}}</td>
-              <td class="pt-3-half">{{$ticket->sellprice}}</td>
-              <td class="pt-3-half">{{$ticket->type}}</td>
-
-              <td class="pt-3-half">{{$ticket->passenger_name}}</td>
-              <td class="pt-3-half">{{$ticket->destination}}</td>
-              <td class="pt-3-half">{{$ticket->sellprice}}</td>
-              <td class="pt-3-half">{{$ticket->type}}</td>
-
-              <td class="pt-3-half">{{$ticket->passenger_name}}</td>
-              <td class="pt-3-half">{{$ticket->destination}}</td>
-              <td class="pt-3-half">{{$ticket->sellprice}}</td>
-              <td class="pt-3-half">{{$ticket->type}}</td>
-              <td class="pt-3-half">{{$ticket->type}}</td>
-            </tr>
-            @endforeach
-            
-
-          </tbody>
-        </table>
-      </div>
+        <tbody>
+          @foreach ($data as $ticket)
+          <tr>
+            <td class="pt-3-half">{{$ticket[0]->ticketNumber}}</td>
+            <td class="pt-3-half">{{$ticket[0]->passenger_name}}</td>
+            <td class="pt-3-half">{{$ticket[0]->sellprice}}</td>
+            <td class="pt-3-half">{{$ticket[1]}}</td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <input class="btn btn-success" value="Pay" type="button">
+      <input class="btn btn-alert" value="Refund" type="button">
     </div>
   </div>
+</div>
 
 
 

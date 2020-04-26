@@ -10,14 +10,14 @@
 
       <!-- Name -->
 
-      <input type="text" id="passenger_name" value="{{old('passengerName')}}" name="passengerName" class="@error('passenger_name') is-invalid @enderror form-control mb-4"
-          placeholder="passenger_name">
-      @error('passenger_name')
+      <input type="text" id="passenger_name" value="{{old('passengerName')}}" name="passengerName" class="@error('passengerName') is-invalid @enderror form-control mb-4"
+          placeholder="passengerName">
+      @error('passengerName')
       <div class="alert alert-danger">{{ $message }}</div>
       @enderror
-      <input type="text" id="ticket Number" value="{{old('ticketNumber')}}" name="ticketNumber" class="@error('ticket Number') is-invalid @enderror form-control mb-4"
+      <input type="text" id="ticket Number" value="{{old('ticketNumber')}}" name="ticketNumber" class="@error('ticketNumber') is-invalid @enderror form-control mb-4"
           placeholder="ticket Number">
-      @error('ticket Number')
+      @error('ticketNumber')
       <div class="alert alert-danger">{{ $message }}</div>
       @enderror
       <input type="text" id="destination" value="{{old('destination')}}" name="destination" class="@error('destination') is-invalid @enderror form-control mb-4"

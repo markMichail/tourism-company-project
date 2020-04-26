@@ -23,8 +23,10 @@ class StoreTicket extends FormRequest
      */
     public function rules()
     {
+        //not finished yet
         return [
             'ticketNumber' => 'required|max:255',
+            'passengerName' => 'required|max:150',
             'destination' => 'required',
             'transportationCompany'=>'required',
             'type'=>'required | in:void,credit,ticket',
@@ -37,6 +39,7 @@ class StoreTicket extends FormRequest
             'profit'=>'required | numeric',
             'safy'=>'required | numeric',
             'paymentType'=>'required | in:visa,cash,check',
+            'asasy'=>'required | numeric',
         ];
     }
 

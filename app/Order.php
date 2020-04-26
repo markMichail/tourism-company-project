@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
   
-    protected $fillable=['customerId','employeeId','date'];
+    protected $fillable=['customer_id','employee_id','status','date'];
     public function tickets(){
       return $this->hasMany('App\Ticket');
   }
@@ -15,6 +15,24 @@ class Order extends Model
 
   public function customer(){
     return  $this->belongsTo('App\Customer');
+  }
+
+  public function ticketsAmount(){
+    $data=[];
+    $tickets = $this->tickets;
+    $ordertotal=0;
+    foreach ($tickets as $ticket) {
+      $receipts=$ticket->receipts;
+      $ordertotal+=$ticket->sellprice;
+      if($receipts->count()>0){
+        $total=0;
+        foreach ($receipts as $receipt) {
+          $total+=$receipt->pivot->amount;
+        }   
+        array_push($data,[$ticket,$total]);
+      } else {array_push($data,[$ticket,0]);} 
+    }
+    return [$data,$ordertotal];
   }
 
 }

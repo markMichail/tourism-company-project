@@ -12,14 +12,14 @@
     @error('date')
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
-<input type="hidden" name="employeeId" value="{{auth()->user()->id}}">
+<input type="hidden" name="employee_id" value="{{auth()->user()->id}}">
     <label for="payment">Payment type</label>
     <select onchange="viewcustomers()" class="form-control mb-3" name="payment" id="payment">
         <option value="cash">Cash</option>
         <option value="agl">later</option>
     </select>
 
-    <select style="display:none" class="form-control mb-3" name="customerId" id="customer">
+    <select style="display:none" class="form-control mb-3" name="customer_id" id="customer">
         @foreach ($customers as $customer )
         <option value="{{$customer->id}}">{{$customer->name}}</option>
         @endforeach

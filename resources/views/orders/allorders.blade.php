@@ -30,10 +30,10 @@
           @foreach($orders as $order)
           <tr>
             <td class="pt-3-half">{{ $order->id }}</td>
-            <td class="pt-3-half">{{ $order->total }}</td>
+            <td class="pt-3-half">{{ $order->customer->name }}</td>
             <td class="pt-3-half">{{ $order->date }}</td>
             <td class="table-view">
-              <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+              <a href="{{route('order.show',$order)}}" class="btn btn-info btn-rounded btn-sm my-0">View</a>
             </td>
             <form onsubmit='return confirm("Do you want to delete this ticket?");' method="POST"
               action="{{route('order.destroy',$order)}}">
@@ -234,9 +234,6 @@
     })
   });
 
-  $tableID.on('click', '.table-view', function () {
-    window.location.href = "{{ route('vieworderdetails') }}";
-  });
 
   // $tableID.on('click', '.table-view', function () {
   //   alert("view page ISA");
