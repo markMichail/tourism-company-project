@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Order;
+use App\Ticket;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -67,7 +68,6 @@ class OrderController extends Controller
   */
   public function show(Order $order)
   {
-
      $data=$order->ticketsAmount()[0];
      $total=$order->ticketsAmount()[1];
     return view('orders.show',compact('data','order','total'));

@@ -19,7 +19,7 @@ class Order extends Model
 
   public function ticketsAmount(){
     $data=[];
-    $tickets = $this->tickets;
+    $tickets = Ticket::with('receipts')->where('order_id',$this->id)->get();
     $ordertotal=0;
     foreach ($tickets as $ticket) {
       $receipts=$ticket->receipts;
