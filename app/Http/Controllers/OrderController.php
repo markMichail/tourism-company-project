@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use App\Order;
 use App\Ticket;
+use PDF;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -112,5 +113,13 @@ class OrderController extends Controller
   {
     Order::find($id)->delete();
     return redirect()->route('order.index')->with('status','order deleted successfully');
+  }
+
+  public function print(Order $order){
+    $total=$order->tickets->sum('sellprice');
+    $tickets=$order->tickets;
+    $pdf = PDF::loadView('fatoora',compact('order','tickets','total'));
+    return $pdf->stream('invoice.pdf');
+
   }
 }
