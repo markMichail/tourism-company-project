@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<form class="border border-light p-5" action="/update/{{$customer->id}}" >
+<form class="border border-light p-5" action="{{route('update',$customer->id)}}" method="POST" >
 
     <p class="h4 mb-4 text-center">Edit Customer</p>
 
