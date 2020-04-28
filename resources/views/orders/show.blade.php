@@ -28,7 +28,7 @@
           @foreach ($data as $ticket)
           <tr>
             <td class="pt-3-half">{{$ticket[0]->ticketNumber}}</td>
-            <td class="pt-3-half">{{$ticket[0]->passenger_name}}</td>
+            <td class="pt-3-half">{{$ticket[0]->passengerName}}</td>
             <td class="pt-3-half">{{$ticket[0]->sellprice}}</td>
             <td class="pt-3-half">{{$ticket[1]}}</td>
           </tr>
@@ -40,29 +40,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-<div class="modal fade" id="modaladdnew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Add customer</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-      </div>
-
-
-
-    </div>
-  </div>
-</div>
-
-
 
 
 

@@ -54,11 +54,17 @@ class OrderController extends Controller
       'payment' => 'in:cash,agl',
 
     ]);
+    if ($request->session()->has('order')) {
+
+      $request->session()->forget(['order', 'tickets']);
+      }
+    
       if($request->payment=='cash'){
         $request->customer_id='0';
       }
      $order= Order::create($request->all());
-     return redirect()->route('orderticketcreate',[$order,$status=1]);
+     $request->session()->put('order',$order);
+     return redirect()->route('orderticketcreate',[$order,$status=0]);
   }
 
   /**
@@ -68,9 +74,9 @@ class OrderController extends Controller
   * @return \Illuminate\Http\Response
   */
   public function show(Order $order)
-  {
-     $data=$order->ticketsAmount()[0];
-     $total=$order->ticketsAmount()[1];
+  {   $all=$order->ticketsAmount();
+     $data=$all[0];
+     $total=$all[1];
     return view('orders.show',compact('data','order','total'));
   }
   

@@ -43,14 +43,33 @@ class TicketController extends Controller
      */
     public function store(StoreTicket $request)
     {   
-        Ticket::create($request->except(['again']));
+        $ticket=$request->except(['again']);
+        if ($request->session()->has('tickets')) {
+
+            $request->session()->push('tickets', $ticket);
+        }
+        else{
+            $tickets=[];
+            $request->session()->put('tickets',$tickets);
+            $request->session()->push('tickets', $ticket);
+        }
         $status=1;
+        $order=$request->session()->get('order');
         if($request->again==1){
-        $order=Order::findorfail($request->order_id);
-        return redirect()->route('orderticketcreate',[$order,$status]);
-        }else {
-         $order=Order::where('id',"$request->order_id")->with('tickets')->first();
+        $status=count($request->session()->get('tickets'));
+            return redirect()->route('orderticketcreate',[$order,$status]);
+        }
+        else {
+        $tickets=$request->session()->get('tickets');
+        
+        foreach ($tickets as $ticket) {
+            Ticket::create($ticket);
+        }
+        
+         $order=Order::where('id',"$order->id")->with('tickets')->first();
+         $request->session()->forget(['order', 'tickets']);
          return redirect()->route('orderconfirm',$order);
+         
         }
     }
 

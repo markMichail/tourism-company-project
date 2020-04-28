@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 @section('content')
 <br>
 
@@ -142,7 +142,7 @@
       aria-labelledby="myModalLabel" aria-hidden="true">
 
       <!-- Add class .modal-side and then add class .modal-top-right (or other classes from list above) to set a position to the modal -->
-      <div class="modal-dialog modal-side modal-bottom-right" role="document">
+      <div class="modal-dialog modal-side modal-bottom-right"  role="document">
 
 
           <div class="modal-content">
@@ -155,7 +155,7 @@
               <div class="modal-body">
                   current added tickets:
                   <div class="badge badge-primary text-wrap" style="width: 3rem;">
-                      {{$order->tickets->count() ?? ""}}
+                      {{ $status ?? ""}}
                   </div>
               </div>
               <div class="modal-footer">
@@ -169,7 +169,7 @@
 
   <!-- Default form contact -->
 </div>
-@if ($status ?? false)
+@if ($status!=0 ?? false)
 <script>
   $(document).ready(function(){
       $("#sideModalTR").modal('show');
