@@ -55,7 +55,7 @@ Route::get('/test', function () {
         $receipt=Receipt::findorfail(1);
         echo '<br>';
         echo '<br>';
-      
+
         echo $receipt->safe;
         // echo $r->tickets;
         // echo '<br>';
@@ -76,6 +76,13 @@ Route::get('/allrefundedtickets', 'RefundedTicketController@index')->name('allre
 Route::get('/safe', 'SafeController@index')->name('allsafereciepts');
 Route::post('/safe', 'SafeController@store')->name('saferecieptsstore');
 Route::get('/customers/{id}', 'CustomerController@show');
+
+
+Route::get('/edit/{id}', 'CustomerController@edit')->name('edit');
+Route::post('/update/{id}', 'CustomerController@update')->name('update');
+
+
+
 
 Route::resource('order', 'OrderController');
 Route::resource('tickets', 'TicketController');

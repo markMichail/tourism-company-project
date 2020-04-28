@@ -76,9 +76,10 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customer $customer)
+    public function edit($id)
     {
-        //
+      $customer = Customer::find($id);
+      return view('customers.editcustomer', compact('customer'));
     }
 
     /**
@@ -88,9 +89,22 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request,$id)
     {
-        //
+      $this->validate($request, [
+          'name' => 'required | min:3',
+          'phone' => 'required | numeric',
+          'email' => 'email  | unique:customers',
+          ]);
+
+      $customer = Customer::find($id);
+      $customer->name=$request->name;
+      $customer->phone=$request->phone;
+      $customer->email=$request->email;
+
+      $customer->save();
+      return view('customers.allcustomers', compact('customer'));
+      // return redirect()->back();
     }
 
     /**

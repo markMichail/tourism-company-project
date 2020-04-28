@@ -37,6 +37,7 @@
             <th class="text-center">Person Name</th>
             <th class="text-center">Credit</th>
             <th style="" class="text-center">View</th>
+            <th style="" class="text-center">Edit</th>
             <th style="" class="text-center">Remove</th>
           </tr>
         </thead>
@@ -47,6 +48,9 @@
             <td class="pt-3-half" contenteditable="true">{{$customer->totalcredit}}</td>
             <td class="table-view">
             <a href="customers/{{ $customer->id}}"   <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
+            </a></td>
+            <td class="table-view">
+            <a href="edit/{{ $customer->id}}"   <button type="button" class="btn btn-info btn-rounded btn-sm my-0">Edit</button>
             </a></td>
             <td class="table-remove">
               <button type="button" class="btn btn-danger px-3"><i class="fas fa-trash" aria-hidden="true"></i></button>
