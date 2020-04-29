@@ -6,6 +6,7 @@ use App\Http\Requests\StoreTicket;
 use App\Order;
 use App\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TicketController extends Controller
 {
@@ -122,4 +123,44 @@ class TicketController extends Controller
        $order=Order::findorfail($ticket->order_id);
        return redirect()->route('orderconfirm',$order)->with('status','ticket deleted successfully');
     }
+
+    public function checkprice( Request $request)
+    {   
+        if($request->has('undo')){
+            $payments=$request->session()->get('payment');
+            unset($payments["$request->id"]);
+            $request->session()->forget('payment');
+            $request->session()->put('payment',$payments);
+            return response()->json(['success'=>"Payment Undone"]);
+        }
+       $ticket=Ticket::findorfail($request->id);
+       $result=$ticket->calculate();
+       if($result=='already payed'){
+           return response()->json(['success'=>"Ticket already Payed"]);
+       };
+        $validator = Validator::make($request->all(), [
+            'amount' => "required | between:1,$result | numeric",
+        ]);
+        
+        if ($validator->fails())
+        {
+            return response()->json(['success'=>false, 'error'=>$validator->errors()->first()]);
+        }
+
+        $pay=$request->all();
+        if ($request->session()->has('payment')) {
+            $payments=session()->get('payment');
+            $payments["$request->id"]=$pay;
+            $request->session()->forget('payment');
+           $request->session()->put('payment',$payments);
+           return response()->json(['success'=>'Payment added to recipt']);
+        }else{
+            $payments["$request->id"]=$pay;
+            $request->session()->put('payment',$payments);
+            return response()->json(['success'=>'Payment added to recipt']);
+        }
+
+        }
+
+    
 }

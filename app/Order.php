@@ -21,6 +21,7 @@ class Order extends Model
     $data=[];
     $tickets = Ticket::with('receipts')->where('order_id',$this->id)->get();
     $ordertotal=0;
+    $payed=0;
     foreach ($tickets as $ticket) {
       $receipts=$ticket->receipts;
       $ordertotal+=$ticket->sellprice;
@@ -28,11 +29,12 @@ class Order extends Model
         $total=0;
         foreach ($receipts as $receipt) {
           $total+=$receipt->pivot->amount;
+          $payed+=$receipt->pivot->amount;
         }   
         array_push($data,[$ticket,$total]);
       } else {array_push($data,[$ticket,0]);} 
     }
-    return [$data,$ordertotal];
+    return [$data,$ordertotal,$payed];
   }
 
 }

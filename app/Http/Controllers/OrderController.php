@@ -74,10 +74,14 @@ class OrderController extends Controller
   * @return \Illuminate\Http\Response
   */
   public function show(Order $order)
-  {   $all=$order->ticketsAmount();
-     $data=$all[0];
-     $total=$all[1];
-    return view('orders.show',compact('data','order','total'));
+  {  
+    
+    session()->forget('payment');
+     $orderPaymentInfo=$order->ticketsAmount();
+     $data=$orderPaymentInfo[0];
+     $total=$orderPaymentInfo[1];
+     $payed=$orderPaymentInfo[2];
+    return view('orders.show',compact('data','order','total','payed'));
   }
   
 
@@ -127,5 +131,16 @@ class OrderController extends Controller
     $pdf = PDF::loadView('fatoora',compact('order','tickets','total'));
     return $pdf->stream('invoice.pdf');
 
+  }
+
+
+  public function confirmReceipt(){
+
+    if(session('payment')){
+      $payments=session('payment');
+      session()->forget('paymnet');
+      return view('orders.payment',compact('payments'));
+    }
+    else return back()->with('status','No payments Added');
   }
 }

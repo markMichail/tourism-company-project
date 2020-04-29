@@ -16,4 +16,21 @@ class Ticket extends Model
     public function order(){
         return $this->belongsTo('App\Order');
     }
+
+    public function calculate(){
+       $receipts= $this->receipts;
+       $sellprice=$this->sellprice;
+       $payed=0;
+       if($receipts->count()>0){
+       foreach ($receipts as $receipt) {
+          $payed+=$receipt->pivot->amount;
+       }
+    }
+       if ($sellprice==$payed){
+           return 'alerady payed';
+       }
+       else {
+           return $sellprice-$payed;
+       }
+    }
 }
