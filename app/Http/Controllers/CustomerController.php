@@ -91,21 +91,15 @@ class CustomerController extends Controller
      */
     public function update(Request $request,$id)
     {
-      $this->validate($request, [
-          'name' => 'required | min:3',
-          'phone' => 'required | numeric',
-          'email' => 'email  | unique:customers',
-          ]);
 
-      $customer = Customer::find($id);
-      $customer->name=$request->name;
-      $customer->phone=$request->phone;
-      $customer->email=$request->email;
+    $customer = Customer::find($id);
+    $customer->name=$request->name;
+    $customer->phone=$request->phone;
+    $customer->email=$request->email;
 
-      $customer->save();
-      return view('customers.allcustomers', compact('customer'));
-      // return redirect()->back();
-    }
+    $customer->save();
+    return redirect()->back();
+  }
 
     /**
      * Remove the specified resource from storage.
