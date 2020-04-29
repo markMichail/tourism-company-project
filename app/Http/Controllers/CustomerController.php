@@ -98,7 +98,7 @@ class CustomerController extends Controller
     $customer->email=$request->email;
 
     $customer->save();
-    return redirect()->back();
+    return redirect('allcustomers');
   }
 
     /**
