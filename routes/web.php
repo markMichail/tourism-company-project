@@ -15,9 +15,7 @@ use App\Safe;
 use App\Customer;
 use App\Destination;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+
 
 
 Route::get('/customerprofile', function () {
@@ -70,7 +68,7 @@ Route::get('/test', function () {
 
 Auth::routes();
 
-
+Route::get('/', "HomeController@index")->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/allrefundedtickets', 'RefundedTicketController@index')->name('allrefundedtickets');
 Route::get('/safe', 'SafeController@index')->name('allsafereciepts');
