@@ -91,14 +91,34 @@ class CustomerController extends Controller
      */
     public function update(Request $request,$id)
     {
+      $customer = Customer::find($id);
+      if($request->email==$customer->email){
+      $this->validate($request, [
+          'name' => 'required | min:3',
+          'phone' => 'required | numeric',
+          ]);
 
-    $customer = Customer::find($id);
     $customer->name=$request->name;
     $customer->phone=$request->phone;
     $customer->email=$request->email;
 
     $customer->save();
     return redirect('allcustomers');
+  }
+  else {
+    $this->validate($request, [
+        'name' => 'required | min:3',
+        'phone' => 'required | numeric',
+        'email' => 'email  | unique:customers',
+        ]);
+
+  $customer->name=$request->name;
+  $customer->phone=$request->phone;
+  $customer->email=$request->email;
+
+  $customer->save();
+  return redirect('allcustomers');
+  }
   }
 
     /**
