@@ -10,7 +10,7 @@
     {{$order->customer->name}} </h3>
 
   <h3 class="text-center font-weight-bold py-4">Order Total: {{$total}}</h3>
-  @if($order->status=1)
+  @if($order->status==1)
   <h3 class="text-center py-4" style="color:green">All tickets Payed</h3>
   @endif
   <h3 class="text-center py-4" style="color:green" id="infomessage"></h3>
@@ -60,7 +60,7 @@
         </tbody>
       </table>
       <div class="btn-group" role="group">
-        @if($order->status=0)
+        @if($order->status==0)
         <button id="btnGroupVerticalDrop1" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Pay

@@ -29,24 +29,24 @@
             <th class="text-center">receipt no</th>
           </tr>
           <tr id="filter">
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
-            <th class="text-center"><select><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
           </tr>
         </thead>
         <tbody>
