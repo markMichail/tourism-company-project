@@ -27,7 +27,7 @@ Route::get('/reports', function () {
     return view('reports');
 });
 
-Route::get('/allcustomers',"CustomerController@index");
+
 
 Route::get('/addcustomer', "CustomerController@store");
 
@@ -74,7 +74,9 @@ Route::get('/allrefundedtickets', 'RefundedTicketController@index')->name('allre
 Route::get('/safe', 'SafeController@index')->name('allsafereciepts');
 Route::post('/safe', 'SafeController@store')->name('saferecieptsstore');
 Route::get('/customers/{id}', 'CustomerController@show');
-
+Route::get('/allcustomers',"CustomerController@index");
+Route::get('/allcustomers/ongoingpayments',"CustomerController@ongoingpayments");
+Route::get('/allcustomers/latepayments',"CustomerController@latepayments");
 
 Route::get('/edit/{id}', 'CustomerController@edit')->name('edit');
 Route::post('/update/{id}', 'CustomerController@update')->name('update');
