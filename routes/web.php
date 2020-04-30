@@ -65,6 +65,7 @@ Route::get('/test', function () {
 
 });
 
+Route::get('/sendemail', 'MailController@mail');
 
 Auth::routes();
 
