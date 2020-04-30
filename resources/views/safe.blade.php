@@ -6,6 +6,7 @@
 
 <div  style=" width:95%; margin:auto">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Safe</h3>
+  @php ($total = 0)
   <br>
   <div class="row text-center">
     <div  class="col-lg-6">
@@ -27,11 +28,11 @@
         <tbody>
           <?php $i=1; ?>
           @foreach($receipts as $index => $receipt)
-         
           @if($receipt->type == 'Expense')
+          {{ $total -= $receipt->total_amount }}
           <tr>
             <th scope="row">{{ $i++ }}</th>
-            <td> {{$receipt->id}} </td>
+            <td>{{ $receipt->id }}</td>
             <td>{{ $receipt->employee_id }}</td>
             <td>{{ $receipt->total_amount }}</td>
             <td>{{ $receipt->description }}</td>
@@ -70,9 +71,10 @@
           <?php $i=1; ?>
           @foreach($receipts as $receipt)
           @if($receipt->type == 'Revenue')
+          {{ $total += $receipt->total_amount }}
           <tr>
             <th scope="row">{{ $i++ }}</th>
-            <td> {{$receipt->id}} </td>
+            <td>{{ $receipt->id }}</td>
             <td>{{ $receipt->employee_id }}</td>
             <td>{{ $receipt->total_amount }}</td>
             <td>{{ $receipt->description }}</td>
@@ -92,6 +94,7 @@
       </table>
     </div>
   </div>
+<h4 class="card-footer text-center font-weight-bold text-uppercase py-4">Total: {{ $total }} EGP</h4>
 </div>
 
 <div class="modal fade" id="modaladdnewexpense" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
