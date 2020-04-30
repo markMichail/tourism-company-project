@@ -28,15 +28,15 @@
         <tbody>
           <?php $i=1; ?>
           @foreach($receipts as $index => $receipt)
-          @if($receipt->type == 'Expense')
-          {{ $total -= $receipt->total_amount }}
+          @if($receipt->type == 'expense')
+          @php($total -= $receipt->total_amount)
           <tr>
             <th scope="row">{{ $i++ }}</th>
             <td>{{ $receipt->id }}</td>
             <td>{{ $receipt->employee_id }}</td>
             <td>{{ $receipt->total_amount }}</td>
             <td>{{ $receipt->description }}</td>
-            <td>{{ $receipt->destination }}</td>
+            <td>{{ $receipt->receiptable->name }}</td>
             <td>{{ $receipt->receipt_date }}</td>
           </tr>
           @endif
@@ -45,7 +45,7 @@
         <tfoot>
           <tr>
             <td colspan="7" class="col-12">
-              <input type="button" class="btn btn-primary" onclick="modal('Expense')" id="Expense" value="Add new expense" data-toggle="modal" data-target="#modaladdnewexpense">
+              <input type="button" class="btn btn-primary" onclick="modal('expense')" id="Expense" value="Add new expense" data-toggle="modal" data-target="#modaladdnewexpense">
             </td>
           </tr>
         </tfoot>
@@ -70,15 +70,15 @@
         <tbody>
           <?php $i=1; ?>
           @foreach($receipts as $receipt)
-          @if($receipt->type == 'Revenue')
-          {{ $total += $receipt->total_amount }}
+          @if($receipt->type == 'revenue')
+          @php($total += $receipt->total_amount)
           <tr>
             <th scope="row">{{ $i++ }}</th>
             <td>{{ $receipt->id }}</td>
             <td>{{ $receipt->employee_id }}</td>
             <td>{{ $receipt->total_amount }}</td>
             <td>{{ $receipt->description }}</td>
-            <td>{{ $receipt->destination }}</td>
+            <td>{{ $receipt->receiptable->name }}</td>
             <td>{{ $receipt->receipt_date }}</td>
           </tr>
           @endif
@@ -87,7 +87,7 @@
         <tfoot>
           <tr>
             <td colspan="7" class="col-12">
-              <input type="button" class="btn btn-primary" onclick="modal('Revenue')" name="" value="Add new revenue" data-toggle="modal" data-target="#modaladdnewexpense">
+              <input type="button" class="btn btn-primary" onclick="modal('revenue')" name="" value="Add new revenue" data-toggle="modal" data-target="#modaladdnewexpense">
             </td>
           </tr>
         </tfoot>
@@ -112,7 +112,11 @@
           {{ csrf_field() }}
           <div class="form-group">
             <label for="formGroupExampleInput2">Destination Name</label>
-            <input type="text" class="form-control @error('destinationname') is-invalid @enderror"  value="{{ old('destinationname') }}" id="formGroupExampleInput2" placeholder="Destination Name" name="destinationname">
+            <select name="destinationname" class="form-control @error('destinationname') is-invalid @enderror" id="">
+              @foreach ($destinations as $destination)
+            <option value="{{$destination->id}}">{{$destination->name}}</option>
+              @endforeach
+            </select>
             @error('destinationname')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
