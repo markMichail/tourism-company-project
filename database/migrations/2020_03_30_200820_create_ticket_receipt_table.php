@@ -21,7 +21,7 @@ class CreateTicketReceiptTable extends Migration
             $table->timestamps();
 
             $table->foreign('ticket_id')->references('id')->on('tickets');
-            $table->foreign('receipt_id')->references('id')->on('receipts');
+            $table->foreign('receipt_id')->references('id')->on('receipts')->onDelete('cascade');
         });
     }
 

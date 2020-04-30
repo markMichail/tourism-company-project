@@ -25,7 +25,7 @@ class StoreTicket extends FormRequest
     {
         //not finished yet
         return [
-            'ticketNumber' => 'required|max:255|numeric',
+            'ticketNumber' => 'required | numeric',
             'passengerName' => 'required|max:150',
             'destination' => 'required',
             'transportationCompany'=>'required',

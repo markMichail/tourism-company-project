@@ -86,8 +86,13 @@ Route::post('/update/{id}', 'CustomerController@update')->name('update');
 
 Route::resource('order', 'OrderController');
 Route::resource('tickets', 'TicketController');
+
+
+
 Route::get('/tickets/{order}/{status}', 'TicketController@orderticket')->name('orderticketcreate');
-Route::get('/order/receipt/confirm', 'OrderController@confirmReceipt')->name('order.receipt.confirm');
+Route::get('/order/receipt/confirm', 'TicketController@confirmReceipt')->name('order.receipt.confirm');
 Route::get('/order/confirm/{order}', 'OrderController@confirmview')->name('orderconfirm');
+Route::get('/receiptstore/{order}/{total}', 'ReceiptController@store')->name('receipts.store');
+
 Route::get('orderprint/{order}','OrderController@print')->name('orderprint');
 Route::post('/checkticketprice','TicketController@checkprice')->name('ajax');

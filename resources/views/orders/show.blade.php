@@ -10,20 +10,24 @@
     {{$order->customer->name}} </h3>
 
   <h3 class="text-center font-weight-bold py-4">Order Total: {{$total}}</h3>
+  @if($order->status=1)
+  <h3 class="text-center py-4" style="color:green">All tickets Payed</h3>
+  @endif
   <h3 class="text-center py-4" style="color:green" id="infomessage"></h3>
   @if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
+  <div class="alert alert-success">
+    {{ session('status') }}
+  </div>
+  @endif
   <div style="margin:auto">
-  <a id="confirmpayment" href="{{route('order.receipt.confirm')}}" style="display: none" class="btn btn-success btn-lg">Confirm Payment</a>
+    <a id="confirmpayment" href="{{route('order.receipt.confirm')}}" style="display: none"
+      class="btn btn-success btn-lg">Confirm Payment</a>
   </div>
   <div class="card-body">
     <div id="table" class="table-editable">
-      
+
       <table id="dtBasicExample" class="table table-bordered table-responsive-lg table-striped text-center">
-        
+
         <thead>
           <tr>
             <th class="text-center">ticketID</th>
@@ -35,11 +39,11 @@
             <th class="text-center">Submit</th>
           </tr>
         </thead>
-        
+
         <tbody>
           @foreach ($data as $ticket)
           <tr>
-            
+
             <td class="pt-3-half">{{$ticket[0]->id}}</td>
             <td class="pt-3-half">{{$ticket[0]->ticketNumber}}</td>
             <td class="pt-3-half">{{$ticket[0]->passengerName}}</td>
@@ -47,78 +51,32 @@
             <td class="pt-3-half">{{$ticket[1]}}</td>
             <form>
               <td><input class="form-control -sm" id="{{$ticket[0]->id}}" value="{{$ticket[0]->sellprice-$ticket[1]}}"
-                type="input"></td>
-                <td><button class="btn btn-primary btn-sm" onclick="checkprice({{$ticket[0]->id}},this)" value="0"
+                  type="input"></td>
+              <td><button class="btn btn-primary btn-sm"  onclick="checkprice({{$ticket[0]->id}},this)" value="0"
                   type="submit">Submit</button></td>
-                </form>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-          <div class="btn-group" role="group">
-            <button id="btnGroupVerticalDrop1" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Pay
-          </button>
+            </form>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <div class="btn-group" role="group">
+        @if($order->status=0)
+        <button id="btnGroupVerticalDrop1" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Pay
+        </button>
+        @endif
         <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
           {{-- <a class="dropdown-item" disabled href="#">All order</a> --}}
           <a class="dropdown-item" id="payTickets" onclick="showform()" href="#">Tickets</a>
           {{-- <a class="dropdown-item" disabled href="#">Part of Ticket</a> --}}
         </div>
       </div>
-      <input class="btn btn-alert" value="Refund" type="button">
+      <input class="btn btn-warning" value="Refund" type="button">
     </div>
-   
+
   </div>
 </div>
-{{-- 
-
-<form action="/checkticketprice" method="POST">
-@csrf
-
-<input value="1" name='id' type="text">
-<input value="200" name='amount' type="text">
-<input value="submit" type="submit">
-</form>
-
- --}}
-
-
-
-
-
-<!--Modal: Login with Avatar Form-->
-<div class="modal fade" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
-    <!--Content-->
-    <div class="modal-content">
-      <!--Body-->
-      <div class="modal-body text-center mb-1">
-
-        <h5 id="header" class="mt-1 mb-2"></h5>
-
-        <div class="md-form ml-0 mr-0">
-          <input type="number" type="text" id="amount" name="id" class="form-control form-control-sm validate ml-0">
-          <input type="number" type="hidden" id="idticket" name="id" class="form-control form-control-sm validate ml-0">
-        </div>
-
-        <div class="text-center mt-4">
-          <button onclick="checkprice()" class="btn btn-cyan mt-1">submit</button>
-        </div>
-      </div>
-
-    </div>
-    <!--/.Content-->
-  </div>
-</div>
-<!--Modal: Login with Avatar Form-->
-{{--
-<div class="text-center">
-  <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#modalLoginAvatar">Launch
-    Modal Login with Avatar</a>
-</div>
- --}}
 
 
 
@@ -173,6 +131,7 @@ document.getElementById('confirmpayment').style.display='';
   function checkprice(id,button){
    var buttonn=button;
     var amount=document.getElementById(id).value;
+    
                  if(buttonn.value==0){
                  $.ajax({
                 type:'POST',

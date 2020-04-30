@@ -27,7 +27,7 @@ class Ticket extends Model
        }
     }
        if ($sellprice==$payed){
-           return 'alerady payed';
+           return 'already payed';
        }
        else {
            return $sellprice-$payed;

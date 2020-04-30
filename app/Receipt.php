@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Receipt extends Model
 {
-   
+    protected  $guarded=[];
     public function tickets(){
         return $this->BelongsToMany('App\Ticket')->withPivot('amount');;
     }

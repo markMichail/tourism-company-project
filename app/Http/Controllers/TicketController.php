@@ -63,12 +63,15 @@ class TicketController extends Controller
         }
         else {
         $tickets=$request->session()->get('tickets');
-        
+        $total=0;
         foreach ($tickets as $ticket) {
             Ticket::create($ticket);
+            $total+=$ticket['sellprice'];
         }
         
          $order=Order::where('id',"$order->id")->with('tickets')->first();
+         if($order->customer->id != 0)
+         $order->customer->totalcredit-=$total;
          $request->session()->forget(['order', 'tickets']);
          return redirect()->route('orderconfirm',$order);
          
@@ -137,9 +140,9 @@ class TicketController extends Controller
        $result=$ticket->calculate();
        if($result=='already payed'){
            return response()->json(['success'=>"Ticket already Payed"]);
-       };
+       }
         $validator = Validator::make($request->all(), [
-            'amount' => "required | between:1,$result | numeric",
+            'amount' => "required  | integer | min:1 | max:$result",
         ]);
         
         if ($validator->fails())
@@ -161,6 +164,18 @@ class TicketController extends Controller
         }
 
         }
+
+
+        public function confirmReceipt(){
+
+            if(session('payment')){
+              $payments=session('payment');
+              $ticket=Ticket::findorfail(current($payments)['id']);
+              $order=$ticket->order;
+              return view('orders.payment',compact('payments','order'));
+            }
+            else return back()->with('status','No payments Added');
+          }
 
     
 }

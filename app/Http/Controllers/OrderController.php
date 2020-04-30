@@ -134,13 +134,5 @@ class OrderController extends Controller
   }
 
 
-  public function confirmReceipt(){
-
-    if(session('payment')){
-      $payments=session('payment');
-      session()->forget('paymnet');
-      return view('orders.payment',compact('payments'));
-    }
-    else return back()->with('status','No payments Added');
-  }
+  
 }
