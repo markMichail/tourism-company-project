@@ -21,23 +21,38 @@
   </div>
   <br>
   <div class="row text-center">
-    <div class="col-sm-4">
-      <table id="tablePreview" class="table table-bordered">
+    <div class="table table-bordered">
+      <table id="tablePreview" class="table table-responsive">
         <thead>
           <tr class="white-text" style="background-color:#378B92;">
-            <th colspan="2" class="col-12">In progress</th>
+            <th colspan="2" width="30%" >In progress</th>
+            <th colspan="2" width="30%">Paid</th>
+            <th colspan="2" width="30%">Refund</th>
           </tr>
           <tr class="black white-text">
             <th class="col-6">Recipt No.</th>
             <th class="col-6">Price</th>
+            <th class="col-6">Recipt No.</th>
+            <th class="col-6">Price</th>
+            <th class="col-6">Recipt No.</th>
+            <th class="col-6">Price</th>
           </tr>
+
         </thead>
         <tbody>
           <tr>
-            <td class="col-6">500000001</td>
-            <td class="col-6">14000 LE</td>
+            <td class="col-12">500000001</td>
+            <td class="col-12">14000 LE</td>
+            <td class="col-12">500000001</td>
+            <td class="col-12">14000 LE</td>
+            <td class="col-12">500000001</td>
+            <td class="col-12">14000 LE</td>
           </tr>
           <tr>
+            <td class="col-6">500000004</td>
+            <td class="col-6">12000 LE</td>
+            <td class="col-6">500000004</td>
+            <td class="col-6">12000 LE</td>
             <td class="col-6">500000004</td>
             <td class="col-6">12000 LE</td>
           </tr>
@@ -45,54 +60,6 @@
         <tfoot>
           <tr>
             <td colspan="2" class="col-12">Total: 14300 LE</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-    <div class="col-sm-4">
-      <table id="tablePreview" class="table table-bordered">
-        <thead>
-          <tr class="white-text" style="background-color:#378B92;">
-            <th colspan="2" class="col-12">Paid</th>
-          </tr>
-          <tr class="black white-text">
-            <th>Recipt No.</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">500000002</th>
-            <td>4000 LE</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="2" class="col-12">Total: 4000 LE</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-    <div class="col-sm-4">
-      <table id="tablePreview" class="table table-bordered">
-        <thead>
-          <tr class="white-text" style="background-color:#378B92;">
-            <th colspan="2" class="col-12">Refund</th>
-          </tr>
-          <tr class="black white-text">
-            <th>Recipt No.</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">500000001</th>
-            <td>14000 LE</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="2" class="col-12">Total: 14000 LE</td>
           </tr>
         </tfoot>
       </table>
