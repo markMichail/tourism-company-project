@@ -9,7 +9,7 @@
       <h6 class="font-weight-bold text-center grey-text text-uppercase small mb-4">Hello Admin</h6>
       <h3 class="font-weight-bold text-center dark-grey-text pb-2">Statistic Data</h3>
       <hr class="w-header my-4">
-      <p class="lead text-center text-muted pt-2 mb-5">Some data for this week.</p>
+      {{-- <p class="lead text-center text-muted pt-2 mb-5">Some data for this week.</p> --}}
   
       <div class="row white-text">
   
@@ -18,17 +18,19 @@
   
           <!-- Card Primary -->
           <div class="card classic-admin-card primary-color">
+            <a style="color: inherit;" href="/allcustomers">
             <div class="card-body py-3">
               <i class="far fa-money-bill-alt"></i>
-              <p class="small">SALES</p>
-              <h4>2000$</h4>
+              <p class="small">Customers</p>
+              <h4>{{$data['customers']}}</h4>
             </div>
-            <div class="progress md-progress">
-              <div class="progress-bar grey darken-3" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <div class="card-body pt-2 pb-3">
+            {{-- <div class="progress md-progress">
+              <div class="progress-bar grey darken-3" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div> --}}
+            {{-- <div class="card-body pt-2 pb-3">
               <p class="small mb-0">Better than last week (25%)</p>
-            </div>
+            </div> --}}
+          </a>
           </div>
           <!-- Card Primary -->
   
@@ -40,17 +42,19 @@
   
           <!-- Card Yellow -->
           <div class="card classic-admin-card warning-color">
+            <a style="color: inherit;" href="/tickets">
             <div class="card-body py-3">
               <i class="fas fa-chart-line"></i>
-              <p class="small">Refunded Tickets.</p>
-              <h4>4</h4>
+              <p class="small">Tickets</p>
+              <h4>{{$data['tickets']}} </h4>
             </div>
-            <div class="progress md-progress">
+            {{-- <div class="progress md-progress">
               <div class="progress-bar bg grey darken-3" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <div class="card-body pt-2 pb-3">
+            </div> --}}
+            {{-- <div class="card-body pt-2 pb-3">
               <p class="small mb-0">Worse than last week (25%)</p>
-            </div>
+            </div> --}}
+            </a>
           </div>
           <!-- Card Yellow -->
   
@@ -62,17 +66,19 @@
   
           <!-- Card Blue -->
           <div class="card classic-admin-card light-blue lighten-1">
+            <a style="color: inherit;" href="/allrefundedtickets">
             <div class="card-body py-3">
               <i class="fas fa-chart-pie"></i>
-              <p class="small">TRAFFIC</p>
-              <h4>200 Tickets.</h4>
+              <p class="small">Refunded Tickets</p>
+              <h4>{{$data['refundedTickets']}}</h4>
             </div>
-            <div class="progress md-progress">
+            {{-- <div class="progress md-progress">
               <div class="progress-bar grey darken-3" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <div class="card-body pt-2 pb-3">
+            </div> --}}
+            {{-- <div class="card-body pt-2 pb-3">
               <p class="small mb-0">Better than last week (75%)</p>
-            </div>
+            </div> --}}
+            </a>
           </div>
           <!-- Card Blue -->
   
@@ -84,20 +90,23 @@
   
           <!-- Card Red -->
           <div class="card classic-admin-card red accent-2">
+            <a style="color: inherit;" href="/">
             <div class="card-body py-3">
               <i class="fas fa-chart-bar"></i>
               <p class="small">Late customer payments</p>
-              <h4>3</h4>
+            <h4>{{$data['latePayments']}}</h4>
             </div>
-            <div class="progress md-progress">
+            {{-- <div class="progress md-progress">
               <div class="progress-bar grey darken-3" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <div class="card-body pt-2 pb-3">
+            </div> --}}
+            {{-- <div class="card-body pt-2 pb-3">
               <p class="small mb-0">Better than last week (25%)</p>
-            </div>
+            </div> --}}
+          </a>
           </div>
           <!-- Card Red -->
   
+
         </div>
         <!-- Grid column -->
   
