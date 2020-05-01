@@ -55,7 +55,7 @@
       <table  id="tablePreview" class="table table-bordered">
         <thead>
           <tr class="white-text" style="background-color:#378B92;">
-            <th colspan="7" class="col-12">Revenue</th>
+            <th colspan="7" class="col-12">Revenues</th>
           </tr>
           <tr class="black white-text">
             <th class="w-10">#</th>
