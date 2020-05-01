@@ -23,6 +23,7 @@ class Order extends Model
     $ordertotal=0;
     $payed=0;
     foreach ($tickets as $ticket) {
+      if($ticket->type!='refunded'){
       $receipts=$ticket->receipts;
       $ordertotal+=$ticket->sellprice;
       if($receipts->count()>0){
@@ -33,7 +34,8 @@ class Order extends Model
         }   
         array_push($data,[$ticket,$total]);
       } else {array_push($data,[$ticket,0]);} 
-    }
+    } else {array_push($data,[$ticket,"refunded"]);}
+  }
     return [$data,$ordertotal,$payed];
   }
 

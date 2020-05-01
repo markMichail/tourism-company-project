@@ -49,13 +49,18 @@
             <td class="pt-3-half">{{$ticket[0]->passengerName}}</td>
             <td class="pt-3-half">{{$ticket[0]->sellprice}}</td>
             <td class="pt-3-half">{{$ticket[1]}}</td>
+            @if($ticket[0]->type != 'refunded')
             <form>
               <td><input class="form-control -sm" id="{{$ticket[0]->id}}" value="{{$ticket[0]->sellprice-$ticket[1]}}"
                   type="input"></td>
               <td><button class="btn btn-primary btn-sm"  onclick="checkprice({{$ticket[0]->id}},this)" value="0"
                   type="submit">Submit</button></td>
             </form>
+            @else 
+            <td><div class="alert alert-warning">Refunded</div></td>
+            <td><div class="alert alert-warning">Refunded</div></td>
           </tr>
+          @endif
           @endforeach
         </tbody>
       </table>
@@ -67,7 +72,7 @@
         </button>
         @endif
         <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
-          {{-- <a class="dropdown-item" disabled href="#">All order</a> --}}
+        <a class="dropdown-item" href="{{route('order.payall',$order)}}">All order</a>
           <a class="dropdown-item" id="payTickets" onclick="showform()" href="#">Tickets</a>
           {{-- <a class="dropdown-item" disabled href="#">Part of Ticket</a> --}}
         </div>
@@ -179,28 +184,9 @@ document.getElementById('confirmpayment').style.display='';
                  }
 
  }
-
-//  <script>
-//         $(document).ready(function(){
-//             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-//             $("#postt").click(function(){
-//                 $.ajax({
-//                     /* the route pointing to the post function */
-//                     url: '/checkticketprice',
-//                     type: 'POST',
-//                     /* send the csrf-token and the input to the controller */
-//                     data: {_token: CSRF_TOKEN, message:'hii'},
-//                     dataType: 'JSON',
-//                     /* remind that 'data' is the response of the AjaxController */
-//                     success: function (data) {
-//                         $(".writeinfo").append(data.msg);
-//                     }
-//                 });
-//             });
-//        });
-//     
+  
 </script>
 
 
-</script>
+
 @endsection

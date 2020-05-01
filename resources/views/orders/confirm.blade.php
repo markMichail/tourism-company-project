@@ -41,7 +41,7 @@
 
 
 
-
+        @php($total=0)
         <tbody>
           @foreach ($order->tickets as $ticket)
           <tr>
@@ -65,6 +65,7 @@
             <td class="pt-3-half">{{$ticket->paymentType}}</td>
             <td class="pt-3-half"><a class="btn btn-primary btn-sm" href="{{route('tickets.edit',$ticket)}}">edit</a>
             </td>
+            @php($total+=$ticket->sellprice)
             <form onsubmit='return confirm("Do you want to delete this ticket?");' method="POST"
               action="{{route('tickets.destroy',$ticket)}}">
               @csrf
@@ -78,7 +79,7 @@
 
         </tbody>
       </table>
-
+    <h3>Order Total:: {{$total}}</h3>
     </div>
 
   </div>
@@ -97,7 +98,7 @@ action="{{route('order.destroy',$order)}}">
 </div>
 @else
 <div class="text-center">
-  <a style="" href="" class="center btn btn-success">Payment confimed Print receipt</a>
+  <a style="" href="{{route('receipts.allorder',[$order,$total])}}" class="center btn btn-success">Payment confimed Print receipt</a>
 </div>
 @endif
 <script>

@@ -21,7 +21,12 @@
 </table>
 <div class="text-center">
     <div class="alert alert-success">Total::{{  $total}} EGP</div>
-<a class="btn btn-success"  href="{{route('receipts.store',[$order,$total])}}">Confirm</a>
-    <a class="btn btn-danger"  href="{{ URL::previous() }}">Go Back</a>
+  @if($allorder==0)  
+  <a class="btn btn-success"  href="{{route('receipts.store',[$order,$total])}}">Confirm</a>
+  @else 
+  <a class="btn btn-success"  href="{{route('receipts.allorder',[$order,$total])}}">Confirm</a>
+  @endif
+
+<a class="btn btn-danger"  href="{{ URL::previous() }}">Go Back</a>
 </div>
 @endsection

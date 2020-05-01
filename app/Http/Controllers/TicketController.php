@@ -169,10 +169,11 @@ class TicketController extends Controller
         public function confirmReceipt(){
 
             if(session('payment')){
+                $allorder='0';
               $payments=session('payment');
               $ticket=Ticket::findorfail(current($payments)['id']);
               $order=$ticket->order;
-              return view('orders.payment',compact('payments','order'));
+              return view('orders.payment',compact('payments','order','allorder'));
             }
             else return back()->with('status','No payments Added');
           }

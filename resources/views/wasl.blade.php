@@ -24,7 +24,6 @@ th, td {
 <table>
     <tr>
     <th>ticket number</th>
-    <th>destination</th>
   <th>sell price</th>
   </tr>
   @php($total=0)

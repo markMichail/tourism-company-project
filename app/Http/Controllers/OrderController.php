@@ -133,6 +133,18 @@ class OrderController extends Controller
 
   }
 
-
+  public function payAll(Order $order){
+    $orderPaymentInfo=$order->ticketsAmount()[0];
+    
+    $allorder="1";
+    $payments=[];
+    foreach ($orderPaymentInfo as $ticket) {
+      $id=$ticket[0]->id;
+      if($ticket[1]!=='refunded'){
+      $payments["$id"]=["id" => $ticket[0]->id ,"amount" => $ticket[0]->sellprice-$ticket[1]];
+      }
+    }
+    return view('orders.payment',compact('payments','order',"allorder"));
+  }
   
 }
