@@ -34,7 +34,6 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-
 $factory->define(Destination::class, function (Faker $faker) {
     
     return [
@@ -42,9 +41,6 @@ $factory->define(Destination::class, function (Faker $faker) {
         'phone' => $faker->phoneNumber,
     ];
 });
-
-
-
 
 $factory->define(Customer::class, function (Faker $faker) {
     
@@ -67,7 +63,6 @@ $factory->define(Safe::class, function (Faker $faker) {
 
     ];
 });
-
 
 $factory->define(Receipt::class, function (Faker $faker) {
     $customerid = Customer::all()->random()->id;
