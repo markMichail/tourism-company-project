@@ -15,13 +15,15 @@ class ReceiptController extends Controller
     $receipt = new Receipt();
     $receipt->employee_id=auth()->user()->id;
     $receipt->receiptable_id=$order->customer->id;
-    $receipt->receiptable_type="App\Customer";
+    $receipt->receiptable_type="App\Custo mer";
     $receipt->type="revenue";
     $receipt->description="tickets payment";
     $receipt->total_amount=$total;
     $receipt->receipt_date=date('Y-m-d');
     $receipt->safe_id='0';
     $receipt->save();
+    $order->customer->totalcredit+=$total;
+    $order->customer->save();
     $payments=session()->get('payment');
     if($payments==null)
     return redirect()->route('order.show',$order)->with('status','select tickets to pay');
@@ -30,9 +32,8 @@ class ReceiptController extends Controller
         $amount=$ticket['amount'];
         $receipt->tickets()->attach("$id",['amount'=>$amount]);
     }
-    $order->customer->totalcredit+=$total;
+    
     $name=$order->customer->name;
-    $order->customer->save();
     $result = $order->ticketsAmount();
     if($result[1]-$result[2]==0){
         $order->status='1';
@@ -68,9 +69,11 @@ class ReceiptController extends Controller
         $payments["$id"]=["id" => $ticket[0]->id ,"amount" => $amount];
         }
     }
-    $order->customer->totalcredit+=$total;
+    if($order->customer->id != 0){
+        $order->customer->totalcredit+=$total;
+        $order->customer->save();
+    }
     $name=$order->customer->name;
-    $order->customer->save();
     $order->status='1';
     $order->save();
     $pdf = PDF::loadView('wasl',compact('payments','receipt','name'));

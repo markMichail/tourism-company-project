@@ -94,11 +94,11 @@ action="{{route('order.destroy',$order)}}">
 @if($order->customer_id !=0)
 <a style="float:right" target="_blank" href="{{route('orderprint',$order)}}" class="btn btn-warning">Print</a>
 <div class="text-center">
-  <a style="" href="{{route('order.show',$order)}}" class="center btn btn-success">Go to payment</a>
+  <a style="" href="{{route('order.confirmpayment',[$order,$total])}}" class="center btn btn-success"> Confirm and Go to payment</a>
 </div>
 @else
 <div class="text-center">
-  <a style="" href="{{route('receipts.allorder',[$order,$total])}}" class="center btn btn-success">Payment confimed Print receipt</a>
+  <a style="" href="{{route('receipts.allorder',[$order,$total])}}" class="center btn btn-success">Payment confirmed Print receipt</a>
 </div>
 @endif
 <script>
