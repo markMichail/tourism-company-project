@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 use App\Receipt;
 use App\Safe;
 use App\Customer;
@@ -35,33 +36,33 @@ Route::get('/addcustomer', "CustomerController@store");
 //test route for many to many relationships.
 
 Route::get('/test', function () {
-        $c = Customer::findorfail(4);
-        echo $c->receipts;
-        echo '<br>';
-        echo '<br>';
-        $d=Destination::findorfail(1);
-        echo $d->receipts;
-        echo '<br>';
-        echo '<br>';
-        echo '<br>';
-        echo '<br>';
-        $safe=Safe::where('safe_id',0)->first();
-        echo $safe->receipts;
-        echo '<br>';
-        echo '<br>';
-        echo '<br>';
-        $receipt=Receipt::findorfail(1);
-        echo '<br>';
-        echo '<br>';
+    $c = Customer::findorfail(4);
+    echo $c->receipts;
+    echo '<br>';
+    echo '<br>';
+    $d = Destination::findorfail(1);
+    echo $d->receipts;
+    echo '<br>';
+    echo '<br>';
+    echo '<br>';
+    echo '<br>';
+    $safe = Safe::where('safe_id', 0)->first();
+    echo $safe->receipts;
+    echo '<br>';
+    echo '<br>';
+    echo '<br>';
+    $receipt = Receipt::findorfail(1);
+    echo '<br>';
+    echo '<br>';
 
-        echo $receipt->safe;
-        // echo $r->tickets;
-        // echo '<br>';
-        // echo '<br>';
-        // echo $r->tickets[0]->pivot;
-        // echo '<br>';
-        // echo '<br>';
-        // echo $r->tickets[0]->pivot->amount;
+    echo $receipt->safe;
+    // echo $r->tickets;
+    // echo '<br>';
+    // echo '<br>';
+    // echo $r->tickets[0]->pivot;
+    // echo '<br>';
+    // echo '<br>';
+    // echo $r->tickets[0]->pivot->amount;
 
 });
 
@@ -75,9 +76,9 @@ Route::get('/allrefundedtickets', 'RefundedTicketController@index')->name('allre
 Route::get('/safe', 'SafeController@index')->name('allsafereciepts');
 Route::post('/safe', 'SafeController@store')->name('saferecieptsstore');
 Route::get('/customers/{id}', 'CustomerController@show');
-Route::get('/allcustomers',"CustomerController@index");
-Route::get('/allcustomers/ongoingpayments',"CustomerController@ongoingpayments");
-Route::get('/allcustomers/latepayments',"CustomerController@latepayments");
+Route::get('/allcustomers', "CustomerController@index")->name('allcustomers.index');
+Route::get('/allcustomers/ongoingpayments', "CustomerController@ongoingpayments");
+Route::get('/allcustomers/latepayments', "CustomerController@latepayments");
 
 Route::get('/edit/{id}', 'CustomerController@edit')->name('edit');
 Route::post('/update/{id}', 'CustomerController@update')->name('update');
@@ -98,5 +99,5 @@ Route::get('/order/payall/{order}', 'OrderController@payAll')->name('order.payal
 Route::get('/receiptstore/{order}/{total}', 'ReceiptController@store')->name('receipts.store');
 Route::get('/receiptallorder/{order}/{total}', 'ReceiptController@storeAllorder')->name('receipts.allorder');
 
-Route::get('orderprint/{order}','OrderController@print')->name('orderprint');
-Route::post('/checkticketprice','TicketController@checkprice')->name('ajax');
+Route::get('orderprint/{order}', 'OrderController@print')->name('orderprint');
+Route::post('/checkticketprice', 'TicketController@checkprice')->name('ajax');

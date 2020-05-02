@@ -19,12 +19,12 @@
       @endif --}}
       @else
       <li class="nav-item">
-        <a class="nav-link" href="/home">Home
+        <a class="nav-link" href="{{ route('home') }}">Home
           <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/allcustomers">All Customers</a>
+        <a class="nav-link" href="{{ route('allcustomers.index') }}">All Customers</a>
       </li>
       {{-- <li class="nav-item">
       <a class="nav-link" href="/addcustomer">Add Customer</a>
@@ -42,11 +42,11 @@
           aria-expanded="false">Tickets</a>
         <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
           <a class="dropdown-item" href="{{route('tickets.index')}}">All Tickets</a>
-          <a class="dropdown-item" href="/allrefundedtickets">Refunded Tickets</a>
+          <a class="dropdown-item" href="{{ route('allrefundedtickets') }}">Refunded Tickets</a>
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="/safe">Safe</a>
+        <a class="nav-link" href="{{ route('allsafereciepts') }}">Safe</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/reports">Reports</a>
