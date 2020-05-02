@@ -24,11 +24,6 @@ Route::get('/customerprofile', function () {
 })->name('customerprofile');
 
 
-Route::get('/reports', function () {
-    return view('reports');
-});
-
-
 
 Route::get('/addcustomer', "CustomerController@store");
 
@@ -83,7 +78,7 @@ Route::get('/allcustomers/latepayments', "CustomerController@latepayments");
 Route::get('/edit/{id}', 'CustomerController@edit')->name('edit');
 Route::post('/update/{id}', 'CustomerController@update')->name('update');
 
-
+Route::get('/reports', 'ReportController@index')->name('reports');
 
 
 Route::resource('order', 'OrderController');

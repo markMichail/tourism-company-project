@@ -1,215 +1,108 @@
 @extends('layouts.app')
 @section('content')
 
-<!-- Editable table -->
 <div class="card">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Reports</h3>
   <div class="card-body">
     <div id="table" class="table-editable">
-      <!-- Basic dropdown -->
-      <a class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
-      aria-expanded="false">Date</a>
 
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">1/1 - 15/1</a>
-        <a class="dropdown-item" href="#">15/1 - 31/1</a>
-        <a class="dropdown-item" href="#">1/2 - 15/2</a>
-      </div>
+
+      <label>Starting From</label>
+      <input type="date" id="startingdate" class="form-control col col-lg-2">
+      <br>
+
       <button type="button" class="btn btn-success btn-rounded btn-md float-right">Export to excel</button>
       <button type="button" class="btn btn-warning btn-rounded btn-md float-right">Print</button>
       <button type="button" class="btn btn-info btn-rounded btn-md float-right">Filter</button>
-      <!-- Basic dropdown -->
-      <table id="dtBasicExample" style="max-width: auto;" class="table table-bordered table-responsive-md table-striped text-center">
+
+      <table id="reportsTable" style="max-width: auto;"
+        class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
             <th class="text-center">#</th>
             <th class="text-center">ticketNumber</th>
             <th class="text-center">type</th>
-            <th class="text-center">passenger_name</th>
+            <th class="text-center">passenger name</th>
             <th class="text-center">destination</th>
-            <th class="text-center">tran_company</th>
+            <th class="text-center">tran company</th>
             <th class="text-center">rsoom</th>
+            <th class="text-center">percentage assay</th>
             <th class="text-center">asasy</th>
             <th class="text-center">total</th>
             <th class="text-center">comission</th>
-            <th class="text-center">comissionTax</th>
+            <th class="text-center">comission tax</th>
             <th class="text-center">BSP</th>
             <th class="text-center">sellprice</th>
             <th class="text-center">profit</th>
             <th class="text-center">safy</th>
             <th class="text-center">paymentType</th>
             <th class="text-center">receipt no</th>
+            <th style="display: none"></th>
           </tr>
         </thead>
         <tbody>
+          @foreach ($tickets as $i => $ticket)
           <tr>
-            <td class="pt-3-half">1</td>
-            <td class="pt-3-half">100000001</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">500 LE</td>
-            <td class="pt-3-half">50000004</td>
-          </tr>
-          <tr>
-            <td class="pt-3-half">2</td>
-            <td class="pt-3-half">100000002</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">1500 LE</td>
-            <td class="pt-3-half">50000004</td>
-          </tr>
-          <tr>
-            <td class="pt-3-half">3</td>
-            <td class="pt-3-half">100000003</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">2500 LE</td>
-            <td class="pt-3-half">50000004</td>
-          </tr>
-          <tr>
-            <td class="pt-3-half">4</td>
-            <td class="pt-3-half">100000004</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">0 LE</td>
-            <td class="pt-3-half">50000004</td>
-          </tr>
-          <tr>
-            <td class="pt-3-half">5</td>
-            <td class="pt-3-half">100000005</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">320 LE</td>
-            <td class="pt-3-half">50000004</td>
+
+            <td class="pt-3-half">{{ ++$i }}</td>
+            <td class="pt-3-half">{{$ticket->id}}</td>
+            <td class="pt-3-half">{{$ticket->type}}</td>
+            <td class="pt-3-half">{{$ticket->passengerName}}</td>
+            <td class="pt-3-half">{{$ticket->destination}}</td>
+            <td class="pt-3-half">{{$ticket->transportationCompany}}</td>
+            <td class="pt-3-half">{{$ticket->rsoom}}</td>
+            <td class="pt-3-half">{{$ticket->percentageAsasy}}</td>
+            <td class="pt-3-half">{{$ticket->asasy}}</td>
+            <td class="pt-3-half">{{$ticket->total}}</td>
+            <td class="pt-3-half">{{$ticket->comission}}</td>
+            <td class="pt-3-half">{{$ticket->comissionTax}}</td>
+            <td class="pt-3-half">{{$ticket->bsp}}</td>
+            <td class="pt-3-half">{{$ticket->sellprice}}</td>
+            <td class="pt-3-half">{{$ticket->profit}}</td>
+            <td class="pt-3-half">{{$ticket->safy}} LE</td>
+            <td class="pt-3-half">{{$ticket->paymentType}}</td>
+            <td class="pt-3-half">{{$ticket->order_id}}</td>
+            <td style="display:none;">{{ $ticket->order->date }}</td>
+
           </tr>
 
-          <!-- This is our clonable table line -->
-          <tr class="hide">
-            <td class="pt-3-half">6</td>
-            <td class="pt-3-half">100000006</td>
-            <td class="pt-3-half">Mark Gallagher</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">Aurelia Vega</td>
-            <td class="pt-3-half">600 LE</td>
-            <td class="pt-3-half">50000004</td>
-          </tr>
+          @endforeach
         </tbody>
       </table>
     </div>
   </div>
 </div>
-<!-- Editable table -->
 
 
 <script>
-window.onload = function () {
-  const $tableID = $('#table');
-
-  const newTr = `
-  <tr class="hide">
-  <td class="pt-3-half">Example</td>
-  <td class="pt-3-half">Example</td>
-
-  <button type="button" class="btn btn-danger btn-rounded btn-sm my-0 waves-effect waves-light">Remove</button>
-  </td>
-  </tr>`;
-
-
-
   $(document).ready(function () {
-    $('#dtBasicExample').DataTable(
-      {
-        
-        "scrollX": true
+    $.fn.dataTable.ext.search.push(
+    function( settings, data, dataIndex ) {
+      var now = $('#startingdate').val();
+      var after15days = new Date(now);
+      after15days.setDate(after15days.getDate()+15);
+      var d = after15days.getDate();
+      d = d < 10 ? "0" + d : d;
+      var m =  after15days.getMonth();
+      m += 1;  // JavaScript months are 0-11
+      m = m < 10 ? "0" + m : m;
+      var y = after15days.getFullYear();
+      after15days = y+"-"+m+"-"+d;
+      ticketDate = data[18];
+      return now <= ticketDate   && ticketDate <= after15days ? true : false;
+    });
+    var table = $('#reportsTable').DataTable(
+      {  
+        "scrollX": true,
+        initComplete: function() {
+          column = this.api().columns(18);
+          $('#startingdate').on('change', function() {
+            table.draw();
+          });
+      },
       }
     );
     $('.dataTables_length').addClass('bs-select');
   });
-
-
-  // $('.table-add').on('click', 'i', () => {
-  //   const $clone = $tableID.find('tbody tr').last().clone(true).removeClass('hide table-line');
-  //   if ($tableID.find('tbody tr').length === 0) {
-  //     $('tbody').append(newTr);
-  //   }
-  //   $tableID.find('table').append($clone);
-  // });
-
-
-
-  $tableID.on('click', '.table-remove', function () {
-    $(this).parents('tr').detach();
-  });
-
-}
-
-
-
-
 </script>
 @endsection
