@@ -11,19 +11,15 @@
     </div>
     @endif
     <div id="table" class="table-editable">
-      <span class="table-add float-right mb-3 mr-2">
-        <a href="#!" class="text-success">
-          <i class="fas fa-plus fa-2x" aria-hidden="true"></i>
-        </a>
-      </span>
       <table id="DBTable" class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
             <th class="text-center">#</th>
-            <th class="text-center">Total</th>
+            <th class="text-center">Customer</th>
             <th class="text-center">Date</th>
+            <th class="text-center">status</th>
             <th style="width:10%" class="text-center">View</th>
-            <th style="width:10%" class="text-center">Remove</th>
+          
           </tr>
         </thead>
         <tbody>
@@ -32,130 +28,23 @@
             <td class="pt-3-half">{{ $order->id }}</td>
             <td class="pt-3-half">{{ $order->customer->name }}</td>
             <td class="pt-3-half">{{ $order->date }}</td>
+            @if($order->status == 1)
+            <td class="alert alert-success col-0">Payed</td>
+            @else
+            <td class="alert alert-warning"> In progress </td>
+            @endif
             <td class="table-view">
               <a href="{{route('order.show',$order)}}" class="btn btn-info btn-rounded btn-sm my-0">View</a>
             </td>
-            <form onsubmit='return confirm("Do you want to delete this ticket?");' method="POST"
+            {{-- <form onsubmit='return confirm("Do you want to delete this ticket?");' method="POST"
               action="{{route('order.destroy',$order)}}">
               @csrf
               @method('delete')
               <td class="remove-table"><button type="submit" class="btn btn-danger btn-sm">delete</button></td>
-            </form>
+            </form> --}}
           </tr>
           @endforeach
-          <!-- <tr>
-          <td class="pt-3-half">50000005</td>
-          <td class="pt-3-half">1500 LE</td>
-          <td class="table-view">
-          <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-        </td>
-        <td class="table-remove">
-        <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-      </td>
-    </tr>
-    <tr>
-    <td class="pt-3-half">50000009</td>
-    <td class="pt-3-half">2500 LE</td>
-    <td class="table-view">
-    <button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-  </td>
-  <td class="table-remove">
-  <button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-</td>
-</tr>
-<tr>
-<td class="pt-3-half">50000000</td>
-<td class="pt-3-half">0 LE</td>
-<td class="table-view">
-<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-</td>
-<td class="table-remove">
-<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-</td>
-</tr>
-<tr>
-<td class="pt-3-half">50000008</td>
-<td class="pt-3-half">320 LE</td>
-<td class="table-view">
-<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-</td>
-<td class="table-remove">
-<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-</td>
-</tr>
-<tr>
-<td class="pt-3-half">50000008</td>
-<td class="pt-3-half">2000 LE</td>
-<td class="table-view">
-<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-</td>
-<td class="table-remove">
-<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-</td>
-</tr>
-<tr>
-<td class="pt-3-half">50000008</td>
-<td class="pt-3-half">10000 LE</td>
-<td class="table-view">
-<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-</td>
-<td class="table-remove">
-<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-</td>
-</tr>
-<tr>
-<td class="pt-3-half">50000006</td>
-<td class="pt-3-half">300 LE</td>
-<td class="table-view">
-<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-</td>
-<td class="table-remove">
-<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-</td>
-</tr>
-<tr>
-<td class="pt-3-half">50000008</td>
-<td class="pt-3-half">3000 LE</td>
-<td class="table-view">
-<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-</td>
-<td class="table-remove">
-<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-</td>
-</tr>
-<tr>
-<td class="pt-3-half">50000007</td>
-<td class="pt-3-half">20 LE</td>
-<td class="table-view">
-<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-</td>
-<td class="table-remove">
-<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-</td>
-</tr>
-<tr>
-<td class="pt-3-half">50000009</td>
-<td class="pt-3-half">700 LE</td>
-<td class="table-view">
-<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-</td>
-<td class="table-remove">
-<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-</td>
-</tr> -->
-
-          <!-- This is our clonable table line -->
-          <!-- <tr class="hide">
-<td class="pt-3-half">50000014</td>
-<td class="pt-3-half">600 LE</td>
-<td class="pt-3-half">29-10-2019</td>
-<td class="table-view">
-<button type="button" class="btn btn-info btn-rounded btn-sm my-0">View</button>
-</td>
-<td class="table-remove">
-<button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button>
-</td>
-</tr> -->
+  
         </tbody>
       </table>
     </div>
@@ -187,7 +76,7 @@
     $('#DBTable').DataTable(
       {
         "columnDefs": [
-          { "orderable": false, "targets":3 },
+          
           { "orderable": false, "targets":4 },
         ],
       }

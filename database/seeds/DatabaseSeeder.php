@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
       factory('App\Destination', 5)->create();
       factory('App\Safe', 1)->create();
       factory('App\Receipt', 10)->create();
+      factory('App\Role', 1)->create();
     }
 }

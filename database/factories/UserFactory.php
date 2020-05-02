@@ -7,6 +7,7 @@ use App\Destination;
 use App\User;
 use App\Safe;
 use App\Receipt;
+use App\Role;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -35,7 +36,6 @@ $factory->define(User::class, function (Faker $faker) {
 });
 
 $factory->define(Destination::class, function (Faker $faker) {
-    
     return [
         'name' =>$faker->randomElement(['sbaka','kahraba','negara','transportation']), 
         'phone' => $faker->phoneNumber,
@@ -43,24 +43,20 @@ $factory->define(Destination::class, function (Faker $faker) {
 });
 
 $factory->define(Customer::class, function (Faker $faker) {
-    
     return [
         'name' =>$faker->randomElement(['mark','ahmed','emad','abdehameed','mohammed']), 
         'phone' => $faker->phoneNumber,
         'email'=>$faker->email,
         'totalcredit'=>$faker->randomElement([-5000,0,1500,1000,0,0]),
-
     ];
 });
 
 $factory->define(Safe::class, function (Faker $faker) {
-    
     return [
         'safe_id' =>'0', 
         'total' => $faker->numberBetween(1500,6000),
         'status'=>'1',
         'date'=>$faker->date,
-
     ];
 });
 
@@ -82,3 +78,17 @@ $factory->define(Receipt::class, function (Faker $faker) {
         'receipt_date'=>$faker->date
     ];
 });
+
+$factory->define(Role::class, function (Faker $faker) {
+    return [
+        'name' => 'admin', 
+        'description' => 'A user with admin privilege.',
+    ];
+});
+
+/*$factory->define(Role::class, function (Faker $faker) {
+    return [
+        'name' => 'helpdesk', 
+        'description' => 'A user with help desk privilege.',
+    ];
+});*/
