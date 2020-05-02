@@ -83,6 +83,10 @@
         </div>
       </div>
       <input class="btn btn-warning" value="Refund" data-toggle="modal" data-target="#modaladdnew" type="button">
+      
+      @if (session('receipt'))
+      <a class="btn btn-warning" href="{{route('eznsatf',session('receipt'))}}">Download receipt</a>
+      @endif
     </div>
 
   </div>
