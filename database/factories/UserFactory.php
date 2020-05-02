@@ -7,7 +7,6 @@ use App\Destination;
 use App\User;
 use App\Safe;
 use App\Receipt;
-use App\Role;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -78,17 +77,3 @@ $factory->define(Receipt::class, function (Faker $faker) {
         'receipt_date'=>$faker->date
     ];
 });
-
-$factory->define(Role::class, function (Faker $faker) {
-    return [
-        'name' => 'admin', 
-        'description' => 'A user with admin privilege.',
-    ];
-});
-
-/*$factory->define(Role::class, function (Faker $faker) {
-    return [
-        'name' => 'helpdesk', 
-        'description' => 'A user with help desk privilege.',
-    ];
-});*/
