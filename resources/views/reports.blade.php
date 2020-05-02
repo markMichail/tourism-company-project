@@ -8,12 +8,12 @@
 
 
       <label>Starting From</label>
-      <input type="date" id="startingdate" class="form-control col col-lg-2">
+      <input type="date" id="startingdate" value="{{ date("Y-m-d") }}" class="form-control col col-lg-2">
       <br>
 
       <button type="button" class="btn btn-success btn-rounded btn-md float-right">Export to excel</button>
-      <button type="button" class="btn btn-warning btn-rounded btn-md float-right">Print</button>
-      <button type="button" class="btn btn-info btn-rounded btn-md float-right">Filter</button>
+      <button type="button" id="print" class="btn btn-warning btn-rounded btn-md float-right">Print</button>
+      {{-- <button type="button" class="btn btn-info btn-rounded btn-md float-right">Filter</button> --}}
 
       <table id="reportsTable" style="max-width: auto;"
         class="table table-bordered table-responsive-md table-striped text-center">
@@ -76,6 +76,12 @@
 
 <script>
   $(document).ready(function () {
+    $('#print').on('click', function(){
+      var url = '{{ route("ticketsreportprint", "date") }}';
+      url = url.replace('date', $('#startingdate').val());
+      window.location.href = url;
+    });
+
     $.fn.dataTable.ext.search.push(
     function( settings, data, dataIndex ) {
       var now = $('#startingdate').val();

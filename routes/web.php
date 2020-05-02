@@ -79,6 +79,7 @@ Route::get('/edit/{id}', 'CustomerController@edit')->name('edit');
 Route::post('/update/{id}', 'CustomerController@update')->name('update');
 
 Route::get('/reports', 'ReportController@index')->name('reports');
+Route::get('/ticketsreportprint/{date}', 'ReportController@printTickets')->name('ticketsreportprint');
 
 
 Route::resource('order', 'OrderController');
