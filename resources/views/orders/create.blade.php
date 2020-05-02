@@ -21,8 +21,10 @@
 
     <select style="display:none" class="form-control mb-3" name="customer_id" id="customer">
         @foreach ($customers as $customer )
-        @if($customer->id != 0)
+        @if($customer->id !== 0)
         <option value="{{$customer->id}}">{{$customer->name}}</option>
+        @else
+        <option hidden value="{{$customer->id}}">{{$customer->name}}</option>
         @endif
         @endforeach
 

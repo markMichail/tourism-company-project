@@ -93,6 +93,7 @@ Route::resource('tickets', 'TicketController');
 Route::get('/tickets/{order}/{status}', 'TicketController@orderticket')->name('orderticketcreate');
 Route::get('/order/receipt/confirm', 'TicketController@confirmReceipt')->name('order.receipt.confirm');
 Route::get('/order/confirm/{order}', 'OrderController@confirmview')->name('orderconfirm');
+Route::get('/order/confirm/{order}/{total}', 'OrderController@confirmpayment')->name('order.confirmpayment');
 Route::get('/order/payall/{order}', 'OrderController@payAll')->name('order.payall');
 Route::get('/receiptstore/{order}/{total}', 'ReceiptController@store')->name('receipts.store');
 Route::get('/receiptallorder/{order}/{total}', 'ReceiptController@storeAllorder')->name('receipts.allorder');

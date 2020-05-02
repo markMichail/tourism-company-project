@@ -83,6 +83,12 @@ class OrderController extends Controller
      $payed=$orderPaymentInfo[2];
     return view('orders.show',compact('data','order','total','payed'));
   }
+
+  public function confirmpayment(Order $order ,$total){
+    $order->customer->totalcredit-=$total;
+    $order->customer->save();
+    return redirect()->route('order.show',$order);
+  }
   
 
   public function confirmview(Order $order)

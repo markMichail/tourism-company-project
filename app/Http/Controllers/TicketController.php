@@ -70,8 +70,6 @@ class TicketController extends Controller
         }
         
          $order=Order::where('id',"$order->id")->with('tickets')->first();
-         if($order->customer->id != 0)
-         $order->customer->totalcredit-=$total;
          $request->session()->forget(['order', 'tickets']);
          return redirect()->route('orderconfirm',$order);
          
@@ -124,6 +122,10 @@ class TicketController extends Controller
     {
        $ticket->delete();
        $order=Order::findorfail($ticket->order_id);
+       if($order->tickets->count()==0)
+       $order->delete();
+       return redirect()->route('order.index')->with('status','order deleted successfully');
+
        return redirect()->route('orderconfirm',$order)->with('status','ticket deleted successfully');
     }
 
