@@ -20,17 +20,22 @@ class Ticket extends Model
     public function calculate(){
        $receipts= $this->receipts;
        $sellprice=$this->sellprice;
+       $status="in progress";
        $payed=0;
+       if ($this->type=="refunded"){
+           $status="ticket already refunded";
+       }
        if($receipts->count()>0){
        foreach ($receipts as $receipt) {
+           if($receipt->type=="revenue")
           $payed+=$receipt->pivot->amount;
        }
     }
        if ($sellprice==$payed){
-           return 'already payed';
+           $status = 'already payed';
        }
-       else {
-           return $sellprice-$payed;
-       }
+       
+           return [ "status"=>$status  , "payed"=>$payed ,"left" => $sellprice-$payed];
+       
     }
 }

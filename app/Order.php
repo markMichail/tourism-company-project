@@ -29,8 +29,10 @@ class Order extends Model
       if($receipts->count()>0){
         $total=0;
         foreach ($receipts as $receipt) {
+          if($receipt->type=="revenue"){
           $total+=$receipt->pivot->amount;
           $payed+=$receipt->pivot->amount;
+          }
         }   
         array_push($data,[$ticket,$total]);
       } else {array_push($data,[$ticket,0]);} 

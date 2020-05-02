@@ -140,11 +140,12 @@ class TicketController extends Controller
         }
        $ticket=Ticket::findorfail($request->id);
        $result=$ticket->calculate();
-       if($result=='already payed'){
+       $amount=$result['left'];
+       if($result['status'] == 'already payed'){
            return response()->json(['success'=>"Ticket already Payed"]);
        }
         $validator = Validator::make($request->all(), [
-            'amount' => "required  | integer | min:1 | max:$result",
+            'amount' => "required  | integer | min:1 | max:$amount",
         ]);
         
         if ($validator->fails())

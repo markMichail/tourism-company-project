@@ -93,6 +93,7 @@ Route::get('/order/confirm/{order}/{total}', 'OrderController@confirmpayment')->
 Route::get('/order/payall/{order}', 'OrderController@payAll')->name('order.payall');
 Route::get('/receiptstore/{order}/{total}', 'ReceiptController@store')->name('receipts.store');
 Route::get('/receiptallorder/{order}/{total}', 'ReceiptController@storeAllorder')->name('receipts.allorder');
+Route::post('/refundticketsReceipt', 'ReceiptController@refundTickets')->name('receipts.refund');
 
 Route::get('orderprint/{order}', 'OrderController@print')->name('orderprint');
 Route::post('/checkticketprice', 'TicketController@checkprice')->name('ajax');

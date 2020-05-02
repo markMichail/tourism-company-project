@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Receipt;
+use App\Ticket;
 use PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ReceiptController extends Controller
 {
@@ -41,7 +43,10 @@ class ReceiptController extends Controller
     }
     $pdf = PDF::loadView('wasl',compact('payments','receipt','name'));
     session()->forget('payment');
-    return $pdf->download('invoice.pdf');
+    $path = public_path('Invoices');
+    $fileName =  $receipt->id . '.' . 'pdf' ;
+    $pdf->save($path . '/' . $fileName);
+    return $pdf->stream('invoice.pdf');
     
    }
 
@@ -64,7 +69,7 @@ class ReceiptController extends Controller
     foreach ($orderPaymentInfo as $ticket) {
         $id=$ticket[0]->id;
         if($ticket[1]!=='refunded'){
-       $amount= $ticket[0]->sellprice-$ticket[1];
+        $amount= $ticket[0]->sellprice-$ticket[1];
         $receipt->tickets()->attach("$id",['amount'=>$amount]);
         $payments["$id"]=["id" => $ticket[0]->id ,"amount" => $amount];
         }
@@ -77,6 +82,56 @@ class ReceiptController extends Controller
     $order->status='1';
     $order->save();
     $pdf = PDF::loadView('wasl',compact('payments','receipt','name'));
-    return $pdf->download('invoice.pdf');
+    $path = public_path('Invoices');
+    $fileName =  $receipt->id . '.' . 'pdf' ;
+    $pdf->save($path . '/' . $fileName);
+    
+  
+   return redirect()->route('order.show',$order)->with('status','Order already payed');
    }
+
+
+   public function refundTickets(Request $request){
+        $request->validate(['check'=>'required']);
+        $tickets=Ticket::whereIn( "id", $request->check)->with('receipts')->get();
+        $order=$tickets[0]->order;
+        $name=$order->customer->name;
+        $receipt = new Receipt();
+        $receipt->employee_id=auth()->user()->id;
+        $receipt->receiptable_id=$order->customer->id;
+        $receipt->receiptable_type="App\Customer";
+        $receipt->type="expense";
+        $receipt->description="Tickets Refund";
+        $receipt->receipt_date=date('Y-m-d');
+        $receipt->safe_id='0';
+        $receipt->total_amount=0;
+        $receipt->save();
+        $total=0;
+        
+       foreach ($tickets as $ticket) {
+           $result=$ticket->calculate();
+
+            if($result['payed'] != 0){
+                $receipt->tickets()->attach("$ticket->id",['amount'=>$result['payed']]);
+                $total+=$result['payed'];
+            }
+            $ticket->type="refunded";
+            $ticket->save();
+       }
+      $receipt->total_amount=$total;
+      $receipt->save();
+      $orderPayment=$order->ticketsAmount();
+       if($orderPayment[1]-$orderPayment[2]==0){
+           $order->status=1;
+           $order->save();
+       }
+
+    //    $pdf = PDF::loadView('aznSarf',compact('tickets','receipt','name'));
+    //    $path = public_path('Invoices');
+    //    $fileName =  $receipt->id . '.' . 'pdf' ;
+    //    $pdf->save($path . '/' . $fileName);
+   return redirect()->route('order.show',$order);
+   }
+
+   
 }
