@@ -78,7 +78,11 @@ Route::get('/allcustomers/latepayments', "CustomerController@latepayments");
 Route::get('/edit/{id}', 'CustomerController@edit')->name('edit');
 Route::post('/update/{id}', 'CustomerController@update')->name('update');
 
-Route::get('/reports', 'ReportController@index')->name('reports');
+Route::get('/ticketsreports', 'ReportController@tickets')->name('ticketsreports');
+Route::get('/ticketsreportprint/{date}', 'ReportController@printTickets')->name('ticketsreportprint');
+
+Route::get('/receiptsreports', 'ReportController@receipts')->name('receiptsreports');
+Route::get('/receiptsreportprint/{date}', 'ReportController@printReceipts')->name('receiptsreportprint');
 
 
 Route::resource('order', 'OrderController');

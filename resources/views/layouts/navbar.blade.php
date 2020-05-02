@@ -46,10 +46,15 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="{{ route('allsafereciepts') }}">Safe</a>
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Reports</a>
+        <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="{{ route('ticketsreports') }}">Tickets Reports</a>
+          <a class="dropdown-item" href="{{ route('receiptsreports') }}">Recipets Reports</a>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('reports') }}">Reports</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="{{ route('allsafereciepts') }}">Safe</a>
       </li>
       <li class="nav-item dropdown">
         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
