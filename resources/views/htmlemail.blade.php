@@ -12,7 +12,7 @@
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;background-color:#f5f5f5;">
                     <tr>
                         <td align="center" style="padding: 0.4em;"> <!-- Adding the logo -->
-                            <img src="{{asset('https://i.ibb.co/Jr5Bbxp/Whats-App-Image-2020-05-01-at-10-removebg-preview.png')}}" alt="Pharomina Logo" style="align:center; width: 20rem; height:30vh;">
+                            <img src="{{asset('https://i.ibb.co/Jr5Bbxp/Whats-App-Image-2020-05-01-at-10-removebg-preview.png')}}" alt="PharominaTours Logo" style="align:center; width: 20rem; height:20rem;">
                             <h1> <!-- Adding the name -->
                                 <font style="font-size: 1.5em;" face="Roboto">From <strong style="color: #128B92;">Pharomina Tours</strong>!</font>
                             </h1> <!-- Adding the username, in {} braces and capital so that it gets replaced by the function in backend.js -->
@@ -22,6 +22,7 @@
                     <tr>
                         <td align="center" style="padding: 0.8em 0.4em 0.4em 0.4em"> <!-- Adding the mail content, in {} braces and capital so that it gets replaced by the function in backend.js -->
                             <font face="Roboto" color="grey" style="font-size: 1.8em;">{{$CONTENT}}</font>
+                            <br>
                         </td>
                     </tr>
                     <!-- <tr>
