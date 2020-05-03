@@ -23,6 +23,16 @@ class DatabaseSeeder extends Seeder
           'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
           'remember_token' => Str::random(10),
         ),
+        array(
+          'name' => "mark",
+          'email' => "mark@m.com",
+          'username'=>'mark',
+          'phone'=>'01065721224',
+          'privilege'=>'2',
+          'email_verified_at' => now(),
+          'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+          'remember_token' => Str::random(10),
+        ),
       ));
       factory('App\Customer', 5)->create();
       factory('App\Destination', 5)->create();
@@ -50,6 +60,10 @@ class DatabaseSeeder extends Seeder
         array(
           'role_id' => '3',
           'user_id' => '2',
+        ),
+        array(
+          'role_id' => '2',
+          'user_id' => '3',
         ),
       ));
     }
