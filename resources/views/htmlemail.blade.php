@@ -12,7 +12,7 @@
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;background-color:#f5f5f5;">
                     <tr>
                         <td align="center" style="padding: 0.4em;"> <!-- Adding the logo -->
-                            <img src="https://i.ibb.co/Jr5Bbxp/Whats-App-Image-2020-05-01-at-10-removebg-preview.png" alt="Pharomina Logo" style="align:center; width: 20rem; height:30vh;">
+                            <img src="{{asset('https://i.ibb.co/Jr5Bbxp/Whats-App-Image-2020-05-01-at-10-removebg-preview.png')}}" alt="Pharomina Logo" style="align:center; width: 20rem; height:30vh;">
                             <h1> <!-- Adding the name -->
                                 <font style="font-size: 1.5em;" face="Roboto">From <strong style="color: #128B92;">Pharomina Tours</strong>!</font>
                             </h1> <!-- Adding the username, in {} braces and capital so that it gets replaced by the function in backend.js -->
@@ -24,13 +24,13 @@
                             <font face="Roboto" color="grey" style="font-size: 1.8em;">{{$CONTENT}}</font>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td align="center" style="padding: 2em 0 2em 0;">
-                            <span> <!-- A visit us button (not working as we has no host) -->
+                            <span>
                                 <button type="button" href="" style="font-family:Roboto; sans-serif; font-size:1.5em; font-weight:50; color:rgb(57,57,57); text-align:center; text-transform:uppercase; text-decoration:none; background-color:#128B92; padding:0.5em; border-radius: 1em;">Visit the site</button>
                             </span>
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td align="center" valign="middle" style="background:#128B92">
                             <div>
