@@ -80,10 +80,11 @@ Route::post('/update/{id}', 'CustomerController@update')->name('update');
 
 Route::get('/ticketsreports', 'ReportController@tickets')->name('ticketsreports');
 Route::get('/ticketsreportprint/{date}', 'ReportController@printTickets')->name('ticketsreportprint');
+Route::get('/ticketsreportexport/{date}', 'ReportController@excelTickets')->name('ticketsreportexport');
 
 Route::get('/receiptsreports', 'ReportController@receipts')->name('receiptsreports');
 Route::get('/receiptsreportprint/{date}', 'ReportController@printReceipts')->name('receiptsreportprint');
-
+Route::get('/receiptsreportexport/{date}', 'ReportController@excelReceipts')->name('receiptsreportexport');
 
 Route::resource('order', 'OrderController');
 Route::resource('tickets', 'TicketController');

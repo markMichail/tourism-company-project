@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ReceiptsExport;
+use App\Exports\TicketsExport;
 use App\Receipt;
 use App\Ticket;
 use PDF;
+use Excel;
 
 class ReportController extends Controller
 {
@@ -33,6 +36,11 @@ class ReportController extends Controller
         return $pdf->stream('report.pdf');
     }
 
+    public function excelTickets($date)
+    {
+        return Excel::download(new TicketsExport($date), 'tickets' . $date . '.xlsx');
+    }
+
     public function receipts()
     {
         $receipts = Receipt::with('receiptable')->get();
@@ -48,5 +56,10 @@ class ReportController extends Controller
         $pdf = PDF::loadView('print.receiptsreport', compact('receipts', 'startingdate', 'dateafter15days'));
         return $pdf->stream('report.pdf');
         // return view('ticketsreport', compact('tickets'));
+    }
+
+    public function excelReceipts($date)
+    {
+        return Excel::download(new ReceiptsExport($date), 'receipt' . $date . '.xlsx');
     }
 }

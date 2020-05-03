@@ -44,7 +44,7 @@
       <th class="text-center">Profit</th>
       <th class="text-center">Safy</th>
       <th class="text-center">Payment Type</th>
-      <th class="text-center">Receipt #</th>
+      <th class="text-center">Order #</th>
     </tr>
     @foreach ($tickets as $i => $ticket)
     <tr>
