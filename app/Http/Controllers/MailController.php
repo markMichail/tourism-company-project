@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class MailController extends Controller
@@ -11,19 +12,45 @@ class MailController extends Controller
 
     public function mail()
     {
-       \Mail::send('htmlemail', ['NAME' => 'Ahmed test name', 'CONTENT' => 'Ahmed test content'], function($message)
-        {
-            $message->to('ahmed3madeldin@gmail.com', 'Ahmed Emad TESTING')->subject('Welcome!');
-        });
-       return 'Email was sent';
+        $all = " ";
+        $subject = 'testing';
+        $content = 'testing';
+        $emails = DB::table('users')->where('privilege', '1')->pluck('email');
+        $all .= $emails;
+        foreach ($emails as $email) {
+            $all .= $email;
+            $name = DB::table('users')->where('email', $email)->value('name');
+            $all .= $name;
+            \Mail::send('htmlemail', ['NAME' => $name, 'CONTENT' => $content], function($message) use($email, $name, $subject)
+            {
+                $message->to($email, $name)->subject($subject);
+            });
+        }
+       return $all . 'Email was sent';
     }
 
-    public function sendmail($name, $subject, $content)
+    public function mailadmin($subject, $content)
     {
-       \Mail::send('htmlemail', ['NAME' => $name, 'CONTENT' => $content], function($message)
-        {
-            $message->to('ahmed3madeldin@gmail.com', 'Ahmed Emad')->subject($subject);
-        });
+        $emails = DB::table('users')->where('privilege', '1')->pluck('email');
+        foreach ($emails as $email) {
+            $name = DB::table('users')->where('email', $email)->value('name');
+            \Mail::send('htmlemail', ['NAME' => $name, 'CONTENT' => $content], function($message) use($email, $name, $subject)
+            {
+                $message->to($email, $name)->subject($subject);
+            });
+        }
+    }
+
+    public function mailhelpdesk($subject, $content)
+    {
+       $emails = DB::table('users')->where('privilege', '2')->pluck('email');
+        foreach ($emails as $email) {
+            $name = DB::table('users')->where('email', $email)->value('name');
+            \Mail::send('htmlemail', ['NAME' => $name, 'CONTENT' => $content], function($message) use($email, $name, $subject)
+            {
+                $message->to($email, $name)->subject($subject);
+            });
+        }
     }
 
     public function __construct()
