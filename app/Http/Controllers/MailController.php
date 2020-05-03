@@ -12,15 +12,14 @@ class MailController extends Controller
 
     public function mail()
     {
+        ini_set('max_execution_time', 0);
         $all = " ";
         $subject = 'testing';
         $content = 'testing';
-        $emails = DB::table('users')->where('privilege', '1')->pluck('email');
+        $emails = DB::table('users')->where('privilege', '1')->orWhere('privilege', '2')->pluck('email');
         $all .= $emails;
         foreach ($emails as $email) {
-            $all .= $email;
             $name = DB::table('users')->where('email', $email)->value('name');
-            $all .= $name;
             \Mail::send('htmlemail', ['NAME' => $name, 'CONTENT' => $content], function($message) use($email, $name, $subject)
             {
                 $message->to($email, $name)->subject($subject);
@@ -31,7 +30,8 @@ class MailController extends Controller
 
     public function mailadmin($subject, $content)
     {
-        $emails = DB::table('users')->where('privilege', '1')->pluck('email');
+        ini_set('max_execution_time', 0);
+        $emails = DB::table('users')->where('privilege', '1')->orWhere('privilege', '2')->pluck('email');
         foreach ($emails as $email) {
             $name = DB::table('users')->where('email', $email)->value('name');
             \Mail::send('htmlemail', ['NAME' => $name, 'CONTENT' => $content], function($message) use($email, $name, $subject)
@@ -43,7 +43,8 @@ class MailController extends Controller
 
     public function mailhelpdesk($subject, $content)
     {
-       $emails = DB::table('users')->where('privilege', '2')->pluck('email');
+        ini_set('max_execution_time', 0);
+        $emails = DB::table('users')->where('privilege', '3')->pluck('email');
         foreach ($emails as $email) {
             $name = DB::table('users')->where('email', $email)->value('name');
             \Mail::send('htmlemail', ['NAME' => $name, 'CONTENT' => $content], function($message) use($email, $name, $subject)
