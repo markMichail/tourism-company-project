@@ -10,23 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 use App\Receipt;
 use App\Safe;
 use App\Customer;
 use App\Destination;
 
-
-
-
 Route::get('/customerprofile', function () {
     return view('customers.customerprofile');
 })->name('customerprofile');
 
-
-
 Route::get('/addcustomer', "CustomerController@store");
-
 
 //test route for many to many relationships.
 
@@ -91,8 +84,6 @@ Route::get('/receiptsreportexport/{date}', 'ReportController@excelReceipts')->na
 
 Route::resource('order', 'OrderController');
 Route::resource('tickets', 'TicketController');
-
-
 
 Route::get('/tickets/{order}/{status}', 'TicketController@orderticket')->name('orderticketcreate');
 Route::get('/order/receipt/confirm', 'TicketController@confirmReceipt')->name('order.receipt.confirm');
