@@ -71,8 +71,12 @@
                             <label for="privilege" class="col-md-4 col-form-label text-md-right">{{ __('Privilege') }}</label>
 
                             <div class="col-md-6">
-                                <input id="privilege" type="text" class="form-control @error('privilege') is-invalid @enderror" name="privilege" value="{{ old('privilege') }}" required autocomplete="privilege">
-
+                                <select id="privilege" class="form-control @error('privilege') is-invalid @enderror" name="privilege" required>
+                                    {{ $roles = DB::table('roles')->get() }}
+                                    @foreach ($roles as $role)
+                                    <option value="{{$role->id}}">{{$role->name}}</option>
+                                    @endforeach
+                                </select>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
