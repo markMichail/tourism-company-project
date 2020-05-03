@@ -2,7 +2,14 @@
 @section('content')
 <div class="container my-5">
 
-  
+  <script>
+    var msg = '{{Session::get('alert')}}';
+    var exist = '{{Session::has('alert')}}';
+    if(exist){
+      alert(msg);
+      {{Session::forget('alert')}}
+    }
+  </script>
     <!-- Section: Block Content -->
     <section>
       
