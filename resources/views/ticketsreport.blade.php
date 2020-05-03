@@ -11,7 +11,7 @@
       <input type="date" id="startingdate" value="{{ date("Y-m-d") }}" class="form-control col col-lg-2">
       <br>
 
-      <button type="button" class="btn btn-success btn-rounded btn-md float-right">Export to excel</button>
+      <button type="button" id="export" class="btn btn-success btn-rounded btn-md float-right">Export to excel</button>
       <button type="button" id="print" class="btn btn-warning btn-rounded btn-md float-right">Print</button>
       {{-- <button type="button" class="btn btn-info btn-rounded btn-md float-right">Filter</button> --}}
 
@@ -36,7 +36,7 @@
             <th class="text-center">profit</th>
             <th class="text-center">safy</th>
             <th class="text-center">paymentType</th>
-            <th class="text-center">receipt no</th>
+            <th class="text-center">order no</th>
             <th style="display: none"></th>
           </tr>
         </thead>
@@ -78,6 +78,12 @@
   $(document).ready(function () {
     $('#print').on('click', function(){
       var url = '{{ route("ticketsreportprint", "date") }}';
+      url = url.replace('date', $('#startingdate').val());
+      window.location.href = url;
+    });
+
+    $('#export').on('click', function(){
+      var url = '{{ route("ticketsreportexport", "date") }}';
       url = url.replace('date', $('#startingdate').val());
       window.location.href = url;
     });
