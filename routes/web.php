@@ -72,6 +72,8 @@ Route::get('/allrefundedtickets', 'RefundedTicketController@index')->name('allre
 Route::get('/safe', 'SafeController@index')->name('allsafereciepts');
 Route::post('/safe', 'SafeController@store')->name('saferecieptsstore');
 Route::get('/customers/{id}', 'CustomerController@show');
+Route::post('/customers/{id}', 'CustomerController@updatenote');
+
 Route::get('/allcustomers', "CustomerController@index")->name('allcustomers.index');
 Route::get('/allcustomers/ongoingpayments', "CustomerController@ongoingpayments");
 Route::get('/allcustomers/latepayments', "CustomerController@latepayments");
