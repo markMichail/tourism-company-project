@@ -14,10 +14,13 @@ class ReceiptController extends Controller
    public function store(Order $order,$total){
     if($order->status==1)
     return redirect()->route('order.show',$order)->with('status','Order already payed');
+    $payments=session()->get('payment');
+    if($payments==null)
+    return redirect()->route('order.show',$order)->with('status','select tickets to pay');
     $receipt = new Receipt();
     $receipt->employee_id=auth()->user()->id;
     $receipt->receiptable_id=$order->customer->id;
-    $receipt->receiptable_type="App\Custo mer";
+    $receipt->receiptable_type="App\Customer";
     $receipt->type="revenue";
     $receipt->description="tickets payment";
     $receipt->total_amount=$total;
@@ -26,9 +29,6 @@ class ReceiptController extends Controller
     $receipt->save();
     $order->customer->totalcredit+=$total;
     $order->customer->save();
-    $payments=session()->get('payment');
-    if($payments==null)
-    return redirect()->route('order.show',$order)->with('status','select tickets to pay');
     foreach ($payments as $ticket) {
         $id=$ticket['id'];
         $amount=$ticket['amount'];
@@ -43,9 +43,6 @@ class ReceiptController extends Controller
     }
     $pdf = PDF::loadView('wasl',compact('payments','receipt','name'));
     session()->forget('payment');
-    $path = public_path('Invoices');
-    $fileName =  $receipt->id . '.' . 'pdf' ;
-    $pdf->save($path . '/' . $fileName);
     return $pdf->stream('invoice.pdf');
     
    }
@@ -82,12 +79,8 @@ class ReceiptController extends Controller
     $order->status='1';
     $order->save();
     $pdf = PDF::loadView('wasl',compact('payments','receipt','name'));
-    $path = public_path('Invoices');
-    $fileName =  $receipt->id . '.' . 'pdf' ;
-    $pdf->save($path . '/' . $fileName);
-    
+    return $pdf->download('invoice.pdf');
   
-   return redirect()->route('order.show',$order)->with('status','Order already payed');
    }
 
 
@@ -95,10 +88,11 @@ class ReceiptController extends Controller
         $request->validate(['check'=>'required']);
         $tickets=Ticket::whereIn( "id", $request->check)->with('receipts')->get();
         $order=$tickets[0]->order;
-        $name=$order->customer->name;
+        $customer=$order->customer;
+        $name=$customer->name;
         $receipt = new Receipt();
         $receipt->employee_id=auth()->user()->id;
-        $receipt->receiptable_id=$order->customer->id;
+        $receipt->receiptable_id=$customer->id;
         $receipt->receiptable_type="App\Customer";
         $receipt->type="expense";
         $receipt->description="Tickets Refund";
@@ -117,6 +111,8 @@ class ReceiptController extends Controller
             }
             $ticket->type="refunded";
             $ticket->save();
+            $customer->totalcredit+=$ticket->sellprice-$result['payed'];
+            $customer->save();
        }
       $receipt->total_amount=$total;
       $receipt->save();
@@ -130,8 +126,13 @@ class ReceiptController extends Controller
     //    $path = public_path('Invoices');
     //    $fileName =  $receipt->id . '.' . 'pdf' ;
     //    $pdf->save($path . '/' . $fileName);
+    $request->session()->flash('receipt', "$receipt->id");
    return redirect()->route('order.show',$order);
    }
 
-   
+   public function print($receipt){
+    $receipt=Receipt::where("id","$receipt")->with('tickets')->with('receiptable')->first();
+    $pdf = PDF::loadView('eznsarf',compact("receipt"));
+    return $pdf->download('invoice.pdf');
+   }
 }
