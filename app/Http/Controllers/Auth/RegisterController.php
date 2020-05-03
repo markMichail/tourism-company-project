@@ -35,12 +35,6 @@ class RegisterController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
 
     protected function redirectTo() {
-        $uid = auth()->user()->id;
-        $role = auth()->user()->privilege;
-        DB::table('role_user')->insert(array(
-            'role_id' => $role,
-            'user_id' => $uid,
-        ));
         session(['alert' => 'User Added Successfully!']);
         return RouteServiceProvider::HOME;
     }
@@ -54,7 +48,6 @@ class RegisterController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('role:admin' or 'role:superadmin');
-        // $this->middleware('guest');
     }
 
     /**
@@ -83,7 +76,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'privilege'=>$data['privilege'],
@@ -91,6 +84,14 @@ class RegisterController extends Controller
             'username'=>$data['username'],
             'password' => Hash::make($data['password']),
         ]);
+        $phone = $data['phone'];
+        $user = DB::table('users')->where('phone', $phone)->first();
+        $uid = $user->id;
+        $role = $data['privilege'];
+        return DB::table('role_user')->insert(array(
+            'role_id' => $role,
+            'user_id' => $uid,
+        ));
     }
 
     /**
