@@ -65,6 +65,7 @@ Route::get('/sendemail', 'MailController@mail');
 
 Auth::routes();
 
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::get('/', "HomeController@index")->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/allrefundedtickets', 'RefundedTicketController@index')->name('allrefundedtickets');
