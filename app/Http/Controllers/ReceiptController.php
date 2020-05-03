@@ -78,6 +78,7 @@ class ReceiptController extends Controller
     $name=$order->customer->name;
     $order->status='1';
     $order->save();
+    //app('App\Http\Controllers\MailController')->mailadmin('New order has been placed', 'New order has been placed by ' . auth()->user()->id . ' for ' . $order->customer->id . ' Total equals ' . $total . ' on ' . date('Y-m-d'));
     $pdf = PDF::loadView('wasl',compact('payments','receipt','name'));
     return $pdf->download('invoice.pdf');
   
