@@ -12,7 +12,7 @@
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;background-color:#f5f5f5;">
                     <tr>
                         <td align="center" style="padding: 0.4em;"> <!-- Adding the logo -->
-                            <img src="https://i.ibb.co/HYtdL3N/11219299-879883862066295-919235999351285882-n.jpg" alt="Pharomina Logo" style="align:center; width: 20rem; height:30vh;">
+                            <img src="https://i.ibb.co/Jr5Bbxp/Whats-App-Image-2020-05-01-at-10-removebg-preview.png" alt="Pharomina Logo" style="align:center; width: 20rem; height:30vh;">
                             <h1> <!-- Adding the name -->
                                 <font style="font-size: 1.5em;" face="Roboto">From <strong style="color: #128B92;">Pharomina Tours</strong>!</font>
                             </h1> <!-- Adding the username, in {} braces and capital so that it gets replaced by the function in backend.js -->
