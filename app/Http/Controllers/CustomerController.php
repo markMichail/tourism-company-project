@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CustomerController extends Controller
 {
@@ -22,47 +23,47 @@ class CustomerController extends Controller
      */
     public function index()
     {    //index for showing all customers show() for specifed customer.
-        $customers=Customer::all();
-        $date=strtotime(date('Y-m-d'));
-        $datebefore15days = date('Y-m-d',strtotime('-15 days',$date));
+        $customers = Customer::all();
+        $date = strtotime(date('Y-m-d'));
+        $datebefore15days = date('Y-m-d', strtotime('-15 days', $date));
         $counts = [];
         $counts['ongoingPaymentsCount'] = Order::where('date', '>=', $datebefore15days)->count();
         $counts['latePaymentsCount'] = Order::where('date', '<', $datebefore15days)->count();
-        $counts['customersCount']= Customer::count();
-        return view('customers.allcustomers',compact('customers','counts'));
+        $counts['customersCount'] = Customer::count();
+        return view('customers.allcustomers', compact('customers', 'counts'));
     }
 
-       /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function ongoingpayments()
     {    //index for showing all customers show() for specifed customer.
-        
-        $date=strtotime(date('Y-m-d'));
-        $datebefore15days = date('Y-m-d',strtotime('-15 days',$date));
+
+        $date = strtotime(date('Y-m-d'));
+        $datebefore15days = date('Y-m-d', strtotime('-15 days', $date));
         $counts = [];
         $counts['ongoingPaymentsCount'] = Order::where('date', '>=', $datebefore15days)->count();
         $counts['latePaymentsCount'] = Order::where('date', '<', $datebefore15days)->count();
-        $counts['customersCount']= Customer::count();
+        $counts['customersCount'] = Customer::count();
 
         $ongoingOrders = Order::where('date', '>=', $datebefore15days)->with('customer')->get();
-        return view('customers.ongoingpayments', compact('ongoingOrders','counts'));
+        return view('customers.ongoingpayments', compact('ongoingOrders', 'counts'));
     }
 
     public function latepayments()
     {    //index for showing all customers show() for specifed customer.
-        
-        $date=strtotime(date('Y-m-d'));
-        $datebefore15days = date('Y-m-d',strtotime('-15 days',$date));
+
+        $date = strtotime(date('Y-m-d'));
+        $datebefore15days = date('Y-m-d', strtotime('-15 days', $date));
         $counts = [];
         $counts['ongoingPaymentsCount'] = Order::where('date', '>=', $datebefore15days)->count();
         $counts['latePaymentsCount'] = Order::where('date', '<', $datebefore15days)->count();
-        $counts['customersCount']= Customer::count();
+        $counts['customersCount'] = Customer::count();
 
         $lateOrders = Order::where('date', '<', $datebefore15days)->with('customer')->get();
-        return view('customers.latepayments', compact('lateOrders','counts'));
+        return view('customers.latepayments', compact('lateOrders', 'counts'));
     }
 
 
@@ -88,13 +89,13 @@ class CustomerController extends Controller
             'name' => 'required | min:3',
             'phone' => 'required | numeric',
             'email' => 'email  | unique:customers',
-            ]);
+        ]);
 
-        $customer=new Customer;
-        $customer->name=$request->name;
-        $customer->phone=$request->phone;
-        $customer->email=$request->email;
-        $customer->totalcredit=0;
+        $customer = new Customer;
+        $customer->name = $request->name;
+        $customer->phone = $request->phone;
+        $customer->email = $request->email;
+        $customer->totalcredit = 0;
         $customer->save();
         return redirect()->back();
     }
@@ -111,6 +112,16 @@ class CustomerController extends Controller
         return view('customers.customerprofile', compact('customer'));
     }
 
+    public function updatenote($id)
+    {
+        $customer = Customer::find($id);
+        if (isset($_REQUEST['note'])) {
+            $customer->note = $_REQUEST['note'];
+            $customer->save();
+        }
+        return back()->with('status', 'Note Updated!');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -119,8 +130,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-      $customer = Customer::find($id);
-      return view('customers.editcustomer', compact('customer'));
+        $customer = Customer::find($id);
+        return view('customers.editcustomer', compact('customer'));
     }
 
     /**
@@ -130,37 +141,36 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-      $customer = Customer::find($id);
-      if($request->email==$customer->email){
-      $this->validate($request, [
-          'name' => 'required | min:3',
-          'phone' => 'required | numeric',
-          ]);
+        $customer = Customer::find($id);
+        if ($request->email == $customer->email) {
+            $this->validate($request, [
+                'name' => 'required | min:3',
+                'phone' => 'required | numeric',
+            ]);
 
-    $customer->name=$request->name;
-    $customer->phone=$request->phone;
-    $customer->email=$request->email;
+            $customer->name = $request->name;
+            $customer->phone = $request->phone;
+            $customer->email = $request->email;
 
-    $customer->save();
-    return redirect('allcustomers');
-  }
-  else {
-    $this->validate($request, [
-        'name' => 'required | min:3',
-        'phone' => 'required | numeric',
-        'email' => 'email  | unique:customers',
-        ]);
+            $customer->save();
+            return redirect('allcustomers');
+        } else {
+            $this->validate($request, [
+                'name' => 'required | min:3',
+                'phone' => 'required | numeric',
+                'email' => 'email  | unique:customers',
+            ]);
 
-  $customer->name=$request->name;
-  $customer->phone=$request->phone;
-  $customer->email=$request->email;
+            $customer->name = $request->name;
+            $customer->phone = $request->phone;
+            $customer->email = $request->email;
 
-  $customer->save();
-  return redirect('allcustomers');
-  }
-  }
+            $customer->save();
+            return redirect('allcustomers');
+        }
+    }
 
     /**
      * Remove the specified resource from storage.

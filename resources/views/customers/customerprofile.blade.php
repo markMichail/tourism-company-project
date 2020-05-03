@@ -14,9 +14,18 @@
     </div>
     <div class="col-sm-8">
       <h2>Notes</h2>
-      <textarea class="form-control" name="name" rows="10" cols="80"></textarea>
+      <form method="POST">
+        {{ csrf_field() }}
+        <textarea class="form-control" name="note" rows="10" cols="80">{{$customer->note}}</textarea>
+        @if(session('status'))
+        <br>
+        <div class="alert alert-success" role="alert">
+          {{ Session::get('status') }}
+        </div>
+        @endif
+        <input type="submit" class="btn btn-info" value="Save">
+      </form>
       <br>
-      <input type="button" class="btn btn-info" value="Save">
     </div>
   </div>
   <br>
@@ -25,7 +34,7 @@
       <table id="tablePreview" class="table table-responsive">
         <thead>
           <tr class="white-text" style="background-color:#378B92;">
-            <th colspan="2" width="30%" >In progress</th>
+            <th colspan="2" width="30%">In progress</th>
             <th colspan="2" width="30%">Paid</th>
             <th colspan="2" width="30%">Refund</th>
           </tr>
