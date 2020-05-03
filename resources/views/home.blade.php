@@ -13,14 +13,14 @@
     <!-- Section: Block Content -->
     <section>
       
-      <h6 class="font-weight-bold text-center grey-text text-uppercase small mb-4">Hello @if (Auth::user()->privilege == '1')Admin @endif </h6>
+      <h6 class="font-weight-bold text-center grey-text text-uppercase small mb-4">Hello @if (Auth::user()->privilege == '1' or Auth::user()->privilege == '2')Admin @endif </h6>
       <h3 class="font-weight-bold text-center dark-grey-text pb-2">Statistic Data</h3>
       <hr class="w-header my-4">
       {{-- <p class="lead text-center text-muted pt-2 mb-5">Some data for this week.</p> --}}
   
       <div class="row white-text justify-content-center">
 
-        @if (Auth::user()->privilege == '1')
+        @if (Auth::user()->privilege == '1' or Auth::user()->privilege == '2')
         <!-- Grid column -->
         <div class="col-xl-3 col-md-6 mb-4">
 
