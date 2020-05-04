@@ -24,7 +24,7 @@ class NotificationsController extends Controller
      */
     public function unread()
     {
-    	$user = \App\User::find(1);
+    	$user = auth()->user();
 	    $notifications = $user->unreadNotifications;
 	    if (!empty($notifications)) {
 	    	return view('notifications', compact('notifications'));
@@ -39,7 +39,7 @@ class NotificationsController extends Controller
      */
     public function viewall()
     {
-    	$user = \App\User::find(1);
+    	$user = auth()->user();
     	$notifications = $user->notifications;
         return view('notifications', compact('notifications'));
     }
@@ -51,7 +51,7 @@ class NotificationsController extends Controller
      */
     public function markallasread()
     {
-    	$user = \App\User::find(1);
+    	$user = auth()->user();
     	$user->unreadNotifications->markAsRead();
         return redirect('notifications');
     }

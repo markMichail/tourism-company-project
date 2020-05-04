@@ -104,8 +104,10 @@ Route::get('/notifications/viewall', 'NotificationsController@viewall')->name('n
 
 //for testing
 Route::get('/notify', function () {
-    $user = \App\User::find(1);
-    $details = [ 'body' => ' is a new user created by ', ];
-    $user->notify(new \App\Notifications\NewUserRegistered($details));
+    $users = \App\User::all();
+    $details = [ 'body' => 'This is a test notification', ];
+    foreach ($users as $user) {
+        $user->notify(new \App\Notifications\NewUserRegistered($details));    
+    }
     return dd("Done");
 });
