@@ -76,6 +76,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $user = \App\User::find(1);
+        $details = [ 'body' => $data['username'] . ' is a new user created by ' . auth()->user()->name , ];
+        $user->notify(new \App\Notifications\NewUserRegistered($details));
         User::create([
             'name' => $data['name'],
             'email' => $data['email'],

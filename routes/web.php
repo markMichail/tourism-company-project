@@ -54,7 +54,7 @@ Route::get('/test', function () {
 
 });
 
-Route::get('/sendemail', 'MailController@mail');
+Route::get('/sendemail', 'MailController@mail'); //for testing
 
 Auth::routes();
 
@@ -97,3 +97,15 @@ Route::get('/print/eznsarf/{Receipt}', 'ReceiptController@print')->name('eznsatf
 
 Route::get('orderprint/{order}', 'OrderController@print')->name('orderprint');
 Route::post('/checkticketprice', 'TicketController@checkprice')->name('ajax');
+
+Route::get('/notifications', 'NotificationsController@unread')->name('notifications');
+Route::get('/notifications/markallasread', 'NotificationsController@markallasread')->name('notifications.markallasread');
+Route::get('/notifications/viewall', 'NotificationsController@viewall')->name('notifications.viewall');
+
+//for testing
+Route::get('/notify', function () {
+    $user = \App\User::find(1);
+    $details = [ 'body' => ' is a new user created by ', ];
+    $user->notify(new \App\Notifications\NewUserRegistered($details));
+    return dd("Done");
+});
