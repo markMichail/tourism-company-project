@@ -49,22 +49,17 @@
 
         </thead>
         <tbody>
-          <tr>
-            <td class="col-12">500000001</td>
-            <td class="col-12">14000 LE</td>
-            <td class="col-12">500000001</td>
-            <td class="col-12">14000 LE</td>
-            <td class="col-12">500000001</td>
-            <td class="col-12">14000 LE</td>
-          </tr>
-          <tr>
-            <td class="col-6">500000004</td>
-            <td class="col-6">12000 LE</td>
-            <td class="col-6">500000004</td>
-            <td class="col-6">12000 LE</td>
-            <td class="col-6">500000004</td>
-            <td class="col-6">12000 LE</td>
-          </tr>
+          <?php foreach ($order as $orderr): ?>
+            <tr>
+              <td class="col-12">{{$orderr->id}}</td>
+              <td class="col-12">{{$orderr->ticketsAmount()[1]}} LE</td>
+              <td class="col-12">{{$orderr->id}}</td>
+              <td class="col-12">{{$orderr->ticketsAmount()[1]}} LE</td>
+              <td class="col-12">{{$orderr->id}}</td>
+              <td class="col-12">{{$orderr->ticketsAmount()[1]}} LE</td>
+
+            </tr>
+          <?php endforeach; ?>
         </tbody>
         <tfoot>
           <tr>

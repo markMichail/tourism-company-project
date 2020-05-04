@@ -109,7 +109,8 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customer = Customer::find($id);
-        return view('customers.customerprofile', compact('customer'));
+        $order = Order::where('customer_id',$customer->id)->where('status','0')->get();
+        return view('customers.customerprofile', compact('customer','order'));
     }
 
     public function updatenote($id)
