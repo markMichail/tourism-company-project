@@ -77,11 +77,11 @@ class OrderController extends Controller
   {
 
     session()->forget('payment');
-    if($order->tickets->count()==0){
-      $order->delete();
-      $order->save();
-      return redirect()->route('order.index')->with('status','order is empty so it')
-      }
+     if($order->tickets->count()==0){
+    $order->delete();
+    $order->save();
+    return redirect()->route('order.index')->with('status','order is empty so it');
+    }
      $orderPaymentInfo=$order->ticketsAmount();
      $data=$orderPaymentInfo[0];
      $total=$orderPaymentInfo[1];
