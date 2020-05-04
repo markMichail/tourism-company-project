@@ -102,8 +102,9 @@
           <!-- Card green -->
         </div>
         <!-- Grid column -->
-        <!-- Grid column -->
-        <div class="col-xl">
+      </div>
+      <!-- Grid column -->
+        <div class="col-xl white-text justify-content-center">
           <!-- Card Red -->
           <div class="card" style="width: 100%;">
           <div class="card classic-admin-card red accent-2">
@@ -119,7 +120,6 @@
           <!-- Card Red -->
         </div>
         <!-- Grid column -->
-      </div>
     </section>
     <!-- Section: Block Content -->
   </div>
