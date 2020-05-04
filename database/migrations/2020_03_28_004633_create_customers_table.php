@@ -18,7 +18,7 @@ class CreateCustomersTable extends Migration
             $table->bigIncrements('id', 0);
             $table->string('name');
             $table->string('email')->unique();
-            $table->longText('note')->default("");
+            $table->longText('note');
             $table->float('totalcredit');
             $table->string('phone');
             $table->timestamps();
