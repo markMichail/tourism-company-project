@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\ReceiptsExport;
 use App\Exports\TicketsExport;
 use App\Receipt;
+use App\Setting;
 use App\Ticket;
 use PDF;
 use Excel;
@@ -16,7 +17,7 @@ class ReportController extends Controller
         $this->middleware('auth');
         $this->middleware('role:admin' or 'role:superadmin');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -25,20 +26,17 @@ class ReportController extends Controller
     public function tickets()
     {
         $tickets = Ticket::with('order')->get();
-        return view('ticketsreport', compact('tickets'));
+        $period = Setting::where('name', 'reportPeriod')->get()[0]->value;
+        return view('ticketsreport', compact('tickets', 'period'));
     }
 
-    public function printTickets($date)
+    public function printTickets($startingdate)
     {
-        $startingdate = $date;
-        $date = strtotime($date);
-        $dateafter15days = date('Y-m-d', strtotime('+15 days', $date));
-        // $tickets = Ticket::with('order')->whereBetween('date', [$startingdate, $dateafter15days])->get();
-        $tickets = Ticket::whereHas('order', function ($query) use ($startingdate, $dateafter15days) {
-
-            $query->whereBetween('date', [$startingdate, $dateafter15days]);
+        $endingdate = $this->getEndDate($startingdate);
+        $tickets = Ticket::whereHas('order', function ($query) use ($startingdate, $endingdate) {
+            $query->whereBetween('date', [$startingdate, $endingdate]);
         })->get();
-        $pdf = PDF::loadView('print.ticketsreport', compact('tickets', 'startingdate', 'dateafter15days'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('print.ticketsreport', compact('tickets', 'startingdate', 'endingdate'))->setPaper('a4', 'landscape');
         return $pdf->stream('report.pdf');
     }
 
@@ -50,22 +48,31 @@ class ReportController extends Controller
     public function receipts()
     {
         $receipts = Receipt::with('receiptable')->get();
-        return view('receiptsreport', compact('receipts'));
+        $period = Setting::where('name', 'reportPeriod')->get()[0]->value;
+        return view('receiptsreport', compact('receipts', 'period'));
     }
 
-    public function printReceipts($date)
+    public function printReceipts($startingdate)
     {
-        $startingdate = $date;
-        $date = strtotime($date);
-        $dateafter15days = date('Y-m-d', strtotime('+15 days', $date));
-        $receipts = Receipt::whereBetween('receipt_date', [$startingdate, $dateafter15days])->with('receiptable')->get();
-        $pdf = PDF::loadView('print.receiptsreport', compact('receipts', 'startingdate', 'dateafter15days'));
+
+        $endingdate = $this->getEndDate($startingdate);
+
+        $receipts = Receipt::whereBetween('receipt_date', [$startingdate, $endingdate])->with('receiptable')->get();
+        $pdf = PDF::loadView('print.receiptsreport', compact('receipts', 'startingdate', 'endingdate'));
         return $pdf->stream('report.pdf');
-        // return view('ticketsreport', compact('tickets'));
     }
 
     public function excelReceipts($date)
     {
         return Excel::download(new ReceiptsExport($date), 'receipt' . $date . '.xlsx');
+    }
+
+
+    public function getEndDate($date)
+    {
+        $period = Setting::where('name', 'reportPeriod')->get()[0]->value;
+        $startingdate = strtotime($date);
+        $endingdate = date('Y-m-d', strtotime('+' . $period . ' days', $startingdate));
+        return $endingdate;
     }
 }

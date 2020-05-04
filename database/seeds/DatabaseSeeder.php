@@ -108,5 +108,21 @@ class DatabaseSeeder extends Seeder
         'user_id' => '3',
       ),
     ));
+
+    DB::table('settings')->insert(array(
+      array(
+        'label' => 'Report Period  (In Days)',
+        'value' => '15',
+        'type' => "number",
+        'name' => "reportPeriod",
+      ),
+
+      array(
+        'label' => 'Late Payment  (In Days)',
+        'value' => '15',
+        'type' => "number",
+        'name' => "latePeriod",
+      ),
+    ));
   }
 }
