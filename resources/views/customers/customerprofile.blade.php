@@ -39,11 +39,11 @@
             <th colspan="2" width="30%">Refund</th>
           </tr>
           <tr class="black white-text">
-            <th class="col-6">Recipt No.</th>
+            <th class="col-6">Order No.</th>
             <th class="col-6">Price</th>
-            <th class="col-6">Recipt No.</th>
+            <th class="col-6">Receipt No</th>
             <th class="col-6">Price</th>
-            <th class="col-6">Recipt No.</th>
+            <th class="col-6">Receipt No</th>
             <th class="col-6">Price</th>
           </tr>
 
