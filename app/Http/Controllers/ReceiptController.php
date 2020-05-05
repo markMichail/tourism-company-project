@@ -11,6 +11,16 @@ use Illuminate\Support\Facades\Storage;
 
 class ReceiptController extends Controller
 {
+
+
+    public function __construct()
+{
+    // Middleware only applied to these methods
+    $this->middleware('role:helpdesk', ['only' => [
+        'refundTickets'
+    ]]);
+}
+
    public function store(Order $order,$total){
     if($order->status==1)
     return redirect()->route('order.show',$order)->with('status','Order already payed');
