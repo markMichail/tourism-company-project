@@ -88,7 +88,7 @@ class CustomerController extends Controller
     {
         $this->validate($request, [
             'name' => 'required | min:3',
-            'phone' => 'required | numeric',
+            'phone' => 'required | numeric | digits:11',
             'email' => 'email  | unique:customers',
         ]);
 
@@ -96,6 +96,7 @@ class CustomerController extends Controller
         $customer->name = $request->name;
         $customer->phone = $request->phone;
         $customer->email = $request->email;
+        $customer->note = "";
         $customer->totalcredit = 0;
         $customer->save();
         return redirect()->back();
