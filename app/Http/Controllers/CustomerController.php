@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Order;
+use App\Receipt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -110,7 +111,9 @@ class CustomerController extends Controller
     {
         $customer = Customer::find($id);
         $order = Order::where('customer_id',$customer->id)->where('status','0')->get();
-        return view('customers.customerprofile', compact('customer','order'));
+        $expenses = Receipt::where('receiptable_id',$customer->id)->where('receiptable_type','App\Customer')->where('type','expense')->get();
+        $revenues = Receipt::where('receiptable_id',$customer->id)->where('receiptable_type','App\Customer')->where('type','revenue')->get();
+        return view('customers.customerprofile', compact('customer','order','expenses','revenues'));
     }
 
     public function updatenote($id)

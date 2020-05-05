@@ -35,15 +35,9 @@
         <thead>
           <tr class="white-text" style="background-color:#378B92;">
             <th colspan="2" width="30%">In progress</th>
-            <th colspan="2" width="30%">Paid</th>
-            <th colspan="2" width="30%">Refund</th>
           </tr>
           <tr class="black white-text">
             <th class="col-6">Order No.</th>
-            <th class="col-6">Price</th>
-            <th class="col-6">Receipt No</th>
-            <th class="col-6">Price</th>
-            <th class="col-6">Receipt No</th>
             <th class="col-6">Price</th>
           </tr>
 
@@ -51,15 +45,66 @@
         <tbody>
           <?php foreach ($order as $orderr): ?>
             <tr>
-              <td class="col-12">{{$orderr->id}}</td>
-              <td class="col-12">{{$orderr->ticketsAmount()[1]}} LE</td>
-              <td class="col-12">{{$orderr->id}}</td>
-              <td class="col-12">{{$orderr->ticketsAmount()[1]}} LE</td>
-              <td class="col-12">{{$orderr->id}}</td>
-              <td class="col-12">{{$orderr->ticketsAmount()[1]}} LE</td>
+              <td class="col-6">{{$orderr->id}}</td>
+              <td class="col-6">{{$orderr->ticketsAmount()[1]}} LE</td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2" class="col-12">Total: 14300 LE</td>
+          </tr>
+        </tfoot>
+      </table>
+      <table id="tablePreview" class="table table-responsive">
+        <thead>
+          <tr class="white-text" style="background-color:#378B92;">
+            <th colspan="2" width="30%">Paid</th>
+          </tr>
+          <tr class="black white-text">
+            <th class="col-6">Receipt No</th>
+            <th class="col-6">Price</th>
+          </tr>
+
+        </thead>
+        <tbody>
+          <?php foreach ($expenses as $expense): ?>
+            <tr>
+
+              <td class="col-6">{{$expense->id}}</td>
+              <td class="col-6">{{$expense->total_amount}} LE</td> <br>
 
             </tr>
-          <?php endforeach; ?>
+              <?php endforeach; ?>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2" class="col-12">Total: 14300 LE</td>
+          </tr>
+        </tfoot>
+      </table>
+      <table id="tablePreview" class="table table-responsive">
+        <thead>
+          <tr class="white-text" style="background-color:#378B92;">
+            <th colspan="2" width="30%">Refund</th>
+          </tr>
+          <tr class="black white-text">
+            <th class="col-6">Receipt No</th>
+            <th class="col-6">Price</th>
+          </tr>
+
+        </thead>
+        <tbody>
+            <?php foreach ($revenues as $revenue): ?>
+            <tr>
+
+              <td >{{$revenue->id}}</td>
+              <td >{{$revenue->total_amount}} LE</td>
+
+            </tr>
+            <?php endforeach; ?>
+
+
         </tbody>
         <tfoot>
           <tr>
