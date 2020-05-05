@@ -16,7 +16,7 @@ class CheckRole
     public function handle($request, Closure $next, $role)
     {
         if (! $request->user()->hasRole($role)) {
-            abort(401, 'This action is unauthorized.');
+            return redirect(route('home'));
         }
         return $next($request);
     }
