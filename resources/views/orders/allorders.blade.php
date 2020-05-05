@@ -35,6 +35,14 @@
             @endif
             <td class="table-view">
               <a href="{{route('order.show',$order)}}" class="btn btn-info btn-rounded btn-sm my-0">View</a>
+              @if(Auth::user()->privilege == '3' and $order->date==$today)
+              <form style="display:inline-block" onsubmit='return confirm("Do you want to delete this order?,all data will be lost");' method="POST"
+              action="{{route('order.destroy',$order)}}">
+              @csrf
+              @method('delete')
+              <button type="submit" class="btn btn-danger btn-rounded btn-sm my-1">delete</button>
+              </form>
+              @endif
             </td>
             {{-- <form onsubmit='return confirm("Do you want to delete this ticket?");' method="POST"
               action="{{route('order.destroy',$order)}}">

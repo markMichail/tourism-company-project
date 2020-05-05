@@ -20,9 +20,9 @@
         </select>
 
         <select style="display:none" class="form-control mb-3" name="customer_id" id="customer">
-            @foreach ($customers as $customer )
+            @foreach ($customers as $customer)
             @if($customer->id !== 1)
-            <option value="{{$customer->id}}">{{$customer->name}}</option>
+            <option selected value="{{$customer->id}}">{{$customer->name}}</option>
             @else
             <option hidden value="{{$customer->id}}">{{$customer->name}}</option>
             @endif
@@ -42,5 +42,9 @@
         document.getElementById('customer').style.display="";
         else document.getElementById('customer').style.display="none";
     }
+    window.onload = function() {
+    let today = new Date().toISOString().slice(0, 10)
+        document.getElementById('date').value=today;
+};
 </script>
 @endsection
