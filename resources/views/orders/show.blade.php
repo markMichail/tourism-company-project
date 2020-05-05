@@ -82,8 +82,9 @@
           {{-- <a class="dropdown-item" disabled href="#">Part of Ticket</a> --}}
         </div>
       </div>
+      @if(Auth::user()->privilege != '3')
       <input class="btn btn-warning" value="Refund" data-toggle="modal" data-target="#modaladdnew" type="button">
-      
+      @endif
       @if (session('receipt'))
       <a class="btn btn-warning" href="{{route('eznsatf',session('receipt'))}}">Download receipt</a>
       @endif
