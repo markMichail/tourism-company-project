@@ -74,7 +74,11 @@
                                 <select id="privilege" class="form-control @error('privilege') is-invalid @enderror" name="privilege" required>
                                     {{ $roles = DB::table('roles')->get() }}
                                     @foreach ($roles as $role)
+                                    @if($role->id == '1')
+                                    <option value="{{$role->id}}" disabled hidden>{{$role->name}}</option>
+                                    @else
                                     <option value="{{$role->id}}">{{$role->name}}</option>
+                                    @endif
                                     @endforeach
                                 </select>
                                 @error('email')

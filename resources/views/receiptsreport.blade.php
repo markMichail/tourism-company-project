@@ -6,7 +6,7 @@
   <div class="card-body">
     <div id="table" class="table-editable">
 
-      <label>Starting From</label>
+      <label>Starting From</label> - Report period: {{ $period }} days
       <input type="date" id="startingdate" value="{{ date("Y-m-d") }}" class="form-control col col-lg-2">
       <br>
 

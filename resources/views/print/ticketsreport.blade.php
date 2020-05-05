@@ -22,7 +22,7 @@
   <h3 style="text-align: center">Tickets Report</h3>
   <img src="images/logo.jpg" width="100px" style="float:right">
   <h3>Starting Date: {{ $startingdate }}</h3>
-  <h3>Ending Date: {{ $dateafter15days }}</h3>
+  <h3>Ending Date: {{ $endingdate }}</h3>
   <br>
 
 

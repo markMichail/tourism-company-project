@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 use App\Receipt;
 use App\Safe;
 use App\Customer;
@@ -85,6 +86,9 @@ Route::get('/receiptsreportexport/{date}', 'ReportController@excelReceipts')->na
 Route::resource('order', 'OrderController');
 Route::resource('tickets', 'TicketController');
 
+Route::get('/settings', 'SettingController@index')->name('setting');
+Route::post('/settings', 'SettingController@update')->name('settingUpdate');
+
 Route::get('/tickets/{order}/{status}', 'TicketController@orderticket')->name('orderticketcreate');
 Route::get('/order/receipt/confirm', 'TicketController@confirmReceipt')->name('order.receipt.confirm');
 Route::get('/order/confirm/{order}', 'OrderController@confirmview')->name('orderconfirm');
@@ -104,8 +108,10 @@ Route::get('/notifications/viewall', 'NotificationsController@viewall')->name('n
 
 //for testing
 Route::get('/notify', function () {
-    $user = \App\User::find(1);
-    $details = [ 'body' => ' is a new user created by ', ];
-    $user->notify(new \App\Notifications\NewUserRegistered($details));
+    $users = \App\User::all();
+    $details = ['body' => 'This is a test notification',];
+    foreach ($users as $user) {
+        $user->notify(new \App\Notifications\NewUserRegistered($details));
+    }
     return dd("Done");
 });

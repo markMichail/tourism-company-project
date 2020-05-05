@@ -77,11 +77,16 @@ class OrderController extends Controller
   {
 
     session()->forget('payment');
-    $orderPaymentInfo = $order->ticketsAmount();
-    $data = $orderPaymentInfo[0];
-    $total = $orderPaymentInfo[1];
-    $payed = $orderPaymentInfo[2];
-    return view('orders.show', compact('data', 'order', 'total', 'payed'));
+     if($order->tickets->count()==0){
+    $order->delete();
+    $order->save();
+    return redirect()->route('order.index')->with('status','order is empty so it');
+    }
+     $orderPaymentInfo=$order->ticketsAmount();
+     $data=$orderPaymentInfo[0];
+     $total=$orderPaymentInfo[1];
+     $payed=$orderPaymentInfo[2];
+    return view('orders.show',compact('data','order','total','payed'));
   }
 
   public function confirmpayment(Order $order, $total)
