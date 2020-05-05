@@ -53,6 +53,7 @@ class ReceiptController extends Controller
     }
     $pdf = PDF::loadView('wasl',compact('payments','receipt','name'));
     session()->forget('payment');
+    //app('App\Http\Controllers\MailController')->mailadmin('Part order Payment', 'order'. $order->id .' has been payed by Customer : ' . $order->customer->name .' with total amount: '. $total . 'EGP  on ' . date('Y-m-d').' To employee '.auth()->user()->name.'');
     return $pdf->stream('invoice.pdf');
     
    }
@@ -88,7 +89,7 @@ class ReceiptController extends Controller
     $name=$order->customer->name;
     $order->status='1';
     $order->save();
-    //app('App\Http\Controllers\MailController')->mailadmin('New order has been placed', 'New order has been placed by ' . auth()->user()->id . ' for ' . $order->customer->id . ' Total equals ' . $total . ' on ' . date('Y-m-d'));
+    //app('App\Http\Controllers\MailController')->mailadmin('All order Payment', 'order'. $order->id .' has been payed by Customer : ' . $order->customer->name .' with total amount: '. $total . 'EGP  on ' . date('Y-m-d').' To employee '.auth()->user()->name.'');
     $pdf = PDF::loadView('wasl',compact('payments','receipt','name'));
     return $pdf->download('invoice.pdf');
   

@@ -68,7 +68,7 @@ class OrderController extends Controller
     }
 
     if ($request->payment == 'cash') {
-      $request->customer_id = '1';
+      $request->merge(['customer_id' => 1]);
     }
     $order = Order::create($request->all());
     $request->session()->put('order', $order);

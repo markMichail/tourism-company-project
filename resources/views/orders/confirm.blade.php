@@ -91,7 +91,7 @@ action="{{route('order.destroy',$order)}}">
 @method('delete')
 <button type="submit" class="btn btn-danger">delete</button>
 </form>
-@if($order->customer_id !=0)
+@if($order->customer_id !=1)
 <a style="float:right" target="_blank" href="{{route('orderprint',$order)}}" class="btn btn-warning">Print</a>
 <div class="text-center">
   <a style="" href="{{route('order.confirmpayment',[$order,$total])}}" class="center btn btn-success"> Confirm and Go to payment</a>
