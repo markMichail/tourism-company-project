@@ -94,17 +94,18 @@ class DatabaseSeeder extends Seeder
         'description' => 'A user with help desk privilege.',
       ),
     ));
+    
     DB::table('role_user')->insert(array(
       array(
         'role_id' => '1',
         'user_id' => '1',
       ),
       array(
-        'role_id' => '3',
+        'role_id' => '2',
         'user_id' => '2',
       ),
       array(
-        'role_id' => '2',
+        'role_id' => '3',
         'user_id' => '3',
       ),
     ));
