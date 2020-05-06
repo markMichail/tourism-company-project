@@ -34,7 +34,8 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    protected function redirectTo() {
+    protected function redirectTo()
+    {
         session(['alert' => 'User Added Successfully!']);
         return RouteServiceProvider::HOME;
     }
@@ -62,9 +63,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:4', 'confirmed'],
-            'username'=>['required','string','min:3','unique:users'],
-            'phone'=>['required','string','size:11','unique:users'],
-            'privilege'=>['required','string','size:1']
+            'username' => ['required', 'string', 'min:3', 'unique:users'],
+            'phone' => ['required', 'string', 'size:11', 'unique:users'],
+            'privilege' => ['required', 'string', 'size:1']
         ]);
     }
 
@@ -77,26 +78,18 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $users = \App\User::all();
-        $details = [ 'body' => $data['username'] . ' is a new user created by ' . auth()->user()->name , ];
+        $details = ['body' => $data['username'] . ' is a new user created by ' . auth()->user()->name,];
         foreach ($users as $user) {
-            $user->notify(new \App\Notifications\NewUserRegistered($details));    
+            $user->notify(new \App\Notifications\NewUserRegistered($details));
         }
-        User::create([
+        return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'privilege'=>$data['privilege'],
-            'phone'=>$data['phone'],
-            'username'=>$data['username'],
+            'privilege' => $data['privilege'],
+            'phone' => $data['phone'],
+            'username' => $data['username'],
             'password' => Hash::make($data['password']),
         ]);
-        $phone = $data['phone'];
-        $user = DB::table('users')->where('phone', $phone)->first();
-        $uid = $user->id;
-        $role = $data['privilege'];
-        return DB::table('role_user')->insert(array(
-            'role_id' => $role,
-            'user_id' => $uid,
-        ));
     }
 
     /**
