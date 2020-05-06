@@ -22,6 +22,6 @@ class CheckRole
                 return $next($request);
             }
         }
-        abort(401, 'This action is unauthorized.');
+        return redirect(route('home'));
     }
 }
