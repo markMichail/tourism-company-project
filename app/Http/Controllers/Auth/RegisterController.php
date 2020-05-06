@@ -47,7 +47,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:admin' or 'role:superadmin');
+        $this->middleware('role:superadmin,admin');
     }
 
     /**
@@ -81,7 +81,7 @@ class RegisterController extends Controller
         foreach ($users as $user) {
             $user->notify(new \App\Notifications\NewUserRegistered($details));    
         }
-        User::create([
+        return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'privilege'=>$data['privilege'],
@@ -89,14 +89,6 @@ class RegisterController extends Controller
             'username'=>$data['username'],
             'password' => Hash::make($data['password']),
         ]);
-        $phone = $data['phone'];
-        $user = DB::table('users')->where('phone', $phone)->first();
-        $uid = $user->id;
-        $role = $data['privilege'];
-        return DB::table('role_user')->insert(array(
-            'role_id' => $role,
-            'user_id' => $uid,
-        ));
     }
 
     /**
