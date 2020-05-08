@@ -62,7 +62,7 @@ Auth::routes();
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::get('/', "HomeController@index")->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/allrefundedtickets', 'RefundedTicketController@index')->name('allrefundedtickets');
+Route::get('/allrefundedtickets', 'TicketController@refundedTicketsShow')->name('allrefundedtickets');
 Route::get('/safe', 'SafeController@index')->name('allsafereciepts');
 Route::post('/safe', 'SafeController@store')->name('saferecieptsstore');
 Route::get('/customers/{id}', 'CustomerController@show');

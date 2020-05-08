@@ -31,10 +31,10 @@ class TicketController extends Controller
         return view('tickets.createticket');
     }
 
-    public function orderticket(Order $order,$status){
+    public function orderticket(Order $order, $status)
+    {
 
-        return view('tickets.createticket',compact('order','status'));
-        
+        return view('tickets.createticket', compact('order', 'status'));
     }
 
     /**
@@ -44,36 +44,39 @@ class TicketController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreTicket $request)
-    {   
-        $ticket=$request->except(['again']);
+    {
+        $ticket = $request->except(['again']);
         if ($request->session()->has('tickets')) {
 
             $request->session()->push('tickets', $ticket);
-        }
-        else{
-            $tickets=[];
-            $request->session()->put('tickets',$tickets);
+        } else {
+            $tickets = [];
+            $request->session()->put('tickets', $tickets);
             $request->session()->push('tickets', $ticket);
         }
-        $status=1;
-        $order=$request->session()->get('order');
-        if($request->again==1){
-        $status=count($request->session()->get('tickets'));
-            return redirect()->route('orderticketcreate',[$order,$status]);
+        $status = 1;
+        $order = $request->session()->get('order');
+        if ($request->again == 1) {
+            $status = count($request->session()->get('tickets'));
+            return redirect()->route('orderticketcreate', [$order, $status]);
+        } else {
+            $tickets = $request->session()->get('tickets');
+            $total = 0;
+            foreach ($tickets as $ticket) {
+                Ticket::create($ticket);
+                $total += $ticket['sellprice'];
+            }
+
+            $order = Order::where('id', "$order->id")->with('tickets')->first();
+            $request->session()->forget(['order', 'tickets']);
+            return redirect()->route('orderconfirm', $order);
         }
-        else {
-        $tickets=$request->session()->get('tickets');
-        $total=0;
-        foreach ($tickets as $ticket) {
-            Ticket::create($ticket);
-            $total+=$ticket['sellprice'];
-        }
-        
-         $order=Order::where('id',"$order->id")->with('tickets')->first();
-         $request->session()->forget(['order', 'tickets']);
-         return redirect()->route('orderconfirm',$order);
-         
-        }
+    }
+
+    public function refundedTicketsShow()
+    {
+        $refunded_tickets = Ticket::where('type', 'refunded')->get();
+        return view("tickets.allrefundedtickets", compact('refunded_tickets'));
     }
 
     /**
@@ -95,7 +98,7 @@ class TicketController extends Controller
      */
     public function edit(Ticket $ticket)
     {
-       return view('tickets.edit',compact('ticket'));
+        return view('tickets.edit', compact('ticket'));
     }
 
     /**
@@ -106,10 +109,10 @@ class TicketController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(StoreTicket $request, Ticket $ticket)
-    {  
+    {
         $ticket->update($request->all());
-        $order=$ticket->order;
-        return redirect()->route('orderconfirm',$order)->with('status','ticket updated successfully');
+        $order = $ticket->order;
+        return redirect()->route('orderconfirm', $order)->with('status', 'ticket updated successfully');
     }
 
     /**
@@ -129,57 +132,53 @@ class TicketController extends Controller
        return redirect()->route('orderconfirm',$order)->with('status','ticket deleted successfully');
     }
 
-    public function checkprice( Request $request)
-    {   
-        if($request->has('undo')){
-            $payments=$request->session()->get('payment');
+    public function checkprice(Request $request)
+    {
+        if ($request->has('undo')) {
+            $payments = $request->session()->get('payment');
             unset($payments["$request->id"]);
             $request->session()->forget('payment');
-            $request->session()->put('payment',$payments);
-            return response()->json(['success'=>"Payment Undone"]);
+            $request->session()->put('payment', $payments);
+            return response()->json(['success' => "Payment Undone"]);
         }
-       $ticket=Ticket::findorfail($request->id);
-       $result=$ticket->calculate();
-       $amount=$result['left'];
-       if($result['status'] == 'already payed'){
-           return response()->json(['success'=>"Ticket already Payed"]);
-       }
+        $ticket = Ticket::findorfail($request->id);
+        $result = $ticket->calculate();
+        $amount = $result['left'];
+        if ($result['status'] == 'already payed') {
+            return response()->json(['success' => "Ticket already Payed"]);
+        }
         $validator = Validator::make($request->all(), [
             'amount' => "required  | integer | min:1 | max:$amount",
         ]);
-        
-        if ($validator->fails())
-        {
-            return response()->json(['success'=>false, 'error'=>$validator->errors()->first()]);
+
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'error' => $validator->errors()->first()]);
         }
 
-        $pay=$request->all();
+        $pay = $request->all();
         if ($request->session()->has('payment')) {
-            $payments=session()->get('payment');
-            $payments["$request->id"]=$pay;
+            $payments = session()->get('payment');
+            $payments["$request->id"] = $pay;
             $request->session()->forget('payment');
-           $request->session()->put('payment',$payments);
-           return response()->json(['success'=>'Payment added to recipt']);
-        }else{
-            $payments["$request->id"]=$pay;
-            $request->session()->put('payment',$payments);
-            return response()->json(['success'=>'Payment added to recipt']);
+            $request->session()->put('payment', $payments);
+            return response()->json(['success' => 'Payment added to recipt']);
+        } else {
+            $payments["$request->id"] = $pay;
+            $request->session()->put('payment', $payments);
+            return response()->json(['success' => 'Payment added to recipt']);
         }
+    }
 
-        }
 
+    public function confirmReceipt()
+    {
 
-        public function confirmReceipt(){
-
-            if(session('payment')){
-                $allorder='0';
-              $payments=session('payment');
-              $ticket=Ticket::findorfail(current($payments)['id']);
-              $order=$ticket->order;
-              return view('orders.payment',compact('payments','order','allorder'));
-            }
-            else return back()->with('status','No payments Added');
-          }
-
-    
+        if (session('payment')) {
+            $allorder = '0';
+            $payments = session('payment');
+            $ticket = Ticket::findorfail(current($payments)['id']);
+            $order = $ticket->order;
+            return view('orders.payment', compact('payments', 'order', 'allorder'));
+        } else return back()->with('status', 'No payments Added');
+    }
 }

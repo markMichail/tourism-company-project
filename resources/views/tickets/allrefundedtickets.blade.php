@@ -6,23 +6,26 @@
   <div class="card-body">
     <div id="table" class="table-editable">
 
-      <table id="dtBasicExample" style="max-width: auto;" class="table table-bordered table-responsive-md table-striped text-center">
+      <table id="refundedTicketsTable" style="max-width: auto;"
+        class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
             <th class="text-center" width="20%">#</th>
-            <th class="text-center" width="20%">ticket Number	</th>
+            <th class="text-center" width="20%">ticket Number </th>
             <th class="text-center" width="30%">refund date</th>
+            <th style="display: none"></th>
           </tr>
         </thead>
 
         <tbody>
-          @foreach($refunded_tickets as $refunded_ticket)
-          <tr>
-            <td class="pt-3-half">{{ $refunded_ticket-> id }}</td>
-            <td class="pt-3-half">{{ $refunded_ticket-> ticket_id }}</td>
-            <td class="pt-3-half">{{ $refunded_ticket-> refund_date }}</td>
+          @foreach($refunded_tickets as $i => $refunded_ticket)
+          <tr style="cursor: pointer;">
+            <td class="pt-3-half">{{ ++$i }}</td>
+            <td class="pt-3-half">{{ $refunded_ticket->id }}</td>
+            <td class="pt-3-half">{{ date_format($refunded_ticket->updated_at,"Y-m-d") }}</td>
+            <td style="display: none">{{$refunded_ticket->order_id}}</td>
           </tr>
-           @endforeach
+          @endforeach
         </tbody>
       </table>
       <!-- <button type="button" class="btn btn-info btn-rounded btn-md float-right">Save</button> -->
@@ -32,16 +35,23 @@
 
 
 <script>
-window.onload = function () {
+  window.onload = function () {
   $(document).ready(function () {
-    $('#dtBasicExample').DataTable(
+    $('#refundedTicketsTable').DataTable(
       {
 
         "columnDefs": [
           { "orderable": false, "targets":0 },
           { "orderable": true, "targets":1 },
 
-        ],"scrollX": true
+        ],
+        "scrollX": true,
+        fnDrawCallback: function () {
+          $('#refundedTicketsTable tbody tr').click(function () {
+            id = $(this).children('td:eq(3)').html();
+            document.location.href = '/order/' + id
+            })
+          },
       }
     );
     $('.dataTables_length').addClass('bs-select');
