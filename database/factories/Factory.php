@@ -63,7 +63,7 @@ $factory->define(Ticket::class, function (Faker $faker) use ($autoIncrement) {
     $assay = $faker->numberBetween($min = 500, $max = 2000);
     $total = $rsoom + $assay;
     $sellprice = $total - $faker->numberBetween($min = 0, $max = 500);
-    $type = $faker->randomElement(['void', 'credit', 'ticket', 'refunded']);
+    $type = $faker->randomElement(['void', 'credit', 'ticket']);
 
     return [
         'ticketNumber' => $autoIncrement->current(),

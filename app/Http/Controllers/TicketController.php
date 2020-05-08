@@ -122,10 +122,10 @@ class TicketController extends Controller
     {
        $ticket->delete();
        $order=Order::findorfail($ticket->order_id);
-       if($order->tickets->count()==0)
+       if($order->tickets->count()==0){
        $order->delete();
        return redirect()->route('order.index')->with('status','order deleted successfully');
-
+       }
        return redirect()->route('orderconfirm',$order)->with('status','ticket deleted successfully');
     }
 

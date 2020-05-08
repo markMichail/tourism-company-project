@@ -28,7 +28,7 @@ class CustomerController extends Controller
         $date = strtotime(date('Y-m-d'));
         $datebefore15days = date('Y-m-d', strtotime('-15 days', $date));
         $counts = [];
-        $counts['ongoingPaymentsCount'] = Order::where('date', '>=', $datebefore15days)->count();
+        $counts['ongoingPaymentsCount'] = Order::where('date', '>=', $datebefore15days)->where('status',0)->count();
         $counts['latePaymentsCount'] = Order::where('date', '<', $datebefore15days)->count();
         $counts['customersCount'] = Customer::count();
         return view('customers.allcustomers', compact('customers', 'counts'));
@@ -45,11 +45,11 @@ class CustomerController extends Controller
         $date = strtotime(date('Y-m-d'));
         $datebefore15days = date('Y-m-d', strtotime('-15 days', $date));
         $counts = [];
-        $counts['ongoingPaymentsCount'] = Order::where('date', '>=', $datebefore15days)->count();
+        $counts['ongoingPaymentsCount'] = Order::where('date', '>=', $datebefore15days)->where('status',0)->count();
         $counts['latePaymentsCount'] = Order::where('date', '<', $datebefore15days)->count();
         $counts['customersCount'] = Customer::count();
 
-        $ongoingOrders = Order::where('date', '>=', $datebefore15days)->with('customer')->get();
+        $ongoingOrders = Order::where('date', '>=', $datebefore15days)->where('status',0)->with('customer')->get();
         return view('customers.ongoingpayments', compact('ongoingOrders', 'counts'));
     }
 

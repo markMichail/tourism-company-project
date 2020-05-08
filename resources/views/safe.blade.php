@@ -10,7 +10,7 @@
   <br>
   <div class="row text-center">
     <div  class="col-lg-6">
-      <table id="tablePreview" class="table table-bordered">
+      <table id="dtBasicExample" class="table table-bordered">
         <thead>
           <tr class="white-text" style="background-color:#378B92;">
             <th colspan="7" class="col-12">Expenses</th>
@@ -52,7 +52,7 @@
       </table>
       </div>
     <div class="col-lg-6">
-      <table  id="tablePreview" class="table table-bordered">
+      <table  id="dtBasicExample2" class="table table-bordered">
         <thead>
           <tr class="white-text" style="background-color:#378B92;">
             <th colspan="7" class="col-12">Revenues</th>
@@ -205,5 +205,37 @@
     $('#modaladdnewexpense').modal('show');
     @endif
   </script>
+
+<script>
+  window.onload = function () {
+  $(document).ready(function () {
+    $('#dtBasicExample').DataTable(
+      {
+        "columnDefs": [
+          { "orderable": false, "targets":0 },
+          
+        ],
+      }
+    );
+    $('.dataTables_length').addClass('bs-select');
+  });
+
+  $(document).ready(function () {
+    $('#dtBasicExample2').DataTable(
+      {
+        "columnDefs": [
+          { "orderable": false, "targets":2 },
+          { "orderable": false, "targets":3 },
+        ],
+      }
+    );
+    $('.dataTables_length').addClass('bs-select');
+  });
+}
+
+
+
+
+</script>
 @endsection
 

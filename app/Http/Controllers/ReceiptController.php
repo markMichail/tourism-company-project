@@ -15,10 +15,7 @@ class ReceiptController extends Controller
 
     public function __construct()
 {
-    // Middleware only applied to these methods
-    $this->middleware('role:helpdesk', ['only' => [
-        'refundTickets'
-    ]]);
+  
 }
 
    public function store(Order $order,$total){
@@ -127,7 +124,16 @@ class ReceiptController extends Controller
             $customer->save();
        }
       $receipt->total_amount=$total;
-      $receipt->save();
+      if($receipt->total_amount==0){
+      $receipt->delete();
+      }
+      else
+      {
+          $receipt->save();
+          $request->session()->flash('receipt', "$receipt->id");
+      }
+      
+      
       $orderPayment=$order->ticketsAmount();
        if($orderPayment[1]-$orderPayment[2]==0){
            $order->status=1;
@@ -138,7 +144,7 @@ class ReceiptController extends Controller
     //    $path = public_path('Invoices');
     //    $fileName =  $receipt->id . '.' . 'pdf' ;
     //    $pdf->save($path . '/' . $fileName);
-    $request->session()->flash('receipt', "$receipt->id");
+   
    return redirect()->route('order.show',$order);
    }
 

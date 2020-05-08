@@ -35,7 +35,7 @@ class StoreTicket extends FormRequest
             'comission'=>'required | numeric',
             'comissionTax'=>'required | numeric',
             'bsp'=>'required | numeric',
-            'sellprice'=>'required | numeric',
+            'sellprice'=>'required | numeric | min:1',
             'profit'=>'required | numeric',
             'safy'=>'required | numeric',
             'paymentType'=>'required | in:visa,cash,check',
