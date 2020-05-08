@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Order;
-use App\RefundedTicket;
 use App\Ticket;
 use Illuminate\Http\Request;
 
@@ -32,7 +31,7 @@ class HomeController extends Controller
         $data = [];
         $data['customers'] = Customer::all()->count();
         $data['tickets'] = Ticket::all()->count();
-        $data['refundedTickets'] = RefundedTicket::all()->count();
+        $data['refundedTickets'] = Ticket::where('type','refunded')->count();
         $data['latePayments'] = Order::where('date', '<', $datebefore15days)->count();
         return view('home', compact('data'));
     }

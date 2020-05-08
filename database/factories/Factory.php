@@ -8,7 +8,6 @@ use App\Order;
 use App\User;
 use App\Safe;
 use App\Receipt;
-use App\RefundedTicket;
 use App\Ticket;
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\DB;
