@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 @section('content')
 
 
 
 <!-- Editable table -->
 
-<div class="card">
+<div style="margin-top: 5%" class="card">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Order {{$order->id}} confirmation.</h3>
   <div class="card-body">
     @if (session('status'))
@@ -66,7 +66,7 @@
             <td class="pt-3-half"><a class="btn btn-primary btn-sm" href="{{route('tickets.edit',$ticket)}}">edit</a>
             </td>
             @php($total+=$ticket->sellprice)
-            <form onsubmit='return confirm("Do you want to delete this ticket?");' method="POST"
+            <form onsubmit='return confirm("Do you want to delete this ticket?");' method="POST" id="myform"
               action="{{route('tickets.destroy',$ticket)}}">
               @csrf
               @method('delete')
@@ -79,31 +79,37 @@
 
         </tbody>
       </table>
-    <h3>Order Total:: {{$total}}</h3>
+      <h3>Order Total:: {{$total}}</h3>
     </div>
 
   </div>
 
 </div>
-<form style="display:inline-block" onsubmit='return confirm("Do you want to delete this order?,all data will be lost");' method="POST"
-action="{{route('order.destroy',$order)}}">
-@csrf
-@method('delete')
-<button type="submit" class="btn btn-danger">delete</button>
+<form style="display:inline-block" onsubmit='return confirm("Do you want to delete this order?,all data will be lost");'
+  method="POST" action="{{route('order.destroy',$order)}}">
+  @csrf
+  @method('delete')
+  <button type="submit" class="btn btn-danger">delete</button>
 </form>
 @if($order->customer_id !=1)
 <a style="float:right" target="_blank" href="{{route('orderprint',$order)}}" class="btn btn-warning">Print</a>
 <div class="text-center">
-  <a style="" href="{{route('order.confirmpayment',[$order,$total])}}" class="center btn btn-success"> Confirm and Go to payment</a>
+  <a style="" href="{{route('order.confirmpayment',[$order,$total])}}" class="center btn btn-success"> Confirm and Go to
+    payment</a>
 </div>
 @else
 <div class="text-center">
-  <a style="" href="{{route('receipts.allorder',[$order,$total])}}" class="center btn btn-success">Payment confirmed Print receipt</a>
+  <a style="" href="{{route('receipts.allorder',[$order,$total])}}" class="center btn btn-success">Payment confirmed
+    Print receipt</a>
 </div>
 @endif
 <script>
   window.onload = function () {
   $(document).ready(function () {
+
+  
+
+
     $('#dtBasicExample').DataTable(
       {
         "columnDefs": [
@@ -141,7 +147,6 @@ $(document).ready(function() {
     @endif
 
 }
-
 
 
 
