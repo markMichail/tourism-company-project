@@ -25,13 +25,15 @@ class CustomerController extends Controller
      */
     public function index()
     {    //index for showing all customers show() for specifed customer.
-        $customers = Customer::all();
+        $period = Setting::where('name', 'latePeriod')->get()[0]->value;
         $date = strtotime(date('Y-m-d'));
-        $datebefore15days = date('Y-m-d', strtotime('-15 days', $date));
+        $datebefore = date('Y-m-d', strtotime('-' . $period . ' days', $date));
         $counts = [];
-        $counts['ongoingPaymentsCount'] = Order::where('date', '>=', $datebefore15days)->where('status',0)->count();
-        $counts['latePaymentsCount'] = Order::where('date', '<', $datebefore15days)->count();
+        $counts['ongoingPaymentsCount'] = Order::where('date', '>=', $datebefore)->count();
+        $counts['latePaymentsCount'] = Order::where('date', '<', $datebefore)->count();
         $counts['customersCount'] = Customer::count();
+
+        $customers = Customer::all();
         return view('customers.allcustomers', compact('customers', 'counts'));
     }
 
@@ -114,15 +116,10 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customer = Customer::find($id);
-<<<<<<< HEAD
-        $order = Order::where('customer_id',$customer->id)->where('status','0')->get();
-        $expenses = Receipt::where('receiptable_id',$customer->id)->where('receiptable_type','App\Customer')->where('type','expense')->get();
-        $revenues = Receipt::where('receiptable_id',$customer->id)->where('receiptable_type','App\Customer')->where('type','revenue')->get();
-        return view('customers.customerprofile', compact('customer','order','expenses','revenues'));
-=======
         $order = Order::where('customer_id', $customer->id)->where('status', '0')->get();
-        return view('customers.customerprofile', compact('customer', 'order'));
->>>>>>> 2876e76df6890cf59fedb1f735f0d35d1a1c4fdc
+        $expenses = Receipt::where('receiptable_id', $customer->id)->where('receiptable_type', 'App\Customer')->where('type', 'expense')->get();
+        $revenues = Receipt::where('receiptable_id', $customer->id)->where('receiptable_type', 'App\Customer')->where('type', 'revenue')->get();
+        return view('customers.customerprofile', compact('customer', 'order', 'expenses', 'revenues'));
     }
 
     public function updatenote($id)

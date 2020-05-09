@@ -10,11 +10,13 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 class TicketsExport implements FromCollection, WithHeadings, WithMapping
 {
 
-    private $date;
+    private $startdate;
+    private $enddate;
 
-    function __construct($date)
+    function __construct($startdate, $enddate)
     {
-        $this->date = $date;
+        $this->startdate = $startdate;
+        $this->enddate = $enddate;
     }
 
     public function map($ticket): array
@@ -67,13 +69,11 @@ class TicketsExport implements FromCollection, WithHeadings, WithMapping
      */
     public function collection()
     {
-        $startingdate = $this->date;
-        $date = strtotime($this->date);
-        $dateafter15days = date('Y-m-d', strtotime('+15 days', $date));
+        $startingdate = $this->startdate;
+        $endingdate = $this->enddate;
         // $tickets = Ticket::with('order')->whereBetween('date', [$startingdate, $dateafter15days])->get();
-        $tickets = Ticket::whereHas('order', function ($query) use ($startingdate, $dateafter15days) {
-
-            $query->whereBetween('date', [$startingdate, $dateafter15days]);
+        $tickets = Ticket::whereHas('order', function ($query) use ($startingdate, $endingdate) {
+            $query->whereBetween('date', [$startingdate, $endingdate]);
         })->get();
         return $tickets;
     }

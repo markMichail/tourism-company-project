@@ -42,7 +42,7 @@ class ReportController extends Controller
 
     public function excelTickets($date)
     {
-        return Excel::download(new TicketsExport($date), 'tickets' . $date . '.xlsx');
+        return Excel::download(new TicketsExport($date, $this->getEndDate($date)), 'tickets' . $date . '.xlsx');
     }
 
     public function receipts()
@@ -64,7 +64,7 @@ class ReportController extends Controller
 
     public function excelReceipts($date)
     {
-        return Excel::download(new ReceiptsExport($date), 'receipt' . $date . '.xlsx');
+        return Excel::download(new ReceiptsExport($date, $this->getEndDate($date)), 'receipt' . $date . '.xlsx');
     }
 
 

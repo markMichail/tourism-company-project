@@ -26,16 +26,14 @@ class OrderController extends Controller
 
   public function index()
   {
-    $today=date('Y-m-d');
+    $today = date('Y-m-d');
 
-    if(auth()->user()->privilege!=3){
-    $orders = Order::OrderBy('id', 'desc')->with('customer')->get();
-  }
-  else{
-
-     $orders = Order::where('status', '0')->with('customer')->get();
-  }
-  return view("orders.allorders", compact('orders','today'));
+    if (auth()->user()->privilege != 3) {
+      $orders = Order::OrderBy('id', 'desc')->with('customer')->get();
+    } else {
+      $orders = Order::where('status', '0')->with('customer')->get();
+    }
+    return view("orders.allorders", compact('orders', 'today'));
   }
 
   /**
@@ -85,15 +83,15 @@ class OrderController extends Controller
   {
 
     session()->forget('payment');
-     if($order->tickets->count()==0){
-    $order->delete();
-    return redirect()->route('order.index')->with('status','order is empty so it was deleted');
+    if ($order->tickets->count() == 0) {
+      $order->delete();
+      return redirect()->route('order.index')->with('status', 'order is empty so it was deleted');
     }
-     $orderPaymentInfo=$order->ticketsAmount();
-     $data=$orderPaymentInfo[0];
-     $total=$orderPaymentInfo[1];
-     $payed=$orderPaymentInfo[2];
-    return view('orders.show',compact('data','order','total','payed'));
+    $orderPaymentInfo = $order->ticketsAmount();
+    $data = $orderPaymentInfo[0];
+    $total = $orderPaymentInfo[1];
+    $payed = $orderPaymentInfo[2];
+    return view('orders.show', compact('data', 'order', 'total', 'payed'));
   }
 
   public function confirmpayment(Order $order, $total)
@@ -106,11 +104,11 @@ class OrderController extends Controller
 
   public function confirmview(Order $order)
   {
-    
-    $payed=$order->ticketsAmount()[2];
-    if($order->status == 0 && $payed == 0)
-    return view('orders.confirm', compact('order'));
-    else return redirect()->route("order.index")->with('status','Order already payed');
+
+    $payed = $order->ticketsAmount()[2];
+    if ($order->status == 0 && $payed == 0)
+      return view('orders.confirm', compact('order'));
+    else return redirect()->route("order.index")->with('status', 'Order already payed');
   }
 
 
@@ -122,20 +120,17 @@ class OrderController extends Controller
    */
   public function destroy($id)
   {
-    $order=Order::find($id);
-    $payed=$order->ticketsAmount()[2];
-    
-    if(auth()->user()->privilege==3 && $order->created_at->todatestring() != date('Y-m-d')){
-      return redirect()->route("order.index")->with('status','Unauthoized to delete Old order');
-    }
-    
-    else if($order->status == 0 && $payed == 0){
+    $order = Order::find($id);
+    $payed = $order->ticketsAmount()[2];
+
+    if (auth()->user()->privilege == 3 && $order->created_at->todatestring() != date('Y-m-d')) {
+      return redirect()->route("order.index")->with('status', 'Unauthoized to delete Old order');
+    } else if ($order->status == 0 && $payed == 0) {
       $order->delete();
       return redirect()->route('order.index')->with('status', 'order deleted successfully');
-  }
-  else{
-    return redirect()->route('order.index')->with('status', 'order Has finished Payments,Only refund is possible');
-      }
+    } else {
+      return redirect()->route('order.index')->with('status', 'order Has finished Payments,Only refund is possible');
+    }
   }
 
   public function print(Order $order)
