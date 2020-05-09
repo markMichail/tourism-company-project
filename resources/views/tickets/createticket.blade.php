@@ -40,12 +40,12 @@
         @error('type')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
-        <input type="number" value="{{old('rsoom')}}" name="rsoom" onchange="checktotal()" id="rsoom"
+        <input type="number" value="{{old('rsoom')}}" name="rsoom" onblur="checktotal()" id="rsoom"
             class="@error('rsoom') is-invalid @enderror form-control mb-4" placeholder="rsoom">
         @error('rsoom')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
-        <input type="number" value="{{old('asasy')}}" name="asasy" onchange="checktotal()" id="asasy"
+        <input type="number" value="{{old('asasy')}}" name="asasy" onblur="checktotal()" id="asasy"
             class="@error('asasy') is-invalid @enderror form-control mb-4" placeholder="asasy">
         @error('asasy')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -209,7 +209,7 @@
   else if(total=="")
   total=0;
 
-  document.getElementById('profit').value=parseInt(total)-parseInt(sellprice);
+  document.getElementById('profit').value=parseInt(sellprice)-parseInt(total);
 
   }
   function check(){

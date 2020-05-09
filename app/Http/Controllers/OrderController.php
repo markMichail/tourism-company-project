@@ -27,7 +27,6 @@ class OrderController extends Controller
   public function index()
   {
     $today=date('Y-m-d');
-
     if(auth()->user()->privilege!=3){
     $orders = Order::OrderBy('id', 'desc')->with('customer')->get();
   }
@@ -149,7 +148,8 @@ class OrderController extends Controller
   public function payAll(Order $order)
   {
     $orderPaymentInfo = $order->ticketsAmount()[0];
-
+    if($order->status ==1)
+    return redirect()->route('order.show',$order)->with('status','order already completed.');
     $allorder = "1";
     $payments = [];
     foreach ($orderPaymentInfo as $ticket) {

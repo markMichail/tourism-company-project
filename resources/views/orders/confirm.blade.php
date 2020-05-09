@@ -3,7 +3,6 @@
 
 
 
-<!-- Editable table -->
 
 <div style="margin-top: 5%" class="card">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Order {{$order->id}} confirmation.</h3>
@@ -145,6 +144,9 @@ $(document).ready(function() {
 @if (count($errors) > 0)
     $('#modaladdnew').modal('show');
     @endif
+
+    
+
 
 }
 

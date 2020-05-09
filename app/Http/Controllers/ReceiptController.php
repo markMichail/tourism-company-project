@@ -15,7 +15,9 @@ class ReceiptController extends Controller
 
     public function __construct()
 {
-  
+ 
+  $this->middleware('role:superadmin,admin,helpdesk');
+//   $this->middleware('role:helpdesk', ['except' => ['refundTickets']]);
 }
 
    public function store(Order $order,$total){
