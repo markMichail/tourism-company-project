@@ -9,11 +9,13 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class ReceiptsExport implements FromCollection, WithHeadings, WithMapping
 {
-    private $date;
+    private $startdate;
+    private $enddate;
 
-    function __construct($date)
+    function __construct($startdate, $enddate)
     {
-        $this->date = $date;
+        $this->startdate = $startdate;
+        $this->enddate = $enddate;
     }
 
     public function map($receipt): array
@@ -43,10 +45,9 @@ class ReceiptsExport implements FromCollection, WithHeadings, WithMapping
      */
     public function collection()
     {
-        $startingdate = $this->date;
-        $date = strtotime($this->date);
-        $dateafter15days = date('Y-m-d', strtotime('+15 days', $date));
-        $receipts = Receipt::whereBetween('receipt_date', [$startingdate, $dateafter15days])->with('receiptable')->get();
+        $startingdate = $this->startdate;
+        $endingdate = $this->enddate;
+        $receipts = Receipt::whereBetween('receipt_date', [$startingdate, $endingdate])->with('receiptable')->get();
         return $receipts;
     }
 }

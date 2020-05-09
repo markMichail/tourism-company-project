@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SettingController extends Controller
 {
@@ -33,7 +34,9 @@ class SettingController extends Controller
     public function update(Request $request)
     {
         $settings = $request->input('setting');
-
+        $validator = $this->validate($request, [
+            'setting.*' => "required|integer|min:1"
+        ]);
         foreach ($settings as $id => $setting) {
             $s = Setting::findOrFail($id);
             $s->value = $setting;
