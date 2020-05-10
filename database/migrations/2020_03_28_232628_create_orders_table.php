@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateOrdersTable extends Migration
@@ -23,7 +24,7 @@ class CreateOrdersTable extends Migration
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->foreign('employee_id')->references('id')->on('users');
         });
-
+        DB::statement("ALTER TABLE orders AUTO_INCREMENT = 50000;");
     }
 
     /**
