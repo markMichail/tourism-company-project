@@ -53,7 +53,7 @@ $factory->define(Order::class, function (Faker $faker) {
     ];
 });
 
-$autoIncrement = autoIncrement(1000000, 1000100);
+$autoIncrement = autoIncrement(70000, 70100);
 
 $factory->define(Ticket::class, function (Faker $faker) use ($autoIncrement) {
     $autoIncrement->next();
