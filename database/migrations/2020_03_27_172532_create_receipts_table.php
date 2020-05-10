@@ -27,6 +27,7 @@ class CreateReceiptsTable extends Migration
             $table->foreign('employee_id')->references('id')->on('users');
             $table->foreign('safe_id')->references('safe_id')->on('safe');
         });
+        DB::statement("ALTER TABLE receipts AUTO_INCREMENT = 20000;");
     }
 
     /**

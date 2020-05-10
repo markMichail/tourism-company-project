@@ -20,7 +20,7 @@ Route::get('/customerprofile', function () {
     return view('customers.customerprofile');
 })->name('customerprofile');
 
-// Route::get('/addcustomer', "CustomerController@store");
+Route::get('/addcustomer', "CustomerController@store");
 
 //test route for many to many relationships.
 

@@ -29,12 +29,12 @@
               <td class="pt-3-half">{{$customer->name}}</td>
               <td class="pt-3-half">{{$customer->totalcredit}}</td>
               <td class="table-view">
-                <a href="customers/{{ $customer->id}}" <button type="button"
-                  class="btn btn-info btn-rounded btn-sm my-0">View</button>
+                <a href="customers/{{ $customer->id}}"> <button type="button"
+                    class="btn btn-info btn-rounded btn-sm my-0">View</button>
                 </a></td>
               <td class="table-view">
-                <a href="edit/{{ $customer->id}}" <button type="button"
-                  class="btn btn-info btn-rounded btn-sm my-0">Edit</button>
+                <a href="edit/{{ $customer->id}}"> <button type="button"
+                    class="btn btn-info btn-rounded btn-sm my-0">Edit</button>
                 </a></td>
               <td class="table-remove">
                 <button type="button" class="btn btn-danger px-3"><i class="fas fa-trash"

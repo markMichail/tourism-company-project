@@ -30,8 +30,8 @@
   </div>
   <br>
   <div class="row text-center">
-    <div class="table table-bordered">
-      <table id="tablePreview" class="table table-responsive">
+    <div class="table ">
+      <table id="tablePreview" class="table table-responsive table-bordered">
         <thead>
           <tr class="white-text" style="background-color:#378B92;">
             <th colspan="2" width="30%">In progress</th>
@@ -44,17 +44,19 @@
         </thead>
         <tbody>
           <?php foreach ($order as $orderr): ?>
-            <tr>
+          <tr>
             <td class="col-6"><a href="{{route('order.show',$orderr)}}">{{$orderr->id}}</a></td>
-              <td class="col-6">{{$orderr->ticketsAmount()[1]}} LE</td>
-            </tr>
-            <?php endforeach; ?>
+            <td class="col-6">{{$orderr->ticketsAmount()[1]}} LE</td>
+          </tr>
+          <?php endforeach; ?>
         </tbody>
         <tfoot>
-  
+
         </tfoot>
       </table>
-      <table id="tablePreview" class="table table-responsive">
+      <hr>
+      <br>
+      <table id="tablePreviewRefund" class="table table-responsive table-bordered">
         <thead>
           <tr class="white-text" style="background-color:#378B92;">
             <th colspan="2" width="30%">Refund</th>
@@ -67,19 +69,21 @@
         </thead>
         <tbody>
           <?php foreach ($expenses as $expense): ?>
-            <tr>
+          <tr>
 
-              <td class="col-6">{{$expense->id}}</td>
-              <td class="col-6">{{$expense->total_amount}} LE</td> <br>
+            <td class="col-6">{{$expense->id}}</td>
+            <td class="col-6">{{$expense->total_amount}} LE</td> <br>
 
-            </tr>
-              <?php endforeach; ?>
+          </tr>
+          <?php endforeach; ?>
         </tbody>
         <tfoot>
-        
+
         </tfoot>
       </table>
-      <table id="tablePreview" class="table table-responsive">
+      <hr>
+      <br>
+      <table id="tablePreviewPaid" class="table table-responsive table-bordered">
         <thead>
           <tr class="white-text" style="background-color:#378B92;">
             <th colspan="2" width="30%">Paid</th>
@@ -91,22 +95,32 @@
 
         </thead>
         <tbody>
-            <?php foreach ($revenues as $revenue): ?>
-            <tr>
+          <?php foreach ($revenues as $revenue): ?>
+          <tr>
 
-              <td >{{$revenue->id}}</td>
-              <td >{{$revenue->total_amount}} LE</td>
+            <td class="col-6">{{$revenue->id}}</td>
+            <td class="col-6">{{$revenue->total_amount}} LE</td>
 
-            </tr>
-            <?php endforeach; ?>
+          </tr>
+          <?php endforeach; ?>
 
 
         </tbody>
         <tfoot>
-        
+
         </tfoot>
       </table>
+      <hr>
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function () {
+    $('#tablePreview').DataTable();
+    $('#tablePreviewRefund').DataTable();
+    $('#tablePreviewPaid').DataTable();
+  });
+
+</script>
 @endsection

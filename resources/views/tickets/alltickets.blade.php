@@ -6,7 +6,8 @@
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">All Tickets</h3>
   <div class="card-body">
     <div id="table" class="table-editable">
-      <table id="allTicktesTable" style="max-width: auto;" class="table table-bordered table-responsive-md table-striped text-center">
+      <table id="allTicktesTable" style="max-width: auto;"
+        class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
             <th class="text-center">#</th>
@@ -29,32 +30,68 @@
             <th class="text-center">receipt no</th>
           </tr>
           <tr id="filter">
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
-            <th class="text-center"><select class="form-control"><option value=""></option></select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
+            <th class="text-center"><select class="form-control">
+                <option value=""></option>
+              </select></th>
           </tr>
         </thead>
         <tbody>
           @foreach ($tickets as $i => $ticket)
           <tr style="cursor: pointer;">
-            
+
             <td class="pt-3-half">{{ ++$i }}</td>
-            <td class="pt-3-half">{{$ticket->id}}</td>
+            <td class="pt-3-half">{{$ticket->ticketNumber}}</td>
             <td class="pt-3-half">{{$ticket->type}}</td>
             <td class="pt-3-half">{{$ticket->passengerName}}</td>
             <td class="pt-3-half">{{$ticket->destination}}</td>
@@ -71,9 +108,9 @@
             <td class="pt-3-half">{{$ticket->safy}} LE</td>
             <td class="pt-3-half">{{$ticket->paymentType}}</td>
             <td class="pt-3-half">{{$ticket->order_id}}</td>
-          
+
           </tr>
-        
+
           @endforeach
         </tbody>
       </table>
@@ -82,7 +119,7 @@
 </div>
 <!-- Editable table -->
 <script>
-window.onload = function () {
+  window.onload = function () {
   $(document).ready(function () {
     var table = $('#allTicktesTable').DataTable({
       order: [[0, 'asc']],
