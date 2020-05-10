@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     DB::table('users')->insert(array(
       array(
         'name' => "fady",
-        'email' => "fady@gmail.com",
+        'email' => "fady1710742@miuegypt.edu.eg",
         'username' => 'fady',
         'phone' => '01065721222',
         'privilege' => '1',
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
       ),
       array(
         'name' => "mark",
-        'email' => "mark@m.com",
+        'email' => "mark1711712@miuegypt.edu.eg",
         'username' => 'mark',
         'phone' => '01065721224',
         'privilege' => '2',
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
       ),
       array(
         'name' => "ahmed",
-        'email' => "ahmed@a.com",
+        'email' => "ahmed1703326@miuegypt.edu.eg",
         'username' => 'ahmed',
         'phone' => '01065721223',
         'privilege' => '3',
