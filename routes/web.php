@@ -16,11 +16,11 @@ use App\Safe;
 use App\Customer;
 use App\Destination;
 
-Route::get('/customerprofile', function () {
-    return view('customers.customerprofile');
-})->name('customerprofile');
+// Route::get('/customerprofile', function () {
+//     return view('customers.customerprofile');
+// })->name('customerprofile');
 
-Route::get('/addcustomer', "CustomerController@store");
+// Route::get('/addcustomer', "CustomerController@store");
 
 //test route for many to many relationships.
 
