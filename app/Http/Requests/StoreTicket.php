@@ -23,43 +23,45 @@ class StoreTicket extends FormRequest
      */
     public function rules()
     {
-        //not finished yet
-        return [
-            'ticketNumber' => 'required | numeric',
-            'passengerName' => 'required|max:150',
-            'destination' => 'required',
-            'transportationCompany'=>'required',
-            'type'=>'required | in:void,credit,ticket',
-            'rsoom'=>'required | numeric',
-            'percentageAsasy'=>'required | numeric',
-            'comission'=>'required | numeric',
-            'comissionTax'=>'required | numeric',
-            'bsp'=>'required | numeric',
-            'sellprice'=>'required | numeric | min:1',
-            'profit'=>'required | numeric',
-            'safy'=>'required | numeric',
-            'paymentType'=>'required | in:visa,cash,check',
-            'asasy'=>'required | numeric',
-        ];
-
-
+       // not finished yet
         // return [
-        //     'ticketNumber' => 'required | numeric | digits_between:4,10',
-        //     'passengerName' => 'required|max:150 |string',
+        //     'ticketNumber' => 'required | numeric',
+        //     'passengerName' => 'required|max:150',
         //     'destination' => 'required',
         //     'transportationCompany'=>'required',
         //     'type'=>'required | in:void,credit,ticket',
-        //     'rsoom'=>'required | numeric |digits_between:3,5',
-        //     'percentageAsasy'=>'required | numeric | between:0,100',
-        //     'comission'=>'required | numeric |digits_between:1,11',
-        //     'comissionTax'=>'required | numeric | between:0,100',
-        //     'bsp'=>'required | numeric |digits_between:1,11',
-        //     'sellprice'=>'required | numeric | min:1 |digits_between:1,11',
-        //     'profit'=>'required | numeric |digits_between:1,11',
-        //     'safy'=>'required | numeric | digits_between:1,11',
+        //     'rsoom'=>'required | numeric',
+        //     'percentageAsasy'=>'required | numeric',
+        //     'comission'=>'required | numeric',
+        //     'comissionTax'=>'required | numeric',
+        //     'bsp'=>'required | numeric',
+        //     'sellprice'=>'required | numeric | min:1',
+        //     'profit'=>'required | numeric',
+        //     'safy'=>'required | numeric',
         //     'paymentType'=>'required | in:visa,cash,check',
-        //     'asasy'=>'required | numeric |digits_between:1,11',
+        //     'asasy'=>'required | numeric',
         // ];
+
+
+        //ctrl K U
+
+        return [
+            'ticketNumber' => 'required | numeric | digits_between:4,10',
+            'passengerName' => 'required|max:100 |string',
+            'destination' => 'required',
+            'transportationCompany'=>'required',
+            'type'=>'required | in:void,credit,ticket',
+            'rsoom'=>'required | numeric |digits_between:3,5',
+            'percentageAsasy'=>'required | numeric | between:0,100',
+            'comission'=>'required | numeric |digits_between:1,11',
+            'comissionTax'=>'required | numeric | between:0,100',
+            'bsp'=>'required | numeric |digits_between:1,11',
+            'sellprice'=>'required | numeric | min:1 |digits_between:1,6',
+            'profit'=>'required | numeric |digits_between:1,7',
+            'safy'=>'required | numeric | digits_between:1,7',
+            'paymentType'=>'required | in:visa,cash,check',
+            'asasy'=>'required | numeric |digits_between:1,7',
+        ];
     }
 
     public function withValidator($validator)
@@ -68,9 +70,7 @@ class StoreTicket extends FormRequest
         if ($this->get('rsoom') + $this->get('asasy')  != $this->get('total')) {
             $validator->errors()->add('total', 'The sum of total is not correct');
         }
-        if ($this->get('sellprice') - $this->get('total')  != $this->get('profit')){
-            $validator->errors()->add('profit', 'profit value is not correct');
-        }
+       
     });
 }
 }
