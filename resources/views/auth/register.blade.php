@@ -72,6 +72,7 @@
 
                             <div class="col-md-6">
                                 <select id="privilege" class="form-control @error('privilege') is-invalid @enderror" name="privilege" required>
+                                    <option value="-1" disabled hidden selected>Choose a role:</option>
                                     {{ $roles = DB::table('roles')->get() }}
                                     @foreach ($roles as $role)
                                     @if($role->id == '1')
