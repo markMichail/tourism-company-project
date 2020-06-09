@@ -12,6 +12,11 @@
       {{ session('status') }}
     </div>
     @endif
+    @if (session('status'))
+    <div class="alert alert-success">
+      {{ session('status') }}
+    </div>
+    @endif
     <div id="table" class="table-editable">
 
       <table id="dtBasicExample" class="table table-bordered table-responsive-lg table-striped text-center">

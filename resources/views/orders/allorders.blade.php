@@ -10,6 +10,11 @@
       {{ session('status') }}
     </div>
     @endif
+    @if (session('error'))
+    <div class="alert alert-danger">
+      {{ session('error') }}
+    </div>
+    @endif
     <div id="table" class="table-editable">
       <table id="DBTable" class="table table-bordered table-responsive-md table-striped text-center">
         <thead>

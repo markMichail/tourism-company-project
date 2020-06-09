@@ -23,7 +23,7 @@ class ReceiptController extends Controller
     public function store(Order $order, $total)
     {
         if ($order->status == 1)
-            return redirect()->route('order.show', $order)->with('status', 'Order already payed');
+            return redirect()->route('order.show', $order)->with('error', 'Order already payed');
         $payments = session()->get('payment');
         if ($payments == null)
             return redirect()->route('order.show', $order)->with('status', 'select tickets to pay');
@@ -53,14 +53,14 @@ class ReceiptController extends Controller
         }
         $pdf = PDF::loadView('wasl', compact('payments', 'receipt', 'name'));
         session()->forget('payment');
-        //app('App\Http\Controllers\MailController')->mailadmin('Part order Payment', 'order'. $order->id .' has been payed by Customer : ' . $order->customer->name .' with total amount: '. $total . 'EGP  on ' . date('Y-m-d').' To employee '.auth()->user()->name.'');
+        app('App\Http\Controllers\MailController')->mailadmin('Part order Payment', 'order'. $order->id .' has been payed by Customer : ' . $order->customer->name .' with total amount: '. $total . 'EGP  on ' . date('Y-m-d').' To employee '.auth()->user()->name.'');
         return $pdf->stream('invoice.pdf');
     }
 
     public function storeAllorder(Order $order, $total)
     {
         if ($order->status == 1) {
-            return redirect()->route('order.show', $order)->with('status', 'Order already payed');
+            return redirect()->route('order.show', $order)->with('error', 'Order already payed');
         }
         $receipt = new Receipt();
         $receipt->employee_id = auth()->user()->id;
@@ -89,7 +89,7 @@ class ReceiptController extends Controller
         $name = $order->customer->name;
         $order->status = '1';
         $order->save();
-        //app('App\Http\Controllers\MailController')->mailadmin('All order Payment', 'order'. $order->id .' has been payed by Customer : ' . $order->customer->name .' with total amount: '. $total . 'EGP  on ' . date('Y-m-d').' To employee '.auth()->user()->name.'');
+       app('App\Http\Controllers\MailController')->mailadmin('All order Payment', 'order'. $order->id .' has been payed by Customer : ' . $order->customer->name .' with total amount: '. $total . 'EGP  on ' . date('Y-m-d').' To employee '.auth()->user()->name.'');
         $pdf = PDF::loadView('wasl', compact('payments', 'receipt', 'name'));
         return $pdf->download('invoice.pdf');
     }
@@ -151,8 +151,8 @@ class ReceiptController extends Controller
 
     public function print($receipt)
     {
-        $receipt = Receipt::where("id", "$receipt")->with('tickets')->with('receiptable')->first();
-        $pdf = PDF::loadView('eznsarf', compact("receipt"));
-        return $pdf->download('invoice.pdf');
+         $receipt = Receipt::where("id", "$receipt")->with('tickets')->with('receiptable')->first();
+         $pdf = PDF::loadView('eznsarf', compact("receipt"));
+         return $pdf->download('invoice.pdf');
     }
 }

@@ -20,6 +20,11 @@
     {{ session('status') }}
   </div>
   @endif
+  @if (session('status'))
+  <div class="alert alert-success">
+    {{ session('status') }}
+  </div>
+  @endif
   <div style="margin:auto">
     <a id="confirmpayment" href="{{route('order.receipt.confirm')}}" style="display: none"
       class="btn btn-success btn-lg">Confirm Payment</a>

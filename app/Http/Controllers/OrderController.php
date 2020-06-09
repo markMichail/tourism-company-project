@@ -85,7 +85,7 @@ class OrderController extends Controller
     session()->forget('payment');
     if ($order->tickets->count() == 0) {
       $order->delete();
-      return redirect()->route('order.index')->with('status', 'order is empty so it was deleted');
+      return redirect()->route('order.index')->with('error', 'order is empty so it was deleted');
     }
     $orderPaymentInfo = $order->ticketsAmount();
     $data = $orderPaymentInfo[0];
@@ -108,7 +108,7 @@ class OrderController extends Controller
     $payed = $order->ticketsAmount()[2];
     if ($order->status == 0 && $payed == 0)
       return view('orders.confirm', compact('order'));
-    else return redirect()->route("order.index")->with('status', 'Order already payed');
+    else return redirect()->route("order.index")->with('error', 'Order already payed');
   }
 
 
@@ -124,12 +124,12 @@ class OrderController extends Controller
     $payed = $order->ticketsAmount()[2];
 
     if (auth()->user()->privilege == 3 && $order->created_at->todatestring() != date('Y-m-d')) {
-      return redirect()->route("order.index")->with('status', 'Unauthoized to delete Old order');
+      return redirect()->route("order.index")->with('error', 'Unauthoized to delete Old order');
     } else if ($order->status == 0 && $payed == 0) {
       $order->delete();
       return redirect()->route('order.index')->with('status', 'order deleted successfully');
     } else {
-      return redirect()->route('order.index')->with('status', 'order Has finished Payments,Only refund is possible');
+      return redirect()->route('order.index')->with('error', 'order Has finished Payments,Only refund is possible');
     }
   }
 
@@ -145,7 +145,7 @@ class OrderController extends Controller
   {
     $orderPaymentInfo = $order->ticketsAmount()[0];
     if($order->status ==1)
-    return redirect()->route('order.show',$order)->with('status','order already completed.');
+    return redirect()->route('order.show',$order)->with('error','order already completed.');
     $allorder = "1";
     $payments = [];
     foreach ($orderPaymentInfo as $ticket) {
