@@ -40,15 +40,17 @@
                     class="btn btn-info btn-rounded btn-sm my-0">View</button>
                 </a></td>
               <td class="table-view">
-                <a href="edit/{{ $customer->id}}"> <button type="button"
-                    class="btn btn-info btn-rounded btn-sm my-0">Edit</button>
-                </a></td>
+                <a href="edit/{{ $customer->id}}">
+                  <button type="button" class="btn btn-info btn-rounded btn-sm my-0">Edit</button>
+                </a>
+              </td>
               <td class="table-remove">
                 @if ($customer->id != 1)
                 <form method="POST" action="/allcustomers/{{ $customer->id }}">
                   @csrf
                   <button type="submit" onclick="return confirm('Are you sure you want to delete this customer?');"
-                    class="btn btn-danger px-3" name="delete"><i class='fas fa-trash' aria-hidden='true'></i></button>
+                    class="btn btn-danger px-3" name="delete"><i class='fas fa-trash' aria-hidden='true'></i>
+                  </button>
                 </form>
                 @endif
               </td>

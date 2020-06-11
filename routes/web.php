@@ -64,6 +64,11 @@ Route::get('/sendemail', 'MailController@mail'); //for testing
 
 Auth::routes();
 
+Route::get('/allusers', "UserController@index")->name('allusers');
+Route::post('/allusers/{id}', "UserController@destroy")->name('allusers.destroy');;
+Route::get('/edituser/{id}', "UserController@edit")->name('edituser');;
+Route::post('/updateuser/{id}', "UserController@update")->name('updateuser');;
+
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::get('/', "HomeController@index")->name('home');
 Route::get('/home', 'HomeController@index')->name('home');

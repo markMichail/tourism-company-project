@@ -71,6 +71,9 @@
           @if (Auth::user()->privilege == '1')
           <a class="dropdown-item" href="{{ route('setting') }}">Settings</a>
           @endif
+          @if (Auth::user()->privilege == '1')
+          <a class="dropdown-item" href="{{ route('allusers') }}">All Users</a>
+          @endif
           @if (Auth::user()->privilege == '1' or Auth::user()->privilege == '2')
           <a class="dropdown-item" href="{{ route('register') }}">Register New User</a>
           @endif
