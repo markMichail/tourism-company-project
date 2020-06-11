@@ -2,15 +2,38 @@
 @section('content')
 
 <div style=" width:95%; margin:auto">
-	<h3 class="card-header text-center font-weight-bold text-uppercase py-4">All Users</h3>
-  	<br>
-
 	@if (session('successMsg'))
 	<div class="alert alert-success" role="alert">
 	  {{ session('successMsg') }}
 	</div>
 	@endif
+	@if(Route::getCurrentRoute()->uri() == 'allusers/edit/2')
+	<form class="border border-light p-5" action="{{route('allusers')}}" method="get" >
+    @csrf 
+    <p class="h4 mb-4 text-center">Edit User</p>
+    <div class="form-group">
+    	<label for="formGroupExampleInput">Username</label>
+        <input name="name" type="text" class="form-control" id="formGroupExampleInput" value="{{$user->username}}">
+    </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput2">Name</label>
+        <input name="email" type="text" class="form-control" id="formGroupExampleInput2" value="{{$user->name}}">
+    </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput2">Email</label>
+        <input name="email" type="text" class="form-control" id="formGroupExampleInput2" value="{{$user->email}}">
+    </div>
+    <div class="form-group">
+    	<label for="formGroupExampleInput2">Phone Number</label>
+        <input name="phone" type="text" class="form-control" id="formGroupExampleInput2" value="{{$user->phone}}">
+    </div>
+    <button class="btn btn-info btn-block my-4" type="submit">Edit</button>
+</form>
+	@elseif(Route::getCurrentRoute()->uri() == 'allusers/delete')
 
+	@else
+	<h3 class="card-header text-center font-weight-bold text-uppercase py-4">All Users</h3>
+  	<br>
 	<table class="table table-bordered">
 	  <thead class="black white-text">
 	    <tr>
@@ -51,6 +74,6 @@
 	    @endforeach
 	  </tbody>
 	</table>
-
+	@endif
 </div>
 @endsection

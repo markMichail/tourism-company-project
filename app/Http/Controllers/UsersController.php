@@ -36,4 +36,10 @@ class UsersController extends Controller
         
         return redirect(route('allusers'))->with('successMsg', 'User Deleted Successfully');
     }
+
+    public function edit($id)
+    {
+        $user = User::find($id);
+        return view("users", compact('user'));
+    }
 }
