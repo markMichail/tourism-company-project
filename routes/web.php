@@ -106,6 +106,10 @@ Route::get('/notifications', 'NotificationsController@unread')->name('notificati
 Route::get('/notifications/markallasread', 'NotificationsController@markallasread')->name('notifications.markallasread');
 Route::get('/notifications/viewall', 'NotificationsController@viewall')->name('notifications.viewall');
 
+Route::get('/allusers', 'UsersController@index')->name('allusers');
+Route::get('/allusers/edit', 'UsersController@index')->name('edituser');
+Route::get('/allusers/delete', 'UsersController@index')->name('deleteuser');
+
 //for testing
 Route::get('/notify', function () {
     $users = \App\User::all();

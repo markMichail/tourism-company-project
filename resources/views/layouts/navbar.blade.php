@@ -28,6 +28,11 @@
         <a class="nav-link" href="{{ route('allcustomers.index') }}">All Customers</a>
       </li>
       @endif
+      @if (Auth::user()->privilege == '1')
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('allusers') }}">All Users</a>
+      </li>
+      @endif
       {{-- <li class="nav-item">
       <a class="nav-link" href="/addcustomer">Add Customer</a>
     </li> --}}
