@@ -10,6 +10,13 @@
 
   <div class="card" style="float:left; width:80%;">
     <h3 class="card-header text-center font-weight-bold text-uppercase py-4">All Customers table</h3>
+
+    @if(Session::has('deleted'))
+    <br>
+    <div class="container alert alert-success" role="alert">
+      {{ Session::get('deleted') }}
+    </div>
+    @endif
     <div class="card-body">
       <div id="table">
 
@@ -37,8 +44,13 @@
                     class="btn btn-info btn-rounded btn-sm my-0">Edit</button>
                 </a></td>
               <td class="table-remove">
-                <button type="button" class="btn btn-danger px-3"><i class="fas fa-trash"
-                    aria-hidden="true"></i></button>
+                @if ($customer->id != 1)
+                <form method="POST" action="/allcustomers/{{ $customer->id }}">
+                  @csrf
+                  <button type="submit" onclick="return confirm('Are you sure you want to delete this customer?');"
+                    class="btn btn-danger px-3" name="delete"><i class='fas fa-trash' aria-hidden='true'></i></button>
+                </form>
+                @endif
               </td>
             </tr>
             @empty
@@ -72,9 +84,9 @@
 
 
 
-  $tableID.on('click', '.table-remove', function () {
-    $(this).parents('tr').detach();
-  });
+  // $tableID.on('click', '.table-remove', function () {
+  //   $(this).parents('tr').detach();
+  // });
 
   $tableID.on('click', '.table-view', function () {
     window.location.href = "{{ route('customerprofile') }}";

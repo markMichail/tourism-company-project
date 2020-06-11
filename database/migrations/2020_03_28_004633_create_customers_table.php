@@ -21,6 +21,7 @@ class CreateCustomersTable extends Migration
             $table->longText('note');
             $table->float('totalcredit');
             $table->string('phone');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

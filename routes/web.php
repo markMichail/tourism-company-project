@@ -15,6 +15,7 @@ use App\Receipt;
 use App\Safe;
 use App\Customer;
 use App\Destination;
+use App\User;
 
 Route::get('/customerprofile', function () {
     return view('customers.customerprofile');
@@ -55,7 +56,11 @@ Route::get('/test', function () {
 
 });
 
+
+
 Route::get('/sendemail', 'MailController@mail'); //for testing
+
+
 
 Auth::routes();
 
@@ -69,6 +74,7 @@ Route::get('/customers/{id}', 'CustomerController@show');
 Route::post('/customers/{id}', 'CustomerController@updatenote');
 
 Route::get('/allcustomers', "CustomerController@index")->name('allcustomers.index');
+Route::post('/allcustomers/{id}', "CustomerController@destroy")->name('allcustomers.destroy');;
 Route::get('/allcustomers/ongoingpayments', "CustomerController@ongoingpayments");
 Route::get('/allcustomers/latepayments', "CustomerController@latepayments");
 
