@@ -50,12 +50,16 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group row">
-                            <div class="col-md-6" style="margin:0.8em auto !important; text-align:center; width:auto !important; height:auto !important; margin-left:15em !important; ">
-                                {!! NoCaptcha::renderJs() !!}
-                                {!! NoCaptcha::display() !!}
+                            <div class="col-md-6 offset-md-4">
+                                <div style="margin:0.8em auto !important; text-align:center; width:auto !important; height:auto !important;">
+                                    {!! NoCaptcha::renderJs() !!}
+                                    {!! NoCaptcha::display() !!}
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
