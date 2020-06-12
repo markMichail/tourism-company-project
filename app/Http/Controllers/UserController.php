@@ -67,8 +67,8 @@ class UserController extends Controller
         $user = User::find($id);
         if ($request->email == $user->email) {
             $this->validate($request, [
-                'name' => 'required | min:3 | alpha',
-                'phone' => 'required | numeric | digits:11',
+                'name' => 'required | min:3',
+                'phone' => 'required | numeric',
             ]);
 
             $user->name = $request->name;
@@ -79,8 +79,8 @@ class UserController extends Controller
             return redirect('allusers');
         } else {
             $this->validate($request, [
-                'name' => 'required | min:3 | alpha',
-                'phone' => 'required | numeric | digits:11',
+                'name' => 'required | min:3',
+                'phone' => 'required | numeric',
                 'email' => 'email  | unique:users',
             ]);
 
