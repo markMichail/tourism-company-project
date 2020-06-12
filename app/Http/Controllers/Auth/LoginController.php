@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use \Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Validation\Rule;
 
 class LoginController extends Controller
 {
@@ -50,6 +53,28 @@ class LoginController extends Controller
             $this->username() => 'required|string',
             'password' => 'required|string',
             'g-recaptcha-response' => 'required|captcha',
+        ], [
+            'g-recaptcha-response.required' => "Required"
         ]);
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+
+        if (!User::where('username', $request->username)->first()) {
+            return redirect()->back()
+                ->withInput($request->only($this->username(), 'remember'))
+                ->withErrors([
+                    $this->username() => Lang::get('auth.username'),
+                ]);
+        }
+
+        if (!User::where('username', $request->username)->where('password', bcrypt($request->password))->first()) {
+            return redirect()->back()
+                ->withInput($request->only($this->username(), 'remember'))
+                ->withErrors([
+                    'password' => Lang::get('auth.password'),
+                ]);
+        }
     }
 }
