@@ -41,7 +41,7 @@
 
           <div class="form-group">
             <label for="formGroupExampleInput">Customer Name</label>
-            <input type="text" name="name" class="form-control @error('email') is-invalid @enderror"
+            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
               id="formGroupExampleInput" value="{{old('name')}}" placeholder="customer's name">
           </div>
           @error('name')
