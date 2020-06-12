@@ -48,15 +48,15 @@ class StoreTicket extends FormRequest
         return [
             'ticketNumber' => 'required | numeric | digits_between:4,10',
             'passengerName' => 'required|max:100 |string',
-            'destination' => 'required',
-            'transportationCompany'=>'required',
+            'destination' => 'required|alpha',
+            'transportationCompany'=>'required | alpha | max:80',
             'type'=>'required | in:void,credit,ticket',
-            'rsoom'=>'required | numeric |digits_between:3,5',
+            'rsoom'=>'required | numeric |digits_between:3,5 | gt:0',
             'percentageAsasy'=>'required | numeric | between:0,100',
             'comission'=>'required | numeric |digits_between:1,11',
             'comissionTax'=>'required | numeric | between:0,100',
             'bsp'=>'required | numeric |digits_between:1,11',
-            'sellprice'=>'required | numeric | min:1 |digits_between:1,6',
+            'sellprice'=>'required | numeric |digits_between:1,6 |gt:0',
             'profit'=>'required | numeric |digits_between:1,7',
             'safy'=>'required | numeric | digits_between:1,7',
             'paymentType'=>'required | in:visa,cash,check',
@@ -69,6 +69,10 @@ class StoreTicket extends FormRequest
     $validator->after(function ($validator) {
         if ($this->get('rsoom') + $this->get('asasy')  != $this->get('total')) {
             $validator->errors()->add('total', 'The sum of total is not correct');
+        }
+
+        if ($this->get('sellprice') - $this->get('total')  != $this->get('profit')) {
+            $validator->errors()->add('total', 'The sum of profit is not correct');
         }
        
     });
