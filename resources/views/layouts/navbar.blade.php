@@ -31,6 +31,20 @@
       {{-- <li class="nav-item">
       <a class="nav-link" href="/addcustomer">Add Customer</a>
     </li> --}}
+    @if (Auth::user()->privilege == '1' or Auth::user()->privilege == '2')
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Users</a>
+        <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+          @if (Auth::user()->privilege == '1')
+          <a class="dropdown-item" href="{{ route('allusers') }}">All Users</a>
+          @endif
+          @if (Auth::user()->privilege == '1' or Auth::user()->privilege == '2')
+          <a class="dropdown-item" href="{{ route('register') }}">Register New User</a>
+          @endif
+        </div>
+      </li>
+      @endif
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">Orders</a>
@@ -68,16 +82,10 @@
           {{ Auth::user()->name }} <span class="caret"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{ route('changepassword') }}">Change password</a>
           @if (Auth::user()->privilege == '1')
           <a class="dropdown-item" href="{{ route('setting') }}">Settings</a>
           @endif
-          @if (Auth::user()->privilege == '1')
-          <a class="dropdown-item" href="{{ route('allusers') }}">All Users</a>
-          @endif
-          @if (Auth::user()->privilege == '1' or Auth::user()->privilege == '2')
-          <a class="dropdown-item" href="{{ route('register') }}">Register New User</a>
-          @endif
+          <a class="dropdown-item" href="{{ route('changepassword') }}">Change Password</a>
           <a class="dropdown-item" href="{{ route('logout') }}"
             onclick="event.preventDefault();document.getElementById('logout-form').submit();">
             {{ __('Logout') }}

@@ -23,10 +23,10 @@ class ReceiptController extends Controller
     public function store(Order $order, $total)
     {
         if ($order->status == 1)
-            return redirect()->route('order.show', $order)->with('error', 'Order already payed');
+            return redirect()->route('order.show', $order)->with('error', 'Order is already paid!');
         $payments = session()->get('payment');
         if ($payments == null)
-            return redirect()->route('order.show', $order)->with('status', 'select tickets to pay');
+            return redirect()->route('order.show', $order)->with('status', 'Select tickets to pay');
         $receipt = new Receipt();
         $receipt->employee_id = auth()->user()->id;
         $receipt->receiptable_id = $order->customer->id;
@@ -56,14 +56,14 @@ class ReceiptController extends Controller
         }
         $pdf = PDF::loadView('wasl', compact('payments', 'receipt', 'name'));
         session()->forget('payment');
-        app('App\Http\Controllers\MailController')->mailadmin('Part order Payment', 'order'. $order->id .' has been payed by Customer : ' . $order->customer->name .' with total amount: '. $total . 'EGP  on ' . date('Y-m-d').' To employee '.auth()->user()->name.'');
+        app('App\Http\Controllers\MailController')->mailadmin('Part Order Payment', 'Order'. $order->id .' has been paid by customer ' . $order->customer->name . ' with total amount of '. $total . 'EGP on ' . date('Y-m-d').' to employee '.auth()->user()->name.'.');
         return $pdf->stream('invoice.pdf');
     }
 
     public function storeAllorder(Order $order, $total)
     {
         if ($order->status == 1) {
-            return redirect()->route('order.show', $order)->with('error', 'Order already payed');
+            return redirect()->route('order.show', $order)->with('error', 'Order is already paid!');
         }
         $receipt = new Receipt();
         $receipt->employee_id = auth()->user()->id;
@@ -94,7 +94,7 @@ class ReceiptController extends Controller
         $name = $order->customer->name;
         $order->status = '1';
         $order->save();
-       app('App\Http\Controllers\MailController')->mailadmin('All order Payment', 'order'. $order->id .' has been payed by Customer : ' . $order->customer->name .' with total amount: '. $total . 'EGP  on ' . date('Y-m-d').' To employee '.auth()->user()->name.'');
+       app('App\Http\Controllers\MailController')->mailadmin('All Order Payment', 'Order '. $order->id .' has been paid by customer ' . $order->customer->name .' with total amount of '. $total . 'EGP on ' . date('Y-m-d').' to employee '.auth()->user()->name.' .');
         $pdf = PDF::loadView('wasl', compact('payments', 'receipt', 'name'));
         return $pdf->download('invoice.pdf');
     }

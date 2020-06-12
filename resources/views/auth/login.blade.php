@@ -4,15 +4,19 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card" style="margin-top:1em !important;">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
+                        <div class="form-group row" style="text-align:center; display: block;">
+                            <img src="{{ asset('images/logo.jpg') }}" alt="PharominaTours Logo" style="max-width: 35%; height: auto;">
+                        </div>
+
                         <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('username') }}</label>
+                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
                             <div class="col-md-6">
                                 <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="off" autofocus>
@@ -75,6 +79,10 @@
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="card" style="padding:1em; text-align:center; margin:1em auto;">
+                <h2 style="text-decoration: underline;">About the System</h2><br>
+                <h4>This site is intented to be a local management system for a tourism company, if for any reason you could access this online please <a href="mailto:pharominatest@gmail.com">send an email to management here</a>.<br>If you are one of the system users and facing any difficulities please contact your adminstrator.</h4>
             </div>
         </div>
     </div>
