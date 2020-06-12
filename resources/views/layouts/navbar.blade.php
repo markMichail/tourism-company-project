@@ -31,8 +31,8 @@
       {{-- <li class="nav-item">
       <a class="nav-link" href="/addcustomer">Add Customer</a>
     </li> --}}
-    @if (Auth::user()->privilege == '1' or Auth::user()->privilege == '2')
-    <li class="nav-item dropdown">
+      @if (Auth::user()->privilege == '1' or Auth::user()->privilege == '2')
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">Users</a>
         <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
@@ -42,6 +42,16 @@
           @if (Auth::user()->privilege == '1' or Auth::user()->privilege == '2')
           <a class="dropdown-item" href="{{ route('register') }}">Register New User</a>
           @endif
+        </div>
+      </li>
+      @endif
+      @if (Auth::user()->privilege == '1')
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Destinations</a>
+        <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="{{ route('alldestinations') }}">All Destinations</a>
+          <a class="dropdown-item" href="{{ route('adddestination') }}">Add New Destination</a>
         </div>
       </li>
       @endif

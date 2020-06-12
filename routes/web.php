@@ -14,7 +14,7 @@
 use App\Receipt;
 use App\Safe;
 use App\Customer;
-use App\Destination;
+use App\destination;
 use App\User;
 
 Route::get('/customerprofile', function () {
@@ -30,7 +30,7 @@ Route::get('/addcustomer', "CustomerController@store");
 //     echo $c->receipts;
 //     echo '<br>';
 //     echo '<br>';
-//     $d = Destination::findorfail(1);
+//     $d = destination::findorfail(1);
 //     echo $d->receipts;
 //     echo '<br>';
 //     echo '<br>';
@@ -64,12 +64,19 @@ Route::get('/sendemail', 'MailController@mail'); //for testing
 
 Auth::routes();
 
+Route::get('/alldestinations', "DestinationController@index")->name('alldestinations');
+Route::post('/alldestinations/{id}', "DestinationController@destroy")->name('alldestinations.destroy');;
+Route::get('/editdestination/{id}', "DestinationController@edit")->name('editdestination');
+Route::post('/updatedestination/{id}', "DestinationController@update")->name('updatedestination');
+Route::get('/adddestination', "DestinationController@create")->name('adddestination');
+Route::post('/storedestination', "DestinationController@store")->name('storedestination');
+
 Route::get('/allusers', "UserController@index")->name('allusers');
 Route::post('/allusers/{id}', "UserController@destroy")->name('allusers.destroy');;
 Route::get('/edituser/{id}', "UserController@edit")->name('edituser');;
-Route::post('/updateuser/{id}', "UserController@update")->name('updateuser');;
-Route::get('/changepassword', "UserController@changepassword")->name('changepassword');;
-Route::post('/changepassword', "UserController@updatepassword")->name('updatepassword');;
+Route::post('/updateuser/{id}', "UserController@update")->name('updateuser');
+Route::get('/changepassword', "UserController@changepassword")->name('changepassword');
+Route::post('/changepassword', "UserController@updatepassword")->name('updatepassword');
 
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::get('/', "HomeController@index")->name('home');
