@@ -3,7 +3,7 @@
 
 <form class="border border-light p-5" action="{{route('storedestination')}}" method="POST">
     @csrf
-    <p class="h4 mb-4 text-center">Edit Destination</p>
+    <p class="h4 mb-4 text-center">Add Destination</p>
 
     <div class="form-group row">
         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
