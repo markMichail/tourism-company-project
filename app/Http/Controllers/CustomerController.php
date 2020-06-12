@@ -92,7 +92,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required | min:3 | alpha',
+            'name' => 'required | min:3',
             'phone' => 'required | numeric | digits:11',
             'email' => 'email  | unique:customers',
         ]);
@@ -156,7 +156,7 @@ class CustomerController extends Controller
         $customer = Customer::find($id);
         if ($request->email == $customer->email) {
             $this->validate($request, [
-                'name' => 'required | min:3 | alpha',
+                'name' => 'required | min:3',
                 'phone' => 'required | numeric |digits:11',
             ]);
 

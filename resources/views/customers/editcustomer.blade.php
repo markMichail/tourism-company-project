@@ -7,35 +7,18 @@
 
     <div class="form-group">
         <label for="formGroupExampleInput">Customer Name</label>
-        <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="formGroupExampleInput" value="{{$customer->name}}">
-      
-        @error('name')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror
+        <input name="name" type="text" class="form-control" id="formGroupExampleInput" value="{{$customer->name}}">
       </div>
-     
+
       <div class="form-group">
         <label for="formGroupExampleInput2">Phone Number</label>
-        <input name="phone" type="text" class="form-control @error('phone') is-invalid @enderror" id="formGroupExampleInput2" value="{{$customer->phone}}">
-        @error('phone')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror
+        <input name="phone" type="text" class="form-control" id="formGroupExampleInput2" value="{{$customer->phone}}">
       </div>
-     
+
       <div class="form-group">
         <label for="formGroupExampleInput2">Email</label>
-        <input name="email" type="text" class="form-control @error('email') is-invalid @enderror" id="formGroupExampleInput2" value="{{$customer->email}}">
-        @error('email')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror
+        <input name="email" type="text" class="form-control" id="formGroupExampleInput2" value="{{$customer->email}}">
       </div>
-   
 
     <button class="btn btn-info btn-block my-4" type="submit">Edit</button>
 </form>
