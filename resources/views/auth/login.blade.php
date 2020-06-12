@@ -11,8 +11,12 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
+                        <div class="form-group row" style="text-align:center; display: block;">
+                            <img src="{{ asset('images/logo.jpg') }}" alt="PharominaTours Logo" style="max-width: 35%; height: auto;">
+                        </div>
+
                         <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('username') }}</label>
+                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
                             <div class="col-md-6">
                                 <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="off" autofocus>
