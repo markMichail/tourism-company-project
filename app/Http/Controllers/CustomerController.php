@@ -157,7 +157,7 @@ class CustomerController extends Controller
         if ($request->email == $customer->email) {
             $this->validate($request, [
                 'name' => 'required | min:3',
-                'phone' => 'required | numeric',
+                'phone' => 'required | numeric |digits:11',
             ]);
 
             $customer->name = $request->name;
@@ -169,7 +169,7 @@ class CustomerController extends Controller
         } else {
             $this->validate($request, [
                 'name' => 'required | min:3',
-                'phone' => 'required | numeric',
+                'phone' => 'required | numeric |digits:11',
                 'email' => 'email  | unique:customers',
             ]);
 
@@ -188,10 +188,8 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Customer $customer)
     {
-        $customer = Customer::findOrFail($id);
-        $customer->delete();
-        return back()->with('deleted', 'Customer deleted');
+        //
     }
 }
