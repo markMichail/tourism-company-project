@@ -68,6 +68,7 @@
           {{ Auth::user()->name }} <span class="caret"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ route('changepassword') }}">Change password</a>
           @if (Auth::user()->privilege == '1')
           <a class="dropdown-item" href="{{ route('setting') }}">Settings</a>
           @endif

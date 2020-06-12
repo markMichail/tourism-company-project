@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -23,6 +25,22 @@ class UserController extends Controller
     {
         $users = User::where('privilege', '<>', '1')->get();
         return view('users.allusers', compact('users'));
+    }
+
+    public function changepassword()
+    {
+        return view('users.changepassword');
+    }
+
+    public function updatepassword(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        $this->validate($request, [
+            'password' => 'required | min:3',
+        ]);
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect('home')->with('passwordupdated', 'Your password has been updated');
     }
 
     /**

@@ -10,6 +10,12 @@
     }
   </script>
   <!-- Section: Block Content -->
+  @if(Session::has('passwordupdated'))
+  <br>
+  <div class="container alert alert-success" role="alert">
+    {{ Session::get('passwordupdated') }}
+  </div>
+  @endif
   <section>
     <h6 class="font-weight-bold text-center grey-text text-uppercase small mb-4">Hello @if (Auth::user()->privilege ==
       '1' or Auth::user()->privilege == '2')Admin @endif </h6>

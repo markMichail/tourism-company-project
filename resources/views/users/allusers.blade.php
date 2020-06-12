@@ -5,6 +5,12 @@
 <div class="card">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">All Users table</h3>
   <div class="card-body">
+    @if(Session::has('deleted'))
+    <br>
+    <div class="container alert alert-success" role="alert">
+      {{ Session::get('deleted') }}
+    </div>
+    @endif
     <div id="table" class="table-editable">
       <table id="DBTable" class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
