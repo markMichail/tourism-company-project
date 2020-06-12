@@ -150,8 +150,9 @@ class OrderController extends Controller
     $payments = [];
     foreach ($orderPaymentInfo as $ticket) {
       $id = $ticket[0]->id;
+      $number = $ticket[0]->ticketNumber;
       if ($ticket[1] !== 'refunded') {
-        $payments["$id"] = ["id" => $ticket[0]->id, "amount" => $ticket[0]->sellprice - $ticket[1]];
+        $payments["$id"] = ["id" => $ticket[0]->id, "amount" => $ticket[0]->sellprice - $ticket[1],"number"=>$number];
       }
     }
     return view('orders.payment', compact('payments', 'order', "allorder"));

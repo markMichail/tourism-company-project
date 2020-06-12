@@ -39,12 +39,15 @@ class ReceiptController extends Controller
         $receipt->save();
         $order->customer->totalcredit += $total;
         $order->customer->save();
+        $paymentss=[];
         foreach ($payments as $ticket) {
             $id = $ticket['id'];
             $amount = $ticket['amount'];
+            $tick=Ticket::where("id", "$id")->first();
+            $paymentss["$id"]=["id" => $id, "amount" => $amount,"number"=>$tick->ticketNumber];
             $receipt->tickets()->attach("$id", ['amount' => $amount]);
         }
-
+        $payments=$paymentss;
         $name = $order->customer->name;
         $result = $order->ticketsAmount();
         if ($result[1] - $result[2] == 0) {
@@ -76,12 +79,14 @@ class ReceiptController extends Controller
         $payments = [];
         foreach ($orderPaymentInfo as $ticket) {
             $id = $ticket[0]->id;
+            $number = $ticket[0]->ticketNumber;
             if ($ticket[1] !== 'refunded') {
                 $amount = $ticket[0]->sellprice - $ticket[1];
                 $receipt->tickets()->attach("$id", ['amount' => $amount]);
-                $payments["$id"] = ["id" => $ticket[0]->id, "amount" => $amount];
+                $payments["$id"] = ["id" => $ticket[0]->id, "amount" => $amount,"number"=>$number];
             }
         }
+
         if ($order->customer->id != 0) {
             $order->customer->totalcredit += $total;
             $order->customer->save();

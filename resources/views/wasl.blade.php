@@ -29,7 +29,7 @@ th, td {
   @php($total=0)
   @foreach ($payments as $ticket)
   <tr>
-      <td>{{$ticket['id']}}</td>
+      <td>{{$ticket['number']}}</td>
       <td>{{$ticket['amount']}}</td>
       @php($total+=$ticket['amount'])
   </tr>
